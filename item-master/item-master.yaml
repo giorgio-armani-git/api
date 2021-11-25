@@ -183,17 +183,23 @@ definitions:
         type: "boolean"
         default: "false"
   # SEASON
-  season-code:
+  season:
     type: "object"
-    description: "Season Code Description"
+    description: "Year/Season"
     properties:
-      code: 
+      id: 
+        type: "string"
+        example: "FW22"
+      year:
         type: "integer"
-        example: "30"
+        format: "int32"
+        example: "2022"
       description:
         enum:
-          - "Spring/Summer"
           - "Fall/Winter"
+          - "Spring/Summer"
+        example: "Fall/Winter"
+  
   # MADE-IN
   madein:
     type: "object"
@@ -250,6 +256,79 @@ definitions:
       description:
         type: "string"
         example: "Mother of pearl"
+  # UNDERLINE
+  underline:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "00"
+      description:
+        type: "string"
+        example: "Collection"
+  # COLOR
+  color:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "001"
+      description:
+        type: "string"
+        example: "Black"
+  # COMMODITY-CODE
+  commodity-code:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "41032000"
+      description:
+        type: "string"
+        example: "CUOI/PELLI DI RETTILI"
+  # Packaging type
+  packaging-type:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "Z003"
+      description:
+        type: "string"
+        example: "Hang in Bag"
+  # Range Name
+  range-name:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: ""
+      description:
+        type: "string"
+        example: ""
+  # Capsule & Special Projects
+  capsule-special-projects:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: ""
+      description:
+        type: "string"
+        example: ""
+  # Luxury Article
+  luxury-article:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: ""
+      description:
+        type: "string"
+        example: ""
+  
+      
+      
       
   # ITEM -------------------------------            
   item:
@@ -260,18 +339,10 @@ definitions:
       sku:
         type: "string"
         example: "XYZ010XOI69 00102N"
-      active-season-year:
-        type: "integer"
-        format: "int32"
-        example: "2022"
-      active-season-code:
-        $ref: "#/definitions/season-code"
-      creation-season-year:
-        type: "integer"
-        format: "int32"
-        example: "2019"
-      creation-season-code:
-        $ref: "#/definitions/season-code"
+      active-season:
+        $ref: "#/definitions/season"
+      creation-season:
+        $ref: "#/definitions/season"
       style:
         type: "string"
         example: "XYZ010"
@@ -279,8 +350,9 @@ definitions:
         type: "string"
         example: "XOI69"
       color:
-        type: "string"
-        example: "A553"
+        $ref: "#/definitions/color"
+      nrf-color:
+        $ref: "#/definitions/color"        
       barcodes:
         type: "array"
         items:
@@ -304,7 +376,9 @@ definitions:
       brand:
         $ref: "#/definitions/brand"
       madein:
-        $ref: "#/definitions/madein"
+        type: "array"
+        items:
+          $ref: "#/definitions/madein"
       fashion-grade:
         $ref: "#/definitions/seasonality"
       gender:
@@ -314,6 +388,22 @@ definitions:
         default: false
       cites:
         $ref: "#/definitions/cites"
+      underline:
+        $ref: "#/definitions/underline"
+      direct-import:
+        type: "boolean"
+        default: "false"
+        example: "false"
+      commodity-code:
+        $ref: "#/definitions/commodity-code"
+      packaging-type:
+        $ref: "#/definitions/packaging-type"
+      range-name:
+        $ref: "#/definitions/range-name"
+      capsule-special-projects:
+        $ref: "#/definitions/capsule-special-projects"
+      luxury-article:
+        $ref: "#/definitions/luxury-article"
       status:
         $ref: "#/definitions/item-status"
       creation-date:
