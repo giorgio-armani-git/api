@@ -1,421 +1,691 @@
-swagger: "2.0"
-info:
-  description: "Item Master MVP"
-  version: "1.0.0"
-  title: "Product Catalog"
-  termsOfService: "http://api.giorgioarmani.it/terms/"
-  contact:
-    email: "apiteam@giorgioarmani.it"
-  license:
-    name: "XXXX"
-    url: "http://api.giorgioarmani.it/licenses/LICENSE-API.html"
-host: "api.giorgioarmani.it"
-basePath: "/v1"
-tags:
-- name: "item-master"
-  description: "Armani Pproduct Catalog"
-  externalDocs:
-    description: "Find out more"
-    url: "http://api.giorgioarmani.it/docs"
-schemes:
-- "https"
-#- "http"
-securityDefinitions:
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
-paths:
-  /items:
-    get:
-      tags:
-      - "item"
-      summary: "Return all Items for a given Year/Season"
-      description: "Return active items"
-      operationId: ""
-      produces:
-      - "application/json"
-      - "application/xml"
-      security:
-      - api_key: []
-      parameters:
-      - name: "year"
-        in: "query"
-        description: "Year values that need to be considered for filter"
-        required: true
-        type: "array"
-        items:
-          type: "string"
-          default: "2022"
-        collectionFormat: "multi"
-      - name: "season"
-        in: "query"
-        description: "Season values that need to be considered for filter"
-        required: true
-        type: "array"
-        items:
-          type: "string"
-          default: "SS"
-        collectionFormat: "multi"
-      responses:
-        "200":
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/item"
-        "400":
-          description: "Invalid status value"
-
-definitions:
-  # PRODUCT
-  product:  
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "629"
-      description:
-        type: "string"
-        example: "SNEAKERS"
-    xml:
-      name: "Product"
-  # PRODUCT TYPE
-  product-type:  
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "40"
-      description:
-        type: "string"
-        example: "LEATHER"
-    xml:
-      name: "Product Type"
-  # MERCHANDISE CATEGORY
-  merchandise-category:  
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      description:
-        type: "string"
-    xml:
-      name: "Merchandise Category"
-  # MERCHANDISE GROUP
-  merchandise-group:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      description:
-        type: "string"
-    xml:
-      name: "Merchandise Group"
-  # CATEGORY 
-  category:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      description:
-        type: "string"
-    xml:
-      name: "Category"
-  # BRAND 
-  brand:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-      description:
-        type: "string"
-    xml:
-      name: "Brand"
-  # SEASONALITY
-  seasonality:
-    type: "string"
-    enum:
-      - "seasonal"
-      - "continuous"
-      - "repurposed"
-    xml:
-      name: "Seasonality"
-  # GENDER
-  gender:
-    type: "string"
-    description: "Gender"
-    enum:
-      - "man"
-      - "woman"
-      - "unisex"
-      - "boy"
-      - "girl"
-    xml:
-      name: "Gender"
-  # STATUS
-  item-status:
-    type: "object"
-    description: "Item Status"
-    properties:
-      status:
-        type: "string"
-        enum:
-          - "active"
-          - "cancelled"
-      starting-date:
-        type: "string"
-        format: "date-time"
-    xml:
-      name: "Item Status"
-  # BARCODES
-  barcode:
-    type: "object"
-    description: "barcodes"
-    properties:
-      barcode: 
-        type: "integer"
-        example: "8054804724299"
-      barcode-type: 
-        type: "string"
-        example: "GTIN13"
-      main:
-        type: "boolean"
-        default: "false"
-  # SEASON
-  season:
-    type: "object"
-    description: "Year/Season"
-    properties:
-      id: 
-        type: "string"
-        example: "FW22"
-      year:
-        type: "integer"
-        format: "int32"
-        example: "2022"
-      description:
-        enum:
-          - "Fall/Winter"
-          - "Spring/Summer"
-        example: "Fall/Winter"
-  
-  # MADE-IN
-  madein:
-    type: "object"
-    description: "Item Master madein, it might be different from production made-in"
-    properties:
-      id: 
-        type: "string"
-        example: "ITA"
-      description:
-        type: "string"
-        example: "Italia"
-  # DIVISION
-  division:
-    type: "object"
-    description: "Business Division"
-    properties:
-      id:
-        type: "string"
-        example: "JB"
-      description:
-        type: "string"
-        example: "Emporio Armani Boy"
-  # COLLECTION
-  collection:
-    type: "object"
-    description: "Collection"
-    properties:
-      id:
-        type: "string"
-        example: "JB"
-      description:
-        type: "string"
-        example: "EA Boy"
-  # THEME
-  theme:
-    type: "object"
-    description: "Theme"
-    properties:
-      id:
-        type: "string"
-        example: "28"
-      description:
-        type: "string"
-        example: "Ext.2 Dl.8"
-  # CITES
-  cites:
-    type: "object"
-    description: "Washington Declaration"
-    properties:
-      id:
-        type: "integer"
-        format: "int32"
-        example: "4"
-      description:
-        type: "string"
-        example: "Mother of pearl"
-  # UNDERLINE
-  underline:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "00"
-      description:
-        type: "string"
-        example: "Collection"
-  # COLOR
-  color:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "001"
-      description:
-        type: "string"
-        example: "Black"
-  # COMMODITY-CODE
-  commodity-code:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "41032000"
-      description:
-        type: "string"
-        example: "CUOI/PELLI DI RETTILI"
-  # Packaging type
-  packaging-type:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: "Z003"
-      description:
-        type: "string"
-        example: "Hang in Bag"
-  # Range Name
-  range-name:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: ""
-      description:
-        type: "string"
-        example: ""
-  # Capsule & Special Projects
-  capsule-special-projects:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: ""
-      description:
-        type: "string"
-        example: ""
-  # Luxury Article
-  luxury-article:
-    type: "object"
-    properties:
-      id:
-        type: "string"
-        example: ""
-      description:
-        type: "string"
-        example: ""
-  
-      
-      
-      
-  # ITEM -------------------------------            
-  item:
-    type: "object"
-    required:
-    - "sku"
-    properties:
-      sku:
-        type: "string"
-        example: "XYZ010XOI69 00102N"
-      active-season:
-        $ref: "#/definitions/season"
-      creation-season:
-        $ref: "#/definitions/season"
-      style:
-        type: "string"
-        example: "XYZ010"
-      fabric:
-        type: "string"
-        example: "XOI69"
-      color:
-        $ref: "#/definitions/color"
-      nrf-color:
-        $ref: "#/definitions/color"        
-      barcodes:
-        type: "array"
-        items:
-          $ref: "#/definitions/barcode"
-      division:
-        $ref: "#/definitions/division"
-      collection:
-        $ref: "#/definitions/collection"
-      theme:
-        $ref: "#/definitions/theme"
-      product:
-        $ref: "#/definitions/product"
-      product-type:
-        $ref: "#/definitions/product-type"
-      merchandise-category:
-        $ref: "#/definitions/merchandise-category"
-      merchandise-group:
-        $ref: "#/definitions/merchandise-group"
-      category:
-        $ref: "#/definitions/category"
-      brand:
-        $ref: "#/definitions/brand"
-      madein:
-        type: "array"
-        items:
-          $ref: "#/definitions/madein"
-      fashion-grade:
-        $ref: "#/definitions/seasonality"
-      gender:
-        $ref: "#/definitions/gender"
-      rfid-enabled:
-        type: "boolean"
-        default: false
-      cites:
-        $ref: "#/definitions/cites"
-      underline:
-        $ref: "#/definitions/underline"
-      direct-import:
-        type: "boolean"
-        default: "false"
-        example: "false"
-      commodity-code:
-        $ref: "#/definitions/commodity-code"
-      packaging-type:
-        $ref: "#/definitions/packaging-type"
-      range-name:
-        $ref: "#/definitions/range-name"
-      capsule-special-projects:
-        $ref: "#/definitions/capsule-special-projects"
-      luxury-article:
-        $ref: "#/definitions/luxury-article"
-      status:
-        $ref: "#/definitions/item-status"
-      creation-date:
-        type: "string"
-        format: "date-time"
-      last-change-date:
-        type: "string"
-        format: "date-time"
-        
-    xml:
-      name: "Item"
-
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Item Master MVP",
+    "version" : "1.0.0",
+    "title" : "Product Catalog",
+    "termsOfService" : "http://api.giorgioarmani.it/terms/",
+    "contact" : {
+      "email" : "apiteam@giorgioarmani.it"
+    },
+    "license" : {
+      "name" : "XXXX",
+      "url" : "http://api.giorgioarmani.it/licenses/LICENSE-API.html"
+    }
+  },
+  "host" : "api.giorgioarmani.it",
+  "basePath" : "/v1",
+  "tags" : [ {
+    "name" : "item-master",
+    "description" : "Armani Pproduct Catalog",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "http://api.giorgioarmani.it/docs"
+    }
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/items" : {
+      "get" : {
+        "tags" : [ "item" ],
+        "summary" : "Return all Items for a given Year/Season",
+        "description" : "Return active items",
+        "operationId" : "",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "year",
+          "in" : "query",
+          "description" : "Year values that need to be considered for filter",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "default" : "2022"
+          },
+          "collectionFormat" : "multi"
+        }, {
+          "name" : "season",
+          "in" : "query",
+          "description" : "Season values that need to be considered for filter",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "default" : "SS"
+          },
+          "collectionFormat" : "multi"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/item"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid status value"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "api_key",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "localized-message" : {
+      "type" : "object",
+      "properties" : {
+        "language" : {
+          "type" : "string",
+          "example" : "en"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "This is an english message"
+        }
+      }
+    },
+    "product" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "629"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SNEAKERS"
+          }, {
+            "language" : "it",
+            "description" : "Scarpe da ginnastica"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "product-type" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "40"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "LEATHER"
+          }, {
+            "language" : "it",
+            "description" : "Pelle"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "merchandise-category" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SHOES"
+          }, {
+            "language" : "it",
+            "description" : "Scarpe"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "merchandise-group" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SHOES"
+          }, {
+            "language" : "it",
+            "description" : "Scarpe"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "category" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SHOES"
+          }, {
+            "language" : "it",
+            "description" : "Scarpe"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "brand" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "10"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "Giorgio Armani"
+        }
+      }
+    },
+    "seasonality" : {
+      "type" : "string",
+      "enum" : [ "seasonal", "continuous", "repurposed" ]
+    },
+    "gender" : {
+      "type" : "string",
+      "description" : "Gender",
+      "enum" : [ "man", "woman", "unisex", "boy", "girl" ]
+    },
+    "item-status" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "enum" : [ "active", "cancelled" ]
+        },
+        "starting-date" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      },
+      "description" : "Item Status"
+    },
+    "barcode" : {
+      "type" : "object",
+      "properties" : {
+        "barcode" : {
+          "type" : "integer",
+          "example" : 8054804724299
+        },
+        "barcode-type" : {
+          "type" : "string",
+          "example" : "GTIN13"
+        },
+        "main" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      },
+      "description" : "barcodes"
+    },
+    "season" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "FW22"
+        },
+        "year" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 2022
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Fall/Winter"
+          }, {
+            "language" : "it",
+            "description" : "Autunno/Inverno"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Year/Season"
+    },
+    "madein" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "ITA"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Italy"
+          }, {
+            "language" : "it",
+            "description" : "Italia"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Item Master madein, it might be different from production made-in"
+    },
+    "division" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "JB"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Emporio Armani Boy"
+          }, {
+            "language" : "it",
+            "description" : "Emporio Armani Bimbo"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Business Division"
+    },
+    "collection" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "JB"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "EA Boy"
+          }, {
+            "language" : "it",
+            "description" : "EA Bimbo"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Collection"
+    },
+    "theme" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "28"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "Ext.2 Dl.8"
+        }
+      },
+      "description" : "Theme"
+    },
+    "cites" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 4
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Mother of Pearl"
+          }, {
+            "language" : "it",
+            "description" : "Madre Perla"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Washington Declaration"
+    },
+    "underline" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "00"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Collection"
+          }, {
+            "language" : "it",
+            "description" : "Collezione"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "color" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "001"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Black"
+          }, {
+            "language" : "it",
+            "description" : "Nero"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "commodity-code" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "41032000"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Skin, reptiles"
+          }, {
+            "language" : "it",
+            "description" : "Cuoi/Pelli di rettili"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "packaging-type" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "Z003"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Hang in Bag"
+          }, {
+            "language" : "it",
+            "description" : "Appeso in sacca"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "range-name" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "range name english"
+          }, {
+            "language" : "it",
+            "description" : "range name italian"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "capsule-special-projects" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Special Project"
+          }, {
+            "language" : "it",
+            "description" : "Progetto speciale"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "luxury-article" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Luxory"
+          }, {
+            "language" : "it",
+            "description" : "Lusso"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "composition" : {
+      "type" : "object",
+      "properties" : {
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "80% wool, 17% polyester, 2% cotton, 1% plastic"
+          }, {
+            "language" : "it",
+            "description" : "80% lana, 17% polyester, 2% cotone, 1% materiale plastico"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "item" : {
+      "type" : "object",
+      "required" : [ "sku" ],
+      "properties" : {
+        "sku" : {
+          "type" : "string",
+          "example" : "XYZ010XOI69 00102N"
+        },
+        "active-season" : {
+          "$ref" : "#/definitions/season"
+        },
+        "creation-season" : {
+          "$ref" : "#/definitions/season"
+        },
+        "style" : {
+          "type" : "string",
+          "example" : "XYZ010"
+        },
+        "fabric" : {
+          "type" : "string",
+          "example" : "XOI69"
+        },
+        "color" : {
+          "$ref" : "#/definitions/color"
+        },
+        "barcodes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/barcode"
+          }
+        },
+        "division" : {
+          "$ref" : "#/definitions/division"
+        },
+        "collection" : {
+          "$ref" : "#/definitions/collection"
+        },
+        "theme" : {
+          "$ref" : "#/definitions/theme"
+        },
+        "product" : {
+          "$ref" : "#/definitions/product"
+        },
+        "product-type" : {
+          "$ref" : "#/definitions/product-type"
+        },
+        "merchandise-category" : {
+          "$ref" : "#/definitions/merchandise-category"
+        },
+        "merchandise-group" : {
+          "$ref" : "#/definitions/merchandise-group"
+        },
+        "category" : {
+          "$ref" : "#/definitions/category"
+        },
+        "brand" : {
+          "$ref" : "#/definitions/brand"
+        },
+        "madein" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/madein"
+          }
+        },
+        "fashion-grade" : {
+          "$ref" : "#/definitions/seasonality"
+        },
+        "gender" : {
+          "$ref" : "#/definitions/gender"
+        },
+        "rfid-enabled" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "cites" : {
+          "$ref" : "#/definitions/cites"
+        },
+        "underline" : {
+          "$ref" : "#/definitions/underline"
+        },
+        "direct-import" : {
+          "type" : "boolean",
+          "example" : false,
+          "default" : false
+        },
+        "commodity-code" : {
+          "$ref" : "#/definitions/commodity-code"
+        },
+        "packaging-type" : {
+          "$ref" : "#/definitions/packaging-type"
+        },
+        "range-name" : {
+          "$ref" : "#/definitions/range-name"
+        },
+        "capsule-special-projects" : {
+          "$ref" : "#/definitions/capsule-special-projects"
+        },
+        "luxury-article" : {
+          "$ref" : "#/definitions/luxury-article"
+        },
+        "status" : {
+          "$ref" : "#/definitions/item-status"
+        },
+        "creation-date" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "last-change-date" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "composition" : {
+          "$ref" : "#/definitions/composition"
+        }
+      },
+      "xml" : {
+        "name" : "Item"
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Giorgio Armani public APIs",
+    "url" : "http://api.giorgioarmani.com"
+  }
+}
