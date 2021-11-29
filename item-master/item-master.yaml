@@ -140,6 +140,28 @@
         }
       }
     },
+    "product-kind" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "A21"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SNEAKER HIGH TOP"
+          }, {
+            "language" : "it",
+            "description" : "Scarpe da ginnastica alte"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
     "merchandise-category" : {
       "type" : "object",
       "properties" : {
@@ -217,20 +239,61 @@
       }
     },
     "seasonality" : {
-      "type" : "string",
-      "enum" : [ "seasonal", "continuous", "repurposed" ]
+      "type" : "object",
+      "properties" : {
+        "id" : { },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Repurposed"
+          }, {
+            "language" : "it",
+            "description" : "Riproposto"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Seasonality"
     },
     "gender" : {
-      "type" : "string",
-      "description" : "Gender",
-      "enum" : [ "man", "woman", "unisex", "boy", "girl" ]
+      "type" : "object",
+      "properties" : {
+        "id" : { },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Man"
+          }, {
+            "language" : "it",
+            "description" : "Uomo"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      },
+      "description" : "Gender"
     },
     "item-status" : {
       "type" : "object",
       "properties" : {
-        "status" : {
-          "type" : "string",
-          "enum" : [ "active", "cancelled" ]
+        "id" : { },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Active"
+          }, {
+            "language" : "it",
+            "description" : "Attivo"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
         },
         "starting-date" : {
           "type" : "string",
@@ -362,8 +425,17 @@
           "example" : "28"
         },
         "description" : {
-          "type" : "string",
-          "example" : "Ext.2 Dl.8"
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "Ex.2 Dl.8"
+          }, {
+            "language" : "it",
+            "description" : ""
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
         }
       },
       "description" : "Theme"
@@ -414,6 +486,50 @@
         }
       }
     },
+    "style" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "XYZ010"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "XYZ010"
+          }, {
+            "language" : "it",
+            "description" : "XYZ010"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "fabric" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "XOI69"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "XOI69"
+          }, {
+            "language" : "it",
+            "description" : "XOI69"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
     "color" : {
       "type" : "object",
       "properties" : {
@@ -429,6 +545,50 @@
           }, {
             "language" : "it",
             "description" : "Nero"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "drop" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "N"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : ""
+          }, {
+            "language" : "it",
+            "description" : ""
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        }
+      }
+    },
+    "size" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "N"
+        },
+        "description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : ""
+          }, {
+            "language" : "it",
+            "description" : ""
           } ],
           "items" : {
             "$ref" : "#/definitions/localized-message"
@@ -579,15 +739,53 @@
           "$ref" : "#/definitions/season"
         },
         "style" : {
-          "type" : "string",
-          "example" : "XYZ010"
+          "$ref" : "#/definitions/style"
         },
         "fabric" : {
-          "type" : "string",
-          "example" : "XOI69"
+          "$ref" : "#/definitions/fabric"
         },
         "color" : {
           "$ref" : "#/definitions/color"
+        },
+        "drop" : {
+          "$ref" : "#/definitions/drop"
+        },
+        "variant" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "variant-type" : {
+          "type" : "string",
+          "example" : ""
+        },
+        "size" : {
+          "$ref" : "#/definitions/size"
+        },
+        "style-fabric-description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "SNK COW SUEDE+CALF V"
+          }, {
+            "language" : "it",
+            "description" : "Vitello V"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
+        },
+        "article-description" : {
+          "type" : "array",
+          "example" : [ {
+            "language" : "en",
+            "description" : "XYZ010 XOI69 A553 SNK COW SUEDE+CALF V"
+          }, {
+            "language" : "it",
+            "description" : "XYZ010 XOI69 A553 Vitello V"
+          } ],
+          "items" : {
+            "$ref" : "#/definitions/localized-message"
+          }
         },
         "barcodes" : {
           "type" : "array",
@@ -609,6 +807,9 @@
         },
         "product-type" : {
           "$ref" : "#/definitions/product-type"
+        },
+        "product-kind" : {
+          "$ref" : "#/definitions/product-kind"
         },
         "merchandise-category" : {
           "$ref" : "#/definitions/merchandise-category"
@@ -643,11 +844,6 @@
         },
         "underline" : {
           "$ref" : "#/definitions/underline"
-        },
-        "direct-import" : {
-          "type" : "boolean",
-          "example" : false,
-          "default" : false
         },
         "commodity-code" : {
           "$ref" : "#/definitions/commodity-code"
