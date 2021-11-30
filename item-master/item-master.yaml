@@ -1,9 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Item Master MVP",
+    "description" : "Item Master & Barcodes",
     "version" : "1.0.0",
-    "title" : "Product Catalog",
+    "title" : "Item Master",
     "termsOfService" : "http://api.giorgioarmani.it/terms/",
     "contact" : {
       "email" : "apiteam@giorgioarmani.it"
@@ -14,7 +14,7 @@
     }
   },
   "host" : "api.giorgioarmani.it",
-  "basePath" : "/v1",
+  "basePath" : "/asfolcini/item-master/1.0.0",
   "tags" : [ {
     "name" : "item-master",
     "description" : "Armani Pproduct Catalog",
@@ -62,6 +62,44 @@
               "type" : "array",
               "items" : {
                 "$ref" : "#/definitions/item"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid status value"
+          }
+        },
+        "security" : [ {
+          "api_key" : [ ]
+        } ]
+      }
+    },
+    "/barcodes" : {
+      "get" : {
+        "tags" : [ "barcode" ],
+        "summary" : "Return all Barcode for a given Item",
+        "description" : "Return active barcodes",
+        "operationId" : "",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "sku",
+          "in" : "query",
+          "description" : "sku",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "default" : ""
+          },
+          "collectionFormat" : "multi"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/barcode"
               }
             }
           },
@@ -305,6 +343,10 @@
     "barcode" : {
       "type" : "object",
       "properties" : {
+        "sku" : {
+          "type" : "string",
+          "example" : "XYZ010XOI69 00102N"
+        },
         "barcode" : {
           "type" : "integer",
           "example" : 8054804724299
@@ -878,9 +920,6 @@
         "composition" : {
           "$ref" : "#/definitions/composition"
         }
-      },
-      "xml" : {
-        "name" : "Item"
       }
     }
   },
