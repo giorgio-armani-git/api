@@ -732,6 +732,10 @@
           "type" : "string",
           "example" : "XYZ010XOI69 00102N"
         },
+        "generic-article" : {
+          "type" : "string",
+          "example" : "XYZ010XOI69 001"
+        },
         "active-season" : {
           "$ref" : "#/definitions/season"
         },
