@@ -1,1 +1,0 @@
-Swagger per API anagrafica
