@@ -164,22 +164,6 @@ components:
         starting-date:
           type: string
           format: date-time
-    barcode:
-      type: object
-      description: barcodes
-      properties:
-        sku:
-          type: string
-          example: XYZ010XOI69 00102N
-        barcode:
-          type: integer
-          example: '8054804724299'
-        barcode-type:
-          type: string
-          example: GTIN13
-        main:
-          type: boolean
-          default: 'false'
     season:
       type: object
       description: Year/Season

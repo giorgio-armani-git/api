@@ -1,9 +1,9 @@
 openapi: "3.0.2"
 info:
-  title: API Title
+  title: Item Master
   version: "1.0"
 servers:
-  - url: https://api.server.test/v1
+  - url: https://api.giorgioarmani.it/v1
 paths:
   /items:
     get:
@@ -107,7 +107,7 @@ components:
         barcodes:
           type: array
           items:
-            $ref: "../common/common.yaml#/components/schemas/barcode"
+            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         division:
           $ref: "../common/common.yaml#/components/schemas/division"
         collection:

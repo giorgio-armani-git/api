@@ -1,0 +1,63 @@
+openapi: "3.0.2"
+info:
+  title: Barcode
+  version: "1.0"
+servers:
+  - url: https://api.giorgioarmani.it/v1
+paths:
+  /barcodes:
+    get:
+      summary: Return all Barcodes for a given Item
+      description: Return active barcodes
+      operationId: ''
+      parameters:
+        - name: sku
+          in: query
+          description: sku
+          required: true
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              default: ""
+      responses:
+        "200":
+          description: successful operation
+          content:
+            applciation/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/barcode"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+      security:
+        - api_key: []
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  schemas:
+    barcode:
+      type: object
+      properties:
+        sku:
+          type: string
+          example: XYZ010XOI69 00102N
+        barcode:
+          type: integer
+          example: 8054804724299
+        barcode-type:
+          type: string
+          example: GTIN13
+        main:
+          type: boolean
+          default: false
+      description: barcodes
