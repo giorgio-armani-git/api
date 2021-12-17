@@ -1,49 +1,104 @@
-openapi: "3.0.2"
+openapi: "3.0.0"
 info:
   title: Barcode
-  version: "1.0"
+  description: Giorgio Armani Barcodes
+  version: "1.0.0"
 servers:
-  - url: https://api.giorgioarmani.it/v1
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
 paths:
-  /barcodes:
+  /barcode/{barcode}:
     get:
-      summary: Return all Barcodes for a given Item
+      summary: Return the specified barcode
       description: Return active barcodes
       operationId: ''
       parameters:
-        - name: sku
-          in: query
-          description: sku
+        - name: barcode
+          in: path
+          description: barcode
           required: true
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              default: ""
+            type: string
+            default: "8054804724299"
       responses:
         "200":
           description: successful operation
           content:
-            applciation/json:
+            application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/barcode"
+                $ref: "#/components/schemas/barcode"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
         "default":
           description: Unexpected Error
           content:
             application/json:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
-      security:
-        - api_key: []
+
+  /barcode/:
+    get:
+      summary: Return all Barcodes for a given item-id (can be sku or generic-article)
+      description: Return all active barcodes for a given item-id (can be both sku or generic-article)
+      operationId: ''
+      parameters:
+        - name: item-id
+          in: query
+          description: item-id (can be both sku or generic-article)
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "XYZ010XOI69 00102N"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/barcode"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
 components:
+
   securitySchemes:
-    api_key:
+    api-key-auth:
       type: apiKey
-      name: api_key
-      in: header
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
   schemas:
     barcode:
       type: object
@@ -57,11 +112,15 @@ components:
         href:
           type: string
           format: url
-          example: "https://api.giorgioarmani.it/v1/barcodes/8054804724299"
+          example: "https://api.giorgioarmani.it/v1/barcode/8054804724299"
         sku-href:
           type: string
           format: url
-          example: "https://api.giorgioarmani.it/v1/barcodes/XYZ010XOI69 00102N"
+          example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 00102N"
+        generic-article-href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 001"
         barcode-type:
           type: string
           example: GTIN13

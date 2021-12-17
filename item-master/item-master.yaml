@@ -2,36 +2,35 @@ openapi: 3.0.0
 info:
   title: Item Master
   description: Giorgio Armani Item Master
-  version: "1.0"
+  version: "1.0.0"
 servers:
-  - url: https://api.giorgioarmani.it/v1
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
 paths:
-  /items:
+  /item:
     get:
-      summary: Return all Items for a given Year/Season
-      description: Return active items
+      summary: Returns active items by season
+      description: Returns active items by season
       operationId: ""
       parameters:
-        - name: year
-          in: query
-          description: Year values that need to be considered for filter
-          required: true
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-              default: "2022"
         - name: season
           in: query
           description: Season values that need to be considered for filter
           required: true
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              default: SS
+            $ref: "../common/common.yaml#/components/schemas/season"
       responses:
         "200":
           description: successful operation
@@ -41,32 +40,81 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/item"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
         "default":
           description: Unexpected Error
           content:
             application/json:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
-      security:
-        - api_key: []
+
+  /item/{item-id}:
+    get:
+      summary: Returns active item by {item-id}
+      description: Returns active item by {item-id}
+      operationId: ""
+      parameters:
+        - name: item-id
+          in: path
+          description: item-id (can be both sku or generic-article)
+          required: true
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              example: "XYZ010XOI69 001"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/item"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+security:
+  - api-key-auth: []
+
 components:
+
   securitySchemes:
-    api_key:
+    api-key-auth:
       type: apiKey
-      name: api_key
       in: header
+      name: X-Gateway-APIKey
+
   schemas:
     item:
       type: object
-      required:
-        - sku
       properties:
-        sku:
-          type: string
-          example: XYZ010XOI69 00102N
-        generic-article:
+        id:
           type: string
           example: XYZ010XOI69 001
+          description: sku or generic article id
+        item-type:
+          $ref: "#/components/schemas/item-type"
+        href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
         active-season:
           $ref: "../common/common.yaml#/components/schemas/season"
         creation-season:
@@ -75,18 +123,12 @@ components:
           $ref: "../common/common.yaml#/components/schemas/style"
         fabric:
           $ref: "../common/common.yaml#/components/schemas/fabric"
-        color:
-          $ref: "../common/common.yaml#/components/schemas/color"
-        drop:
-          $ref: "../common/common.yaml#/components/schemas/drop"
         variant:
           type: string
           example: ""
         variant-type:
           type: string
           example: ""
-        size:
-          $ref: "../common/common.yaml#/components/schemas/size"
         style-fabric-description:
           type: array
           example:
@@ -96,19 +138,6 @@ components:
               description: Vitello V
           items:
             $ref: "../common/common.yaml#/components/schemas/localized-message"
-        article-description:
-          type: array
-          example:
-            - language: en
-              description: XYZ010 XOI69 A553 SNK COW SUEDE+CALF V
-            - language: it
-              description: XYZ010 XOI69 A553 Vitello V
-          items:
-            $ref: "../common/common.yaml#/components/schemas/localized-message"
-        barcodes:
-          type: array
-          items:
-            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         division:
           $ref: "../common/common.yaml#/components/schemas/division"
         collection:
@@ -164,4 +193,55 @@ components:
           format: date-time
         composition:
           $ref: "../common/common.yaml#/components/schemas/composition"
+        related-items:
+          type: array
+          items:
+            $ref: "#/components/schemas/real-item"
 
+    real-item:
+      type: object
+      properties:
+        id:
+          type: string
+          example: XYZ010XOI69 00102N
+        item-type:
+          $ref: "#/components/schemas/item-type"
+        href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 00102N"
+        related-generic-id:
+          type: string
+          format: url
+          example: "XYZ010XOI69 001"
+        related-generic-href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
+        size:
+          $ref: "../common/common.yaml#/components/schemas/size"
+        alias-size:
+          $ref: "../common/common.yaml#/components/schemas/size"
+        color:
+          $ref: "../common/common.yaml#/components/schemas/color"
+        drop:
+          $ref: "../common/common.yaml#/components/schemas/drop"
+        article-description:
+          type: array
+          example:
+            - language: en
+              description: XYZ010 XOI69 A553 SNK COW SUEDE+CALF V
+            - language: it
+              description: XYZ010 XOI69 A553 Vitello V
+          items:
+            $ref: "../common/common.yaml#/components/schemas/localized-message"
+        barcodes:
+          type: array
+          items:
+              $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+
+    item-type:
+      type: string
+      enum:
+        - generic-article
+        - real-article
