@@ -345,16 +345,16 @@ components:
       properties:
         id:
           type: string
-          example: 'N'
+          example: 'M'
         description:
           type: array
           items:
             $ref: '#/components/schemas/localized-message'
           example:
             - language: en
-              description: ''
+              description: 'Medium'
             - language: it
-              description: ''
+              description: 'Media'
     commodity-code:
       type: object
       properties:

@@ -54,6 +54,14 @@ components:
         barcode:
           type: integer
           example: 8054804724299
+        href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/barcodes/8054804724299"
+        sku-href:
+          type: string
+          format: url
+          example: "https://api.giorgioarmani.it/v1/barcodes/XYZ010XOI69 00102N"
         barcode-type:
           type: string
           example: GTIN13
