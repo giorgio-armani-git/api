@@ -72,6 +72,13 @@ paths:
           schema:
             type: string
             example: ""
+        - name: product-id
+          in: query
+          description: product code
+          required: false
+          explode: true
+          schema:
+            type: string
 
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
