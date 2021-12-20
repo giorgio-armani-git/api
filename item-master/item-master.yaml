@@ -166,9 +166,6 @@ components:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
         gender:
           $ref: "../common/gender.yaml#/components/schemas/gender"
-        rfid-enabled:
-          type: boolean
-          default: false
         cites:
           $ref: "../common/cites.yaml#/components/schemas/cites"
         underline:
@@ -239,6 +236,9 @@ components:
           type: array
           items:
               $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        rfid-enabled:
+          type: boolean
+          default: false
         status:
           $ref: "../common/item-status.yaml#/components/schemas/item-status"
         creation-date:
