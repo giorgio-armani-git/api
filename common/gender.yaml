@@ -1,0 +1,22 @@
+components:
+  schemas:
+    gender:
+      type: object
+      description: Gender
+      properties:
+        id:
+          enum:
+            - man
+            - woman
+            - unisex
+            - boy
+            - girl
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Man
+            - language: it
+              description: Uomo

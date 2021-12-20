@@ -1,0 +1,14 @@
+components:
+  schemas:
+    item-status:
+      type: object
+      description: Item Status
+      properties:
+        id:
+          enum:
+            - active
+            - cancelled
+        example: active
+        starting-date:
+          type: string
+          format: date-time

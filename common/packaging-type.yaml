@@ -1,0 +1,17 @@
+components:
+  schemas:
+    packaging-type:
+      type: object
+      properties:
+        id:
+          type: string
+          example: Z003
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Hang in Bag
+            - language: it
+              description: Appeso in sacca

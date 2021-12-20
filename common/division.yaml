@@ -1,0 +1,18 @@
+components:
+  schemas:
+    division:
+      type: object
+      description: Business Division
+      properties:
+        id:
+          type: string
+          example: JB
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Emporio Armani Boy
+            - language: it
+              description: Emporio Armani Bimbo

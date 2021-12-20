@@ -1,0 +1,17 @@
+components:
+  schemas:
+    range-name:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ''
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: range name english
+            - language: it
+              description: range name italian

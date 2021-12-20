@@ -1,0 +1,17 @@
+components:
+  schemas:
+    fabric:
+      type: object
+      properties:
+        id:
+          type: string
+          example: XOI69
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: XOI69
+            - language: it
+              description: XOI69

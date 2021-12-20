@@ -1,0 +1,17 @@
+components:
+  schemas:
+    style:
+      type: object
+      properties:
+        id:
+          type: string
+          example: XYZ010
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: XYZ010
+            - language: it
+              description: XYZ010

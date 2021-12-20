@@ -1,0 +1,17 @@
+components:
+  schemas:
+    color:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '001'
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Black
+            - language: it
+              description: Nero

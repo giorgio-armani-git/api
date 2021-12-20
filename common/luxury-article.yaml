@@ -1,0 +1,17 @@
+components:
+  schemas:
+    luxury-article:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ''
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Luxory
+            - language: it
+              description: Lusso

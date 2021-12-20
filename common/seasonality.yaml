@@ -1,0 +1,20 @@
+components:
+  schemas:
+    seasonality:
+      type: object
+      description: Seasonality
+      properties:
+        id:
+          enum:
+            - seasonal
+            - continuous
+            - repurposed
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Repurposed
+            - language: it
+              description: Riproposto

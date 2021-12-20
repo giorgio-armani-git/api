@@ -1,0 +1,11 @@
+components:
+  schemas:
+    localized-message:
+      type: object
+      properties:
+        language:
+          type: string
+          example: en
+        description:
+          type: string
+          example: This is an english message

@@ -1,0 +1,17 @@
+components:
+  schemas:
+    commodity-code:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '41032000'
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Skin, reptiles
+            - language: it
+              description: Cuoi/Pelli di rettili

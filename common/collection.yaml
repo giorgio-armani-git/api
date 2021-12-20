@@ -1,0 +1,18 @@
+components:
+  schemas:
+    collection:
+      type: object
+      description: Collection
+      properties:
+        id:
+          type: string
+          example: JB
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: EA Boy
+            - language: it
+              description: EA Bimbo

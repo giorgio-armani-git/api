@@ -1,0 +1,16 @@
+components:
+  schemas:
+    merchandise-category:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: SHOES
+            - language: it
+              description: Scarpe

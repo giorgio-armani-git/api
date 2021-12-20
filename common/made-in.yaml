@@ -1,0 +1,18 @@
+components:
+  schemas:
+    made-in:
+      type: object
+      description: Item Master madein, it might be different from production made-in
+      properties:
+        id:
+          type: string
+          example: ITA
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Italy
+            - language: it
+              description: Italia

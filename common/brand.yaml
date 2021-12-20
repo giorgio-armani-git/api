@@ -1,0 +1,11 @@
+components:
+  schemas:
+    brand:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '10'
+        description:
+          type: string
+          example: Giorgio Armani

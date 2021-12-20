@@ -1,0 +1,17 @@
+components:
+  schemas:
+    product-kind:
+      type: object
+      properties:
+        id:
+          type: string
+          example: A21
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: SNEAKER HIGH TOP
+            - language: it
+              description: Scarpe da ginnastica alte

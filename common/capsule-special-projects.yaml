@@ -1,0 +1,17 @@
+components:
+  schemas:
+    capsule-special-projects:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ''
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Special Project
+            - language: it
+              description: Progetto speciale

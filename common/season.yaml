@@ -1,0 +1,22 @@
+components:
+  schemas:
+    season:
+      type: object
+      description: Year/Season
+      properties:
+        code:
+          type: string
+          example: FW22
+        year:
+          type: integer
+          format: int32
+          example: '2022'
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: Fall/Winter 2022
+            - language: it
+              description: Autunno/Inverno 2022
