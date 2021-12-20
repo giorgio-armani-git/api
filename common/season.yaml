@@ -4,9 +4,12 @@ components:
       type: object
       description: Year/Season
       properties:
-        code:
+        id:
           type: string
           example: FW22
+        code:
+          type: string
+          example: FW
         year:
           type: integer
           format: int32

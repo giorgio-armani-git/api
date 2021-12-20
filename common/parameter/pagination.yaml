@@ -1,0 +1,18 @@
+# define reusable parameters:
+parameters:
+  limit:
+    name: limit
+    in: query
+    description: Limits the number of returned results
+    required: false
+    type: integer
+    format: int32
+    example: 100
+  offset:
+    name: offset
+    in: query
+    description: Offset from which start returned results
+    required: false
+    type: integer
+    format: int32
+    example: 0
