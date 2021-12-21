@@ -72,9 +72,37 @@ paths:
           schema:
             type: string
             example: ""
+        - name: merchandise-category-id
+          in: query
+          description: merchandise category code
+          required: false
+          explode: true
+          schema:
+            type: string
         - name: product-id
           in: query
           description: product code
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: model-id
+          in: query
+          description: model code
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: fabric-id
+          in: query
+          description: fabric code
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: color-id
+          in: query
+          description: color code
           required: false
           explode: true
           schema:
