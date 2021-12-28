@@ -1,0 +1,310 @@
+openapi: 3.0.0
+info:
+  title: Transaction
+  description: Giorgio Armani transaction
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /transactions:
+    get:
+      summary: Returns transactions
+      description: Returns transactions
+      operationId: ""
+      parameters:
+        - name: retail-store-id
+          in: query
+          description: Store id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "4S09"
+
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/transaction"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+  /transaction/{transaction-id}:
+    get:
+      summary: Returns a transaction by id
+      description: Returns transaction by id
+      operationId: ""
+      parameters:
+        - name: transaction-id
+          in: path
+          description: Season values that need to be considered for filter
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "0004CW011063516"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/transaction"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header
+      name: X-Gateway-APIKey
+
+
+
+  schemas:
+    transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 0004CW011063516
+          description: transction id
+        transaction-type:
+          $ref: "#/components/schemas/transaction-type"
+        workstation-id:
+          type: string
+          description: POS Number
+          example: "1"
+        retail-store-id:
+          type: string
+          description: store id
+          example: "4SCW"
+        channel:
+          type: string
+          description: channel
+          example: "retail-mobile"
+        business-date:
+          type: string
+          format: date
+          description: Posting Date
+        begin-timestamp:
+          type: string
+          format: timestamp
+        end-timestamp:
+          type: string
+          format: timestamp
+        operator-id:
+          type: string
+          example: "AMCE00"
+        partner-id:
+          type: string
+          desription: CRM
+          example: "18834429"
+        currency:
+          type: string
+          example: "EUR"
+        original-transaction-id:
+          type: string
+          description: "Reference to Original Receipt for Transaction Number"
+          exampple: ""
+        transaction-items:
+          type: array
+          items:
+            $ref: "#/components/schemas/transaction-item"
+        tenders:
+          type: array
+          items:
+            $ref: "#/components/schemas/tender"
+
+
+    # record qualifier 5
+    transaction-item:
+      type: object
+      properties:
+          id:
+            type: integer
+            description: "Sales Item Number"
+            example: 1
+          retail-type-code:
+            type: string
+            description: "Sales Item Type"
+            example:
+          barcode:
+            type: string
+            description: ""
+            example: "8056861316127"
+          quantity:
+            type: integer
+            description: "Quantity in Sales Unit"
+            example: 1
+          sales-amount:
+            type: number
+            format: double
+            description: "Actual Sales Value"
+            example: 110,00
+          normal-sales-amount:
+            type: number
+            format: double
+            description: "Normal Sales Value"
+            example: ""
+          actual-unit-price:
+            type: number
+            format: double
+            description: "Sales Price of Article per Unit"
+            example: 110,00
+          units:
+            type: integer
+            description: "Sales quantity"
+            example: 1
+          entered-ean:
+            type: string
+            description: "Entered International Article Number"
+            example: "8056861316127"
+          tax:
+            $ref: "#/components/schemas/tax"
+          discounts:
+            type: array
+            items:
+              $ref: "#/components/schemas/discount"
+          commission:
+            $ref: "#/components/schemas/commission"
+
+
+
+
+    # record qualifier 13 Tax
+    tax:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Tax Item id"
+          example: "1"
+        tax-type:
+          type: string
+          description: "Tax Type"
+          example: "4301"
+        tax-amount:
+          type: number
+          format: double
+          description: "Tax Amount"
+          example: "19,84"
+
+
+    # record qualifier 11 Discount
+    discount:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Discount Item Number"
+          example: "1"
+        discount-type:
+          type: string
+          description: "Discount Type"
+          example: "Employee Discount"
+        reduction-amount:
+          type: number
+          format: double
+          description: "Discount Value"
+          example: "84,20"
+        offer-id:
+          type: string
+          description: "Offer ID"
+          example: ""
+
+    # record qualifier 15 Commission
+    commission:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Commission Item Number"
+          example: "1"
+        employee-id:
+          type: string
+          description: "Salesperson ID"
+          example: "AY34HQ"
+
+    # record qualifier 21 Tender
+    tender:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Tender Item Number"
+          example: "1"
+        tender-type:
+          type: string
+          description: "Means of Payment"
+          example: "148"
+        amount:
+          type: number
+          format: double
+          description: "Tender Value"
+          example: "45,64"
+        currency:
+          type: string
+          description: "Tender Currency"
+          example: "EUR"
+        currency_iso:
+          type: string
+          description: "Tender Currency"
+          example: "EUR"
+
+
+
+
+    transaction-type:
+      type: string
+      enum:
+        - sales
+        - good-movement
+        - end-of-day
+        - void
