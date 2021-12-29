@@ -171,9 +171,7 @@ components:
             description: "Sales Item Number"
             example: 1
           retail-type-code:
-            type: string
-            description: "Sales Item Type"
-            example:
+            $ref: "#/components/schemas/retail-type"
           barcode:
             $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
           quantity:
@@ -214,7 +212,7 @@ components:
         id: "4301"
         description: "VAT"
         tax-amount:
-          amount: 22
+          amount: 2200
           currency: "EUR"
 
 
@@ -238,7 +236,7 @@ components:
         id: "84"
         description: "Employee Discount"
         reduction-amount:
-          amount: 50.05
+          amount: 5005
           currency: "EUR"
         offer-id: "Employees"
 
@@ -262,13 +260,24 @@ components:
           description: "Tender Description"
         amount:
           $ref: "../common/money.yaml#/components/schemas/money"
+        exchange-rate:
+          type: number
+          format: decimal
+          description: Exchange Rate in caso of currency conversion
+        foreign-currency-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+          description: "Exchange rate from transaction to payment currency"
+
       example:
         id: "148"
         description: "VISA POS"
         amount:
-          amount: "71.9"
+          amount: 71900
           currency: "EUR"
-
+        exchange-rate: 0.88
+        foreign-currency-amount:
+          amount: 80590
+          currency: "USD"
 
 
     transaction-type:
@@ -278,6 +287,17 @@ components:
         - good-movement
         - end-of-day
         - void
+
+    retail-type:
+      type: object
+      description: ""
+      properties:
+        id:
+          type: string
+          example: "60"
+        description:
+          type: string
+          example: "Sales"
 
 
     channel-type:
