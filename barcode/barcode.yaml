@@ -113,15 +113,15 @@ components:
           example: 8054804724299
         href:
           type: string
-          format: url
+          format: uri
           example: "https://api.giorgioarmani.it/v1/barcode/8054804724299"
         sku-href:
           type: string
-          format: url
+          format: uri
           example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 00102N"
         generic-article-href:
           type: string
-          format: url
+          format: uri
           example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 001"
         barcode-type:
           type: string

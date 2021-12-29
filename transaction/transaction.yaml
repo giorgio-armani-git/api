@@ -174,14 +174,8 @@ components:
             type: string
             description: "Sales Item Type"
             example:
-          item-id:
-            type: string
-            description: sku
-            example: "XYZ010XOI69 001"
           barcode:
-            type: string
-            description: ""
-            example: "8056861316127"
+            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
           quantity:
             type: integer
             description: "Quantity in Sales Unit"
@@ -253,10 +247,8 @@ components:
     commission:
       type: object
       properties:
-        employee-id:
-          type: string
-          description: "Salesperson ID"
-          example: "AY34HQ"
+        employee:
+          $ref: "#/components/schemas/employee"
 
     # record qualifier 21 Tender
     tender:
@@ -292,5 +284,18 @@ components:
       type: string
       description: channel
       enum:
-        - retail-mobile
-        - retail-tablet
+        - retail-mobile-pos
+        - retail-fixed-pos
+
+    employee:
+      type: object
+      description: Employee
+      properties:
+        id:
+          type: string
+          description: employee id
+          example: "AY85GT"
+        employee-href:
+          type: string
+          format: uri
+          example: "https://api.giorgioarmani.it/v1/employee/?id=AY85GT"
