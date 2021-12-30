@@ -151,6 +151,10 @@ components:
           type: string
           description: "Reference to Original Receipt for Transaction Number"
           example: ""
+        creation-date:
+          $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
         transaction-items:
           type: array
           items:

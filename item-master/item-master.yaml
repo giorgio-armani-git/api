@@ -322,11 +322,9 @@ components:
         status:
           $ref: "../common/item-status.yaml#/components/schemas/item-status"
         creation-date:
-          type: string
-          format: date-time
+          $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:
-          type: string
-          format: date-time
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
 
 
     item-type:
