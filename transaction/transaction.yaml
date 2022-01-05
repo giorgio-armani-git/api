@@ -148,6 +148,26 @@ components:
           type: string
           description: "Reference to Original Receipt for Transaction Number"
           example: ""
+        fiscal-number:
+          type: string
+          example: 16
+        document-type:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "VI"
+            description:
+              type: string
+              example: "Vat Invoice"
+        invoice-number:
+          type: string
+          example: "11820054"
+        tax-free-id:
+          type: string
+          example: "5065910159"
+        omni-channel-reason:
+          $ref: "#/components/schemas/omni-channel-reason"
         creation-date:
           $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:
@@ -308,6 +328,28 @@ components:
       enum:
         - retail-mobile-pos
         - retail-fixed-pos
+
+    # Control table 5
+    document-type:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "VI"
+        description:
+          type: string
+          example: "Vat Invoice"
+
+    # Control table 6
+    omni-channel-reason:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ECCR"
+        description:
+          type: string
+          example: "CLICK AND RESERVE"
 
 
     # Partner is a base type from which extends Employee and Customer
