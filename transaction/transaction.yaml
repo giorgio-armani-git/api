@@ -249,6 +249,11 @@ components:
           description: "Discount Type Description"
         reduction-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
+        reduction-percentage:
+          type: number
+          format: long
+        gift-card:
+          $ref: "#/components/schemas/gift-card"
         offer-id:
           type: string
           description: "Offer ID"
@@ -259,6 +264,16 @@ components:
         reduction-amount:
           amount: 5005
           currency: "EUR"
+        reduction-percentage: 4000
+        gift-card:
+          id: "123456ABC"
+          card-holder: "Alberto Sfolcini"
+          original-amount:
+            amount: 10000
+            currency: "EUR"
+          residual-amount:
+            amount: 90000
+            currency: "EUR"
         offer-id: "Employees"
 
 
@@ -329,6 +344,29 @@ components:
         - retail-mobile-pos
         - retail-fixed-pos
 
+    # Gift Card object to externalize !!
+    gift-card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "123456ABC"
+        card-holder:
+          type: string
+        original-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        residual-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+      example:
+        id: "123456ABC"
+        card-holder: "Alberto Sfolcini"
+        original-amount:
+            amount: 10000
+            currency: "EUR"
+        residual-amount:
+          amount: 90000
+          currency: "EUR"
+
     # Control table 5
     document-type:
       type: object
@@ -352,7 +390,9 @@ components:
           example: "CLICK AND RESERVE"
 
 
-    # Partner is a base type from which extends Employee and Customer
+# esportare Customer ed Employee nelle rispettive API !!
+
+    # Employee
     employee:
       type: object
       description: Employee
@@ -367,6 +407,7 @@ components:
         id: "AY85GT"
         href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
 
+    # Customer
     customer:
       type: object
       description: Customer
