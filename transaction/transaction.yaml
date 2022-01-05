@@ -229,12 +229,16 @@ components:
           example: ""
         tax-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
+        tax-percentage:
+          type: number
+          format: long
       example:
         id: "4301"
         description: "VAT"
         tax-amount:
           amount: 2200
           currency: "EUR"
+        tax-percentage: 2200
 
 
     # record qualifier 11 Discount
