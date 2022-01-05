@@ -128,7 +128,7 @@ components:
           description: store id
           example: "4SCW"
         channel:
-          $ref: "#/components/schemas/channel-type"
+          $ref: "#/components/schemas/pos-channel-type"
           example: "retail-mobile"
         business-date:
           type: string
@@ -141,12 +141,9 @@ components:
           type: string
           format: date-time
         operator-id:
-          type: string
-          example: "AMCE00"
+          $ref: "#/components/schemas/employee"
         partner-id:
-          type: string
-          description: CRM customer
-          example: "18834429"
+          $ref: "#/components/schemas/customer"
         original-transaction-id:
           type: string
           description: "Reference to Original Receipt for Transaction Number"
@@ -252,6 +249,7 @@ components:
         employee:
           $ref: "#/components/schemas/employee"
 
+
     # record qualifier 21 Tender
     tender:
       type: object
@@ -304,22 +302,39 @@ components:
           example: "Sales"
 
 
-    channel-type:
+    pos-channel-type:
       type: string
-      description: channel
+      description: POS channel
       enum:
         - retail-mobile-pos
         - retail-fixed-pos
 
+
+    # Partner is a base type from which extends Employee and Customer
     employee:
       type: object
       description: Employee
       properties:
         id:
           type: string
-          description: employee id
-          example: "AY85GT"
-        employee-href:
+          description: partner id
+        href:
           type: string
           format: uri
-          example: "https://api.giorgioarmani.it/v1/employee/?id=AY85GT"
+      example:
+        id: "AY85GT"
+        href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+
+    customer:
+      type: object
+      description: Customer
+      properties:
+        id:
+          type: string
+          description: partner id
+        href:
+          type: string
+          format: uri
+      example:
+        id: "10934402"
+        href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
