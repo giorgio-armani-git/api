@@ -1,7 +1,8 @@
 # Giorgio Armani API definition
 
 ### Index
-- Barcodes
-- Items Master
-- Transactions (TBD)
+- Barcodes (get)
+- Items Master (get)
+- Transactions (get/post)
 - Customers (TBD)
+- Stock (TBD)
