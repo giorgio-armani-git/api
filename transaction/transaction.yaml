@@ -230,15 +230,16 @@ components:
         tax-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
         tax-percentage:
-          type: number
-          format: long
+          $ref: "../common/unit.yaml#/components/schemas/unit"
       example:
         id: "4301"
         description: "VAT"
         tax-amount:
           amount: 2200
           currency: "EUR"
-        tax-percentage: 2200
+        tax-percentage:
+          value: 22
+          unit: "percent"
 
 
     # record qualifier 11 Discount
@@ -254,8 +255,7 @@ components:
         reduction-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
         reduction-percentage:
-          type: number
-          format: long
+          $ref: "../common/unit.yaml#/components/schemas/unit"
         gift-card:
           $ref: "#/components/schemas/gift-card"
         offer-id:
@@ -268,7 +268,9 @@ components:
         reduction-amount:
           amount: 5005
           currency: "EUR"
-        reduction-percentage: 4000
+        reduction-percentage:
+          value: 40
+          unit: "percent"
         gift-card:
           id: "123456ABC"
           card-holder: "Alberto Sfolcini"

@@ -1,0 +1,11 @@
+components:
+  schemas:
+    unit:
+      type: object
+      properties:
+        value:
+          type: number
+          example: '22'
+        unit:
+          type: string
+          example: "percent"
