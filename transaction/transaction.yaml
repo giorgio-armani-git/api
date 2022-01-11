@@ -64,6 +64,24 @@ paths:
         - name: business-end-date
           $ref: "../common/parameter/date-filter.yaml#/parameters/end-date"
 
+        - name: original-transaction-id
+          in: query
+          description: "Reference to Original Receipt for Transaction Number"
+          schema:
+            type: string
+            example: ""
+
+        - name: fiscal-number
+          in: query
+          description: "Fiscal number"
+          schema:
+            type: string
+        - name: invoice-number
+          in: query
+          description: "Invoice number"
+          schema:
+            type: string
+
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
