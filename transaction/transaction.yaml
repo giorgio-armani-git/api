@@ -24,6 +24,7 @@ paths:
       description: Returns transactions
       operationId: ""
       parameters:
+        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: retail-store-id
           in: query
           description: Store id
@@ -32,6 +33,36 @@ paths:
           schema:
             type: string
             example: "4S09"
+        - name: channel-id
+          in: query
+          description: "Is transaction born on fixed POS or mobile POS ?"
+          required: false
+          schema:
+            $ref: "#/components/schemas/pos-channel-type"
+        - name: transaction-type
+          in: query
+          description: "Transaction Type ( Sales, EOD,void,goodmvt)"
+          required: false
+          schema:
+            $ref: "#/components/schemas/transaction-type"
+        - name: operator-id
+          in: query
+          description: Operator Id
+          schema:
+            type: string
+            example: "AY85GT"
+        - name: customer-id
+          in: query
+          description: Customer Id
+          schema:
+            type: string
+            example: "10934402"
+        - name: business-range-date
+          $ref: "../common/parameter/date-filter.yaml#/parameters/range-date"
+        - name: business-start-date
+          $ref: "../common/parameter/date-filter.yaml#/parameters/start-date"
+        - name: business-end-date
+          $ref: "../common/parameter/date-filter.yaml#/parameters/end-date"
 
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
@@ -64,6 +95,7 @@ paths:
       description: Returns transaction by id
       operationId: ""
       parameters:
+        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: transaction-id
           in: path
           description: Season values that need to be considered for filter

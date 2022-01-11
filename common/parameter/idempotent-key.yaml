@@ -1,0 +1,10 @@
+# define reusable parameters:
+parameters:
+  idempotent-key:
+    name: X-Idempotent-Key
+    in: header
+    schema:
+      type: string
+      format: uuid
+    required: false
+    example: 123e4567-e89b-12d3-a456-556642440000
