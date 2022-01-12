@@ -448,32 +448,56 @@ components:
 
 # esportare Customer ed Employee nelle rispettive API !!
 
-    # Employee
-    employee:
+
+    # Person
+    person:
       type: object
-      description: Employee
+      description: A person :-)
       properties:
         id:
           type: string
-          description: partner id
+          description: person id
+          required: true
         href:
           type: string
           format: uri
+          required: true
+        gender:
+          type: string
+          description: gender
+          enum:
+            - male
+            - female
+            - gender-fluid
+        birthday:
+          type: date-time
+          description: date of birth
+        name:
+          type: string
+          description: name
+        lastname:
+          type: string
+          description: surname
+
+    employee:
+      allOf: # Combines the main `Person` schema with `Employee` specific properties
+        - $ref: '#/components/schemas/person'
+        - type: object
+          description: Employee
+          properties:
+           company:
+             type: string
+             description: company
       example:
         id: "AY85GT"
         href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+        company: "Giorgio Armani Retail"
+
 
     # Customer
     customer:
-      type: object
-      description: Customer
-      properties:
-        id:
-          type: string
-          description: partner id
-        href:
-          type: string
-          format: uri
+      anyOf:
+        - $ref: '#/components/schemas/person'
       example:
         id: "10934402"
         href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
