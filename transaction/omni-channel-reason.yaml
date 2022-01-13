@@ -1,0 +1,12 @@
+components:
+  schemas:
+    # Control table 6
+    omni-channel-reason:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "ECCR"
+        description:
+          type: string
+          example: "CLICK AND RESERVE"

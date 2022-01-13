@@ -1,0 +1,32 @@
+components:
+  schemas:
+    # record qualifier 21 Tender
+    tender:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Tender ID"
+        description:
+          type: string
+          description: "Tender Description"
+        amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        exchange-rate:
+          type: number
+          format: decimal
+          description: Exchange Rate in caso of currency conversion
+        foreign-currency-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+          description: "Exchange rate from transaction to payment currency"
+
+      example:
+        id: "148"
+        description: "VISA POS"
+        amount:
+          amount: 71900
+          currency: "EUR"
+        exchange-rate: 0.88
+        foreign-currency-amount:
+          amount: 80590
+          currency: "USD"

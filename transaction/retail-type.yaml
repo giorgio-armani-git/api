@@ -1,0 +1,12 @@
+components:
+  schemas:
+    retail-type:
+      type: object
+      description: ""
+      properties:
+        id:
+          type: string
+          example: "60"
+        description:
+          type: string
+          example: "Sales"

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    pos-channel-type:
+      type: string
+      description: POS channel
+      enum:
+        - retail-mobile-pos
+        - retail-fixed-pos

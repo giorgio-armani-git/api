@@ -1,0 +1,9 @@
+components:
+  schemas:
+    transaction-type:
+      type: string
+      enum:
+        - sales
+        - good-movement
+        - end-of-day
+        - void

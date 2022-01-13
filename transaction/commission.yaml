@@ -1,0 +1,11 @@
+components:
+  schemas:
+    # record qualifier 15 Commission
+    commission:
+      type: object
+      properties:
+        employee:
+          $ref: "../employee/employee.yaml#/components/schemas/employee"
+          example:
+            id: "AY85GT"
+            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"

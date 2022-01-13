@@ -1,0 +1,24 @@
+components:
+  schemas:
+    # Gift Card object to externalize !!
+    gift-card:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "123456ABC"
+        card-holder:
+          type: string
+        original-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        residual-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+      example:
+        id: "123456ABC"
+        card-holder: "Alberto Sfolcini"
+        original-amount:
+          amount: 10000
+          currency: "EUR"
+        residual-amount:
+          amount: 90000
+          currency: "EUR"

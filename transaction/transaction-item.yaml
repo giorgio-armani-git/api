@@ -1,0 +1,30 @@
+components:
+  schemas:
+    # record qualifier 5
+    transaction-item:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "Sales Item Number"
+          example: 1
+        retail-type-code:
+          $ref: "./retail-type.yaml#/components/schemas/retail-type"
+        barcode:
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        quantity:
+          type: integer
+          description: "Quantity in Sales Unit"
+          example: 1
+        sales-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        actual-unit-price:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        tax:
+          $ref: "./tax.yaml#/components/schemas/tax"
+        discounts:
+          type: array
+          items:
+            $ref: "./discount.yaml#/components/schemas/discount"
+        commission:
+          $ref: "./commission.yaml#/components/schemas/commission"

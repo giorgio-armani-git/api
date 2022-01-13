@@ -1,0 +1,12 @@
+components:
+  schemas:
+    # Control table 5
+    document-type:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "VI"
+        description:
+          type: string
+          example: "Vat Invoice"

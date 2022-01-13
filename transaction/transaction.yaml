@@ -38,13 +38,13 @@ paths:
           description: "Is transaction born on fixed POS or mobile POS ?"
           required: false
           schema:
-            $ref: "#/components/schemas/pos-channel-type"
+            $ref: "./pos-channel-type.yaml#/components/schemas/pos-channel-type"
         - name: transaction-type
           in: query
           description: "Transaction Type ( Sales, EOD,void,goodmvt)"
           required: false
           schema:
-            $ref: "#/components/schemas/transaction-type"
+            $ref: "./transaction-type.yaml#/components/schemas/transaction-type"
         - name: operator-id
           in: query
           description: Operator Id
@@ -157,8 +157,6 @@ components:
 
 
 
-
-
   schemas:
     transaction:
       type: object
@@ -168,7 +166,7 @@ components:
           example: 0004CW011063516
           description: transction id
         transaction-type:
-          $ref: "#/components/schemas/transaction-type"
+          $ref: "./transaction-type.yaml#/components/schemas/transaction-type"
         workstation-id:
           type: string
           description: POS Number
@@ -178,7 +176,7 @@ components:
           description: store id
           example: "4SCW"
         channel:
-          $ref: "#/components/schemas/pos-channel-type"
+          $ref: "./pos-channel-type.yaml#/components/schemas/pos-channel-type"
           example: "retail-mobile"
         business-date:
           type: string
@@ -208,14 +206,7 @@ components:
           type: string
           example: 16
         document-type:
-          type: object
-          properties:
-            id:
-              type: string
-              example: "VI"
-            description:
-              type: string
-              example: "Vat Invoice"
+          $ref: "./document-type.yaml#/components/schemas/document-type"
         invoice-number:
           type: string
           example: "11820054"
@@ -223,7 +214,7 @@ components:
           type: string
           example: "5065910159"
         omni-channel-reason:
-          $ref: "#/components/schemas/omni-channel-reason"
+          $ref: "./omni-channel-reason.yaml#/components/schemas/omni-channel-reason"
         creation-date:
           $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:
@@ -231,225 +222,20 @@ components:
         transaction-items:
           type: array
           items:
-            $ref: "#/components/schemas/transaction-item"
+            $ref: "./transaction-item.yaml#/components/schemas/transaction-item"
         tenders:
           type: array
           items:
-            $ref: "#/components/schemas/tender"
-
-
-
-    # record qualifier 5
-    transaction-item:
-      type: object
-      properties:
-          id:
-            type: integer
-            description: "Sales Item Number"
-            example: 1
-          retail-type-code:
-            $ref: "#/components/schemas/retail-type"
-          barcode:
-            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
-          quantity:
-            type: integer
-            description: "Quantity in Sales Unit"
-            example: 1
-          sales-amount:
-            $ref: "../common/money.yaml#/components/schemas/money"
-          actual-unit-price:
-            $ref: "../common/money.yaml#/components/schemas/money"
-          tax:
-            $ref: "#/components/schemas/tax"
-          discounts:
-            type: array
-            items:
-              $ref: "#/components/schemas/discount"
-          commission:
-            $ref: "#/components/schemas/commission"
+            $ref: "./tender.yaml#/components/schemas/tender"
 
 
 
 
-    # record qualifier 13 Tax
-    tax:
-      type: object
-      properties:
-        id:
-          type: string
-          description: "Tax Item id"
-          example: "4301"
-        description:
-          type: string
-          description: "Tax Type"
-          example: ""
-        tax-amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-        tax-percentage:
-          $ref: "../common/unit.yaml#/components/schemas/unit"
-      example:
-        id: "4301"
-        description: "VAT"
-        tax-amount:
-          amount: 2200
-          currency: "EUR"
-        tax-percentage:
-          value: 22
-          unit: "percent"
 
 
-    # record qualifier 11 Discount
-    discount:
-      type: object
-      properties:
-        id:
-          type: string
-          description: "Discount ID"
-        description:
-          type: string
-          description: "Discount Type Description"
-        reduction-amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-        reduction-percentage:
-          $ref: "../common/unit.yaml#/components/schemas/unit"
-        gift-card:
-          $ref: "#/components/schemas/gift-card"
-        offer-id:
-          type: string
-          description: "Offer ID"
-          example: ""
-      example:
-        id: "84"
-        description: "Employee Discount"
-        reduction-amount:
-          amount: 5005
-          currency: "EUR"
-        reduction-percentage:
-          value: 40
-          unit: "percent"
-        gift-card:
-          id: "123456ABC"
-          card-holder: "Alberto Sfolcini"
-          original-amount:
-            amount: 10000
-            currency: "EUR"
-          residual-amount:
-            amount: 90000
-            currency: "EUR"
-        offer-id: "Employees"
 
 
-    # record qualifier 15 Commission
-    commission:
-      type: object
-      properties:
-        employee:
-          $ref: "../employee/employee.yaml#/components/schemas/employee"
-          example:
-            id: "AY85GT"
-            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
 
 
-    # record qualifier 21 Tender
-    tender:
-      type: object
-      properties:
-        id:
-          type: string
-          description: "Tender ID"
-        description:
-          type: string
-          description: "Tender Description"
-        amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-        exchange-rate:
-          type: number
-          format: decimal
-          description: Exchange Rate in caso of currency conversion
-        foreign-currency-amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-          description: "Exchange rate from transaction to payment currency"
-
-      example:
-        id: "148"
-        description: "VISA POS"
-        amount:
-          amount: 71900
-          currency: "EUR"
-        exchange-rate: 0.88
-        foreign-currency-amount:
-          amount: 80590
-          currency: "USD"
 
 
-    transaction-type:
-      type: string
-      enum:
-        - sales
-        - good-movement
-        - end-of-day
-        - void
-
-    retail-type:
-      type: object
-      description: ""
-      properties:
-        id:
-          type: string
-          example: "60"
-        description:
-          type: string
-          example: "Sales"
-
-
-    pos-channel-type:
-      type: string
-      description: POS channel
-      enum:
-        - retail-mobile-pos
-        - retail-fixed-pos
-
-    # Gift Card object to externalize !!
-    gift-card:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "123456ABC"
-        card-holder:
-          type: string
-        original-amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-        residual-amount:
-          $ref: "../common/money.yaml#/components/schemas/money"
-      example:
-        id: "123456ABC"
-        card-holder: "Alberto Sfolcini"
-        original-amount:
-            amount: 10000
-            currency: "EUR"
-        residual-amount:
-          amount: 90000
-          currency: "EUR"
-
-    # Control table 5
-    document-type:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "VI"
-        description:
-          type: string
-          example: "Vat Invoice"
-
-    # Control table 6
-    omni-channel-reason:
-      type: object
-      properties:
-        id:
-          type: string
-          example: "ECCR"
-        description:
-          type: string
-          example: "CLICK AND RESERVE"

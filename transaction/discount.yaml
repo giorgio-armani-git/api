@@ -1,0 +1,41 @@
+components:
+  schemas:
+    # record qualifier 11 Discount
+    discount:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Discount ID"
+        description:
+          type: string
+          description: "Discount Type Description"
+        reduction-amount:
+          $ref: "../common/money.yaml#/components/schemas/money"
+        reduction-percentage:
+          $ref: "../common/unit.yaml#/components/schemas/unit"
+        gift-card:
+          $ref: "./gift-card.yaml#/components/schemas/gift-card"
+        offer-id:
+          type: string
+          description: "Offer ID"
+          example: ""
+      example:
+        id: "84"
+        description: "Employee Discount"
+        reduction-amount:
+          amount: 5005
+          currency: "EUR"
+        reduction-percentage:
+          value: 40
+          unit: "percent"
+        gift-card:
+          id: "123456ABC"
+          card-holder: "Alberto Sfolcini"
+          original-amount:
+            amount: 10000
+            currency: "EUR"
+          residual-amount:
+            amount: 90000
+            currency: "EUR"
+        offer-id: "Employees"
