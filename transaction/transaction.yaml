@@ -449,6 +449,9 @@ components:
 # esportare Customer ed Employee nelle rispettive API !!
 
 
+
+
+
     # Person
     person:
       type: object
@@ -472,15 +475,20 @@ components:
         birthday:
           type: date-time
           description: date of birth
-        name:
+        firstname:
           type: string
           description: name
         lastname:
           type: string
           description: surname
+        addresses:
+          type: array
+          items:
+            $ref: "../common/address.yaml#/components/schemas/address"
+
 
     employee:
-      allOf: # Combines the main `Person` schema with `Employee` specific properties
+      anyOf: # Combines the main `Person` schema with `Employee` specific properties
         - $ref: '#/components/schemas/person'
         - type: object
           description: Employee
