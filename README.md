@@ -4,5 +4,6 @@
 - Barcodes (get)
 - Items Master (get)
 - Transactions (get/post)
-- Customers (TBD)
+- Customers (raw)
+- Employee (raw)
 - Stock (TBD)
