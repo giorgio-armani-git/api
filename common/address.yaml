@@ -1,26 +1,27 @@
 components:
-  address:
-    type: object
-    description: address
-    properties:
-      id:
-        type: number
-        format: int32
-      address-type:
-        type: string
-        enum:
-          - residence
-          - domicile
-          - other
-      street:
-        type: string
-      street1:
-        type: string
-      zip-code:
-        type: string
-      city:
-        type: string
-      region:
-        type: string
-      state:
-        type: string
+  schemas:
+    address:
+      type: object
+      description: address
+      properties:
+        id:
+          type: number
+          format: int32
+        address-type:
+          type: string
+          enum:
+            - residence
+            - domicile
+            - other
+        street:
+          type: string
+        street1:
+          type: string
+        zip-code:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        state:
+          type: string

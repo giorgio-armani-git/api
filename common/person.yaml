@@ -1,0 +1,36 @@
+components:
+  schemas:
+    # Person
+    person:
+      type: object
+      description: A person :-)
+      properties:
+        id:
+          type: string
+          description: person id
+          required: true
+        href:
+          type: string
+          format: uri
+          required: true
+        gender:
+          type: string
+          description: gender
+          enum:
+            - male
+            - female
+            - gender-fluid
+        birthday:
+          type: string
+          format: date-time
+          description: date of birth
+        firstname:
+          type: string
+          description: name
+        lastname:
+          type: string
+          description: surname
+        addresses:
+          type: array
+          items:
+            $ref: "./address.yaml#/components/schemas/address"

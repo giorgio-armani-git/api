@@ -1,0 +1,116 @@
+openapi: "3.0.0"
+info:
+  title: Employee
+  description: Giorgio Armani Employees
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /employee/{employee-id}:
+    get:
+      summary: Return the specified employee
+      description: Return employee
+      operationId: ''
+      parameters:
+        - name: employee-id
+          in: path
+          description: employee-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "AH1287"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/employee"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /employees:
+    get:
+      summary: Return all employees
+      description: 'Return all employees'
+      operationId: ''
+      parameters:
+        - name: hire-year
+          in: query
+          description: hire year
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: "2010"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/employee"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    employee:
+      anyOf: # Combines the main `Person` schema with `Employee` specific properties
+        - $ref: "../common/person.yaml#/components/schemas/person"
+        - type: object
+          description: Employee
+          properties:
+            company:
+              type: string
+              description: company
+            hire-date:
+              type: string
+              format: date-time

@@ -191,9 +191,15 @@ components:
           type: string
           format: date-time
         operator-id:
-          $ref: "#/components/schemas/employee"
+          $ref: "../employee/employee.yaml#/components/schemas/employee"
+          example:
+            id: "AY85GT"
+            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
         partner-id:
-          $ref: "#/components/schemas/customer"
+          $ref: "../customer/customer.yaml#/components/schemas/customer"
+          example:
+            id: "10934402"
+            href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
         original-transaction-id:
           type: string
           description: "Reference to Original Receipt for Transaction Number"
@@ -338,7 +344,10 @@ components:
       type: object
       properties:
         employee:
-          $ref: "#/components/schemas/employee"
+          $ref: "../employee/employee.yaml#/components/schemas/employee"
+          example:
+            id: "AY85GT"
+            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
 
 
     # record qualifier 21 Tender
@@ -444,68 +453,3 @@ components:
         description:
           type: string
           example: "CLICK AND RESERVE"
-
-
-# esportare Customer ed Employee nelle rispettive API !!
-
-
-
-
-
-    # Person
-    person:
-      type: object
-      description: A person :-)
-      properties:
-        id:
-          type: string
-          description: person id
-          required: true
-        href:
-          type: string
-          format: uri
-          required: true
-        gender:
-          type: string
-          description: gender
-          enum:
-            - male
-            - female
-            - gender-fluid
-        birthday:
-          type: date-time
-          description: date of birth
-        firstname:
-          type: string
-          description: name
-        lastname:
-          type: string
-          description: surname
-        addresses:
-          type: array
-          items:
-            $ref: "../common/address.yaml#/components/schemas/address"
-
-
-    employee:
-      anyOf: # Combines the main `Person` schema with `Employee` specific properties
-        - $ref: '#/components/schemas/person'
-        - type: object
-          description: Employee
-          properties:
-           company:
-             type: string
-             description: company
-      example:
-        id: "AY85GT"
-        href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
-        company: "Giorgio Armani Retail"
-
-
-    # Customer
-    customer:
-      anyOf:
-        - $ref: '#/components/schemas/person'
-      example:
-        id: "10934402"
-        href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
