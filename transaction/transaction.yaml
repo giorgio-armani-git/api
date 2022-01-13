@@ -116,8 +116,6 @@ paths:
           in: body
           required: true
           schema:
-            type: array
-            items:
               $ref: "#/components/schemas/transaction"
       responses:
         "200":
@@ -125,9 +123,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/transaction"
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "0004CW019999999"
         "401":
           description: Unauthorized Error
           content:
