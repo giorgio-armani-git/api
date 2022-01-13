@@ -106,6 +106,41 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
+    post:
+      summary: Create a new transaction
+      description: Create a new transaction
+      operationId: ""
+      parameters:
+        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/transaction"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/transaction"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
 
   /transaction/{transaction-id}:
     get:
@@ -143,6 +178,7 @@ paths:
             application/json:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
+
 
 security:
   - api-key-auth: []
