@@ -6,4 +6,5 @@
 - Transactions (get/post)
 - Customers (raw)
 - Employee (raw)
-- Stock (TBD)
+- Stock (get)
+- Store (raw)
