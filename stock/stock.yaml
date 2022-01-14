@@ -32,6 +32,13 @@ paths:
           schema:
             type: string
             default: "8054804724299"
+        - name: retail-store-id
+          in: query
+          description: store id
+          required: false
+          schema:
+            type: string
+            example: "4SCW"
       responses:
         "200":
           description: successful operation

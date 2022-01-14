@@ -10,6 +10,7 @@ components:
         address-type:
           type: string
           enum:
+            - office
             - residence
             - domicile
             - other
