@@ -1,0 +1,119 @@
+openapi: "3.0.0"
+info:
+  title: Stores
+  description: Giorgio Armani Stores
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /store/{store-id}:
+    get:
+      summary: Return the specified store
+      description: Return store
+      operationId: ''
+      parameters:
+        - name: store-id
+          in: path
+          description: store id
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "4S01"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/store"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /stores:
+    get:
+      summary: Return all stores
+      description: 'Return stores, pagination with limit&offset'
+      operationId: ''
+      parameters:
+        - name: state-id
+          in: query
+          description: state ISO-3 format
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: "ITA"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/store"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    store:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "4S01"
+        href:
+          type: string
+          format: uri
+          example: "https://api.giorgioarmani.it/v1/store/4S01"
+        description:
+          type: string
+          example: "Giorgio Armani Boutique"
+        address:
+          $ref: "../common/address.yaml#/components/schemas/address"

@@ -1,0 +1,15 @@
+components:
+  schemas:
+    storage-location:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "001"
+        description:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+          example:
+            - language: en
+              description: Free Stock
+            - language: it
+              description: Giacenza Libera

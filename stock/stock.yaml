@@ -1,0 +1,132 @@
+openapi: "3.0.0"
+info:
+  title: Stock
+  description: Store Stock
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /stock/{barcode}:
+    get:
+      summary: Return the specified barcode
+      description: Return stock availability for given barcode
+      operationId: ''
+      parameters:
+        - name: barcode
+          in: path
+          description: barcode
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "8054804724299"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/stock"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /stock:
+    get:
+      summary: Return all stock avalability
+      description: 'Return stock availability for a given store-id, pagination with limit&offset'
+      operationId: ''
+      parameters:
+        - name: retail-store-id
+          in: query
+          description: retail-store-id
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: "4S09"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/stock"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    stock:
+      type: object
+      properties:
+        barcode:
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        retail-store-id:
+          $ref: "../store/store.yaml#/components/schemas/store"
+          example:
+            id: "4S09"
+            href: "https://api.giorgioarmani.it/v1/store/4S09"
+        storage-location:
+          $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
+        unrestricted-stock-qty:
+          type: number
+          format: int32
+          example: 8
+        allocated-stock-qty:
+          type: number
+          format: int32
+          example: 2
+        pos-retail-qty:
+          type: number
+          format: int32
+          example: 0
+        free-stock-qty:
+          type: number
+          format: int32
+          example: 6
