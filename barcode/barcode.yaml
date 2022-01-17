@@ -125,7 +125,11 @@ components:
           example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 001"
         barcode-type:
           type: string
-          example: GTIN13
+          enum:
+            - gtin13
+            - atin13
+            - atom24
+          example: gtin13
         main:
           type: boolean
           default: false
