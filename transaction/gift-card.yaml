@@ -7,6 +7,9 @@ components:
         id:
           type: string
           example: "123456ABC"
+        href:
+          type: string
+          example: "https://api.giorgioarmani.it/v1/gift-card/123456ABC"
         card-holder:
           type: string
         original-amount:
