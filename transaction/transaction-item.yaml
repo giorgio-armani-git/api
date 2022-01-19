@@ -18,10 +18,18 @@ components:
           example: 1
         to-party-id:
           type: string
+          description: "Good Movements, nullable if not used"
         to-location-id:
           type: string
+          description: "Good Movements, nullable if not used"
         to-from-location-id:
           type: string
+          description: "Good Movements, nullable if not used"
+        employee:
+          $ref: "../employee/employee.yaml#/components/schemas/employee"
+          example:
+            id: "AY85GT"
+            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
         sales-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
         actual-unit-price:

@@ -133,7 +133,7 @@ paths:
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
-        -  name: body
+        - name: body
           in: body
           required: true
           schema:
