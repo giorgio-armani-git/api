@@ -16,6 +16,12 @@ components:
           type: integer
           description: "Quantity in Sales Unit"
           example: 1
+        to-party-id:
+          type: string
+        to-location-id:
+          type: string
+        to-from-location-id:
+          type: string
         sales-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
         actual-unit-price:

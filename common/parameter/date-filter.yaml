@@ -1,34 +1,20 @@
 # define reusable parameters:
 parameters:
-  range-date:
-    in: query
-    schema:
-      type: string
-      enum:
-        - today
-        - last-week
-        - last-month
-        - last-year
-        - year-to-date
-    description: >
-      A relative date range for the report, such as `Today` or `LastWeek`.
-      For an exact range, use `start_date` and `end_date` instead.
 
   start-date:
     in: query
     schema:
       type: string
       format: date-time
-      example: 2022-12-21T09:30:01.000Z
-    description: >
+      default: 1979-01-01T00:01.01.000Z
+      description: >
             The start date for the report. Must be used together with `end_date`.
-            This parameter is incompatible with `range-date`.
+            Date is inclusive.
   end-date:
     in: query
     schema:
       type: string
       format: date-time
-      example: 2022-12-24T19:30:01.000Z
-    description: >
+      description: >
             The end date for the report. Must be used together with `start_date`.
-            This parameter is incompatible with `range-date`.
+            Date is inclusive.

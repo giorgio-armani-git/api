@@ -7,3 +7,4 @@ components:
         - good-movement
         - end-of-day
         - void
+      required: true

@@ -107,6 +107,7 @@ components:
       properties:
         id:
           type: string
+          required: true
           example: "4S01"
         href:
           type: string

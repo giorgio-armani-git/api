@@ -24,7 +24,8 @@ paths:
       description: Returns transactions
       operationId: ""
       parameters:
-        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: retail-store-id
           in: query
           description: Store id
@@ -57,20 +58,16 @@ paths:
           schema:
             type: string
             example: "10934402"
-        - name: business-range-date
-          $ref: "../common/parameter/date-filter.yaml#/parameters/range-date"
-        - name: business-start-date
+        - name: business-date-start
           $ref: "../common/parameter/date-filter.yaml#/parameters/start-date"
-        - name: business-end-date
+        - name: business-date-end
           $ref: "../common/parameter/date-filter.yaml#/parameters/end-date"
-
         - name: original-transaction-id
           in: query
           description: "Reference to Original Receipt for Transaction Number"
           schema:
             type: string
             example: ""
-
         - name: fiscal-number
           in: query
           description: "Fiscal number"
@@ -81,6 +78,29 @@ paths:
           description: "Invoice number"
           schema:
             type: string
+        - name: creation-date-start
+          in: query
+          schema:
+            type: string
+            format: date-time
+            default: "2000-01-01T00:0.000Z"
+        - name: creation-date-end
+          in: query
+          schema:
+            type: string
+            format: date-time
+            default: "2000-01-01T00:0.000Z"
+        - name: last-change-date-start
+          in: query
+          schema:
+            type: string
+            format: date-time
+            default: "2000-01-01T00:0.000Z"
+        - name: last-change-date-end
+          in: query
+          schema:
+            type: string
+            format: date-time
 
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
@@ -111,12 +131,13 @@ paths:
       description: Create a new transaction
       operationId: ""
       parameters:
-        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
-        - name: body
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        -  name: body
           in: body
           required: true
           schema:
-              $ref: "#/components/schemas/transaction"
+            $ref: "#/components/schemas/transaction"
       responses:
         "200":
           description: successful operation
@@ -148,7 +169,8 @@ paths:
       description: Returns transaction by id
       operationId: ""
       parameters:
-        - $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: transaction-id
           in: path
           description: Season values that need to be considered for filter
@@ -201,6 +223,7 @@ components:
           type: string
           example: 0004CW011063516
           description: transction id
+          required: true
         transaction-type:
           $ref: "./transaction-type.yaml#/components/schemas/transaction-type"
         workstation-id:
