@@ -46,7 +46,7 @@ components:
               amount: 10000
               currency: "EUR"
             residual-amount:
-              amount: 90000
+              amount: 85000
               currency: "EUR"
         discounts:
           type: array

@@ -18,6 +18,7 @@ components:
           type: string
           description: "Offer ID"
           example: ""
+
       example:
         id: "84"
         description: "Employee Discount"
