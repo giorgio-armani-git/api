@@ -38,6 +38,16 @@ components:
           $ref: "./tax.yaml#/components/schemas/tax"
         gift-card:
           $ref: "./gift-card.yaml#/components/schemas/gift-card"
+        example:
+          gift-card:
+            id: "123456ABC"
+            card-holder: "Alberto Sfolcini"
+            original-amount:
+              amount: 10000
+              currency: "EUR"
+            residual-amount:
+              amount: 90000
+              currency: "EUR"
         discounts:
           type: array
           items:

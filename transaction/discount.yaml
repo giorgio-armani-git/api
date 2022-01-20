@@ -27,13 +27,4 @@ components:
         reduction-percentage:
           value: 40
           unit: "percent"
-        gift-card:
-          id: "123456ABC"
-          card-holder: "Alberto Sfolcini"
-          original-amount:
-            amount: 10000
-            currency: "EUR"
-          residual-amount:
-            amount: 90000
-            currency: "EUR"
         offer-id: "Employees"
