@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Pricelist
+  description: Pricelist
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /price/{pricelist}:
+    get:
+      summary: Return the specified pricelist
+      description: Return specific pricelist
+      operationId: ''
+      parameters:
+        - name: barcode
+          in: path
+          description: barcode
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "8054804724299"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pricelist"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /prices:
+    get:
+      summary: Return all
+      description: 'Return stock availability for a given store-id, pagination with limit&offset'
+      operationId: ''
+      parameters:
+
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/pricelist"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    pricelist:
+      type: object
+      properties:
+        sale-organization:
+          $ref: "../common/sale-organization.yaml#/components/schemas/sale-organization"
+        pricelist:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "ITR1"
+            description:
+              $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+            valid-date-from:
+              type: string
+              format: date-time
+            valid-date-to:
+              type: string
+              format: date-time
+            season:
+              $ref: "../common/season.yaml#/components/schemas/season"
+            price-item:
+              type: array
+              items:
+                type: object
+                properties:
+                  barcode:
+                    $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+                  price:
+                    $ref: "../common/money.yaml#/components/schemas/money"
+            status:
+              $ref: "../common/status.yaml#/components/schemas/status"

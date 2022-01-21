@@ -1,0 +1,12 @@
+components:
+  schemas:
+    sale-organization:
+      type: object
+      description: Sale Organization
+      properties:
+        id:
+          type: string
+          example: 'GA01'
+        description:
+          type: string
+          example: "GA Spa"

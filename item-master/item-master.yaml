@@ -261,7 +261,7 @@ components:
         luxury-article:
           $ref: "../common/luxury-article.yaml#/components/schemas/luxury-article"
         status:
-          $ref: "../common/item-status.yaml#/components/schemas/item-status"
+          $ref: "../common/status.yaml#/components/schemas/item-status"
         creation-date:
           type: string
           format: date-time
@@ -320,7 +320,7 @@ components:
           type: boolean
           default: false
         status:
-          $ref: "../common/item-status.yaml#/components/schemas/item-status"
+          $ref: "../common/status.yaml#/components/schemas/item-status"
         creation-date:
           $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:

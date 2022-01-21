@@ -1,8 +1,8 @@
 components:
   schemas:
-    item-status:
+    status:
       type: object
-      description: Item Status
+      description: Record Status
       properties:
         id:
           enum:
@@ -12,3 +12,4 @@ components:
         starting-date:
           type: string
           format: date-time
+
