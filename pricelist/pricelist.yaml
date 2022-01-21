@@ -69,7 +69,9 @@ paths:
         - name: pricelist
           in: query
           required: true
-          example: "ITR1"
+          schema:
+            type: string
+            example: "ITR1"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
