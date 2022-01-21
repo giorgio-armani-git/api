@@ -26,6 +26,12 @@ paths:
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: transaction-id
+          in: query
+          description: transaction id
+          schema:
+            type: string
+            example: 0004CW011063516
         - name: retail-store-id
           in: query
           description: Store id
@@ -148,7 +154,8 @@ paths:
                 properties:
                   id:
                     type: string
-                    example: "0004CW019999999"
+                    description: synthetic id
+                    example: "MDAwNENXMDExMDYzNTE2LTRTQ1ctMjAyMS0xMi0yOVQxNDozMDo1OC41OTFa"
         "401":
           description: Unauthorized Error
           content:
@@ -163,7 +170,7 @@ paths:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
 
-  /transaction/{transaction-id}:
+  /transaction/{id}:
     get:
       summary: Returns a transaction by id
       description: Returns transaction by id
@@ -171,14 +178,14 @@ paths:
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
-        - name: transaction-id
+        - name: id
           in: path
-          description: Season values that need to be considered for filter
+          description: id = base64_encode( transaction-id + "-" store-id + "-" business-date), see https://www.utilities-online.info/base64
           required: true
           explode: true
           schema:
             type: string
-            example: "0004CW011063516"
+            example: "MDAwNENXMDExMDYzNTE2LTRTQ1ctMjAyMS0xMi0yOVQxNDozMDo1OC41OTFa"
       responses:
         "200":
           description: successful operation
@@ -220,6 +227,10 @@ components:
       type: object
       properties:
         id:
+          type: string
+          example: MDAwNENXMDExMDYzNTE2LTRTQ1ctMjAyMS0xMi0yOVQxNDozMDo1OC41OTFa
+          description: synthetic id (base64 encoding)
+        transaction-id:
           type: string
           example: 0004CW011063516
           description: transction id

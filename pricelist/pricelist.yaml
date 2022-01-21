@@ -107,7 +107,9 @@ components:
               type: string
               example: "ITR1"
             description:
-              $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+              type: array
+              items:
+                $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
             valid-date-from:
               type: string
               format: date-time
