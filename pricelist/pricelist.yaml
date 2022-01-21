@@ -18,12 +18,20 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /price/{pricelist}:
+  /price/{pricelist}/{barcode}:
     get:
       summary: Return the specified pricelist
       description: Return specific pricelist
       operationId: ''
       parameters:
+        - name: pricelist
+          in: path
+          description: pricelist code
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "ITR1"
         - name: barcode
           in: path
           description: barcode
@@ -31,7 +39,7 @@ paths:
           explode: true
           schema:
             type: string
-            default: "8054804724299"
+            example: "8054804724299"
       responses:
         "200":
           description: successful operation
@@ -54,11 +62,14 @@ paths:
 
   /prices:
     get:
-      summary: Return all
-      description: 'Return stock availability for a given store-id, pagination with limit&offset'
+      summary: Return all price for a given pricelist
+      description: 'Return all price for a given pricelist'
       operationId: ''
       parameters:
-
+        - name: pricelist
+          in: query
+          required: true
+          example: "ITR1"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
