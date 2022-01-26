@@ -6,7 +6,7 @@ parameters:
     schema:
       type: string
       format: date-time
-      default: 1979-01-01T00:01.01.000Z
+      default: 2000-01-01T00:01:01.000Z
       description: >
             The start date for the report. Must be used together with `end_date`.
             Date is inclusive.

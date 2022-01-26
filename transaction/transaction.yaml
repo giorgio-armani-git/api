@@ -89,19 +89,19 @@ paths:
           schema:
             type: string
             format: date-time
-            default: "2000-01-01T00:0.000Z"
+            default: "2000-01-01T00:01:01.000Z"
         - name: creation-date-end
           in: query
           schema:
             type: string
             format: date-time
-            default: "2000-01-01T00:0.000Z"
+            default: "2000-01-01T00:01:01.000Z"
         - name: last-change-date-start
           in: query
           schema:
             type: string
             format: date-time
-            default: "2000-01-01T00:0.000Z"
+            default: "2000-01-01T00:01:01.000Z"
         - name: last-change-date-end
           in: query
           schema:
@@ -132,7 +132,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-    post:
+  post:
       summary: Create a new transaction
       description: Create a new transaction
       operationId: ""
