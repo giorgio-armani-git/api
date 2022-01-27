@@ -132,14 +132,14 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  post:
+    post:
       summary: Create a new transaction
       description: Create a new transaction
       operationId: ""
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
-        - name: body
+        - name: transaction
           in: body
           required: true
           schema:
@@ -192,9 +192,8 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/transaction"
+                type: object
+                $ref: "#/components/schemas/transaction"
         "401":
           description: Unauthorized Error
           content:
