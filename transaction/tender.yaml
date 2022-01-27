@@ -5,8 +5,13 @@ components:
       type: object
       properties:
         id:
+          type: number
+          format: int32
+          description: "ID"
+          example: 1
+        tender-type:
           type: string
-          description: "Tender ID"
+          description: "Tender type"
         description:
           type: string
           description: "Tender Description"
@@ -21,7 +26,8 @@ components:
           description: "Exchange rate from transaction to payment currency"
 
       example:
-        id: "148"
+        id: 1
+        tender-type: "148"
         description: "VISA POS"
         amount:
           amount: 71900
