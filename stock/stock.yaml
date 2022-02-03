@@ -137,3 +137,5 @@ components:
           type: number
           format: int32
           example: 6
+        last-changed-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
