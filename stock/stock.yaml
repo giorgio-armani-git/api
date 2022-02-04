@@ -31,7 +31,7 @@ paths:
           explode: true
           schema:
             type: string
-            default: "8054804724299"
+            example: "8054804724299"
         - name: retail-store-id
           in: query
           description: store id
@@ -72,7 +72,7 @@ paths:
           explode: true
           schema:
             type: string
-            default: "4S09"
+            example: "4S09"
         - name: item-id
           in: query
           description: item-id (sku)

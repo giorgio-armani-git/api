@@ -7,4 +7,5 @@
 - Customers (raw)
 - Employee (raw)
 - Stock (get)
+- Pricelist (get)
 - Store (raw)
