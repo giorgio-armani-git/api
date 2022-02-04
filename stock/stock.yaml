@@ -35,7 +35,7 @@ paths:
         - name: retail-store-id
           in: query
           description: store id
-          required: false
+          required: true
           schema:
             type: string
             example: "4SCW"
@@ -130,7 +130,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/stock-item"
-        map:
+        unitary-cost:
           description: moving average price (unit)
           $ref: "../common/money.yaml#/components/schemas/money"
         consignment:
