@@ -5,7 +5,7 @@ components:
       properties:
         id:
           type: string
-          example: "001"
+          example: "0001"
         description:
           $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
           example:

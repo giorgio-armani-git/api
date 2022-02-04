@@ -68,11 +68,18 @@ paths:
         - name: retail-store-id
           in: query
           description: retail-store-id
-          required: false
+          required: true
           explode: true
           schema:
             type: string
             default: "4S09"
+        - name: item-id
+          in: query
+          description: item-id (sku)
+          required: false
+          schema:
+            type: string
+            example: "XD1200393718 001LDU3"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
@@ -112,13 +119,28 @@ components:
     stock:
       type: object
       properties:
-        barcode:
-          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         retail-store-id:
           $ref: "../store/store.yaml#/components/schemas/store"
           example:
             id: "4S09"
             href: "https://api.giorgioarmani.it/v1/store/4S09"
+        barcode:
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        storage:
+          type: array
+          items:
+            $ref: "#/components/schemas/stock-item"
+        map:
+          description: moving average price (unit)
+          $ref: "../common/money.yaml#/components/schemas/money"
+        consignment:
+          $ref: "#/components/schemas/consignment"
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+
+    stock-item:
+      type: object
+      properties:
         storage-location:
           $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
         unrestricted-stock-qty:
@@ -137,5 +159,26 @@ components:
           type: number
           format: int32
           example: 6
-        last-changed-date:
-          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+
+    consignment:
+      type: array
+      description: "open consignment, totalized amount per origin"
+      items:
+        consignment-item:
+          type: object
+          properties:
+            origin:
+              type: string
+              enum:
+                - backoffice
+                - pos
+            qty:
+            type: number
+            format: int32
+      example:
+        -
+          origin: "pos"
+          qty: 4
+        -
+          origin: "backoffice"
+          qty: 6
