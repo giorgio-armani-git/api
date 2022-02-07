@@ -10,6 +10,10 @@ components:
           example: 1
         retail-type-code:
           $ref: "./retail-type.yaml#/components/schemas/retail-type"
+        item-identifier:
+          type: string
+          description: "service item, 1=normal item, 2 service item"
+          default: 1
         barcode:
           $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         quantity:
