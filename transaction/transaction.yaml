@@ -58,9 +58,9 @@ paths:
           schema:
             type: string
             example: "AY85GT"
-        - name: customer-id
+        - name: partner-id
           in: query
-          description: Customer Id
+          description: Partner Id
           schema:
             type: string
             example: "10934402"
