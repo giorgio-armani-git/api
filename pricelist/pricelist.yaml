@@ -61,7 +61,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/pricelist"
+                type: array
+                items:
+                  $ref: "#/components/schemas/pricelist"
         "401":
           description: Unauthorized Error
           content:
