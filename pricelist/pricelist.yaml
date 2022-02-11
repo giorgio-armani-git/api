@@ -18,7 +18,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /price/{pricelist}/{barcode}:
+  /pricelist/{pricelist}:
     get:
       summary: Return the specified pricelist
       description: Return specific pricelist
@@ -32,46 +32,27 @@ paths:
           schema:
             type: string
             example: "ITR1"
-        - name: barcode
-          in: path
-          description: barcode
+        - name: sales-organization
+          in: query
+          description: sales-organization
           required: true
-          explode: true
+          schema:
+            type: string
+            example: "GA01"
+        - name: barcode
+          in: query
+          description: barcode
+          required: false
           schema:
             type: string
             example: "8054804724299"
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/pricelist"
-        "401":
-          description: Unauthorized Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
-        "default":
-          description: Unexpected Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/error"
-
-  /prices:
-    get:
-      summary: Return all price for a given pricelist
-      description: 'Return all price for a given pricelist'
-      operationId: ''
-      parameters:
-        - name: pricelist
+        - name: item-id
           in: query
-          required: true
+          description: item-id
+          required: false
           schema:
             type: string
-            example: "ITR1"
+            example: "XYZ010XOI69 00102"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
@@ -80,9 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/pricelist"
+                $ref: "#/components/schemas/pricelist"
         "401":
           description: Unauthorized Error
           content:
