@@ -8,6 +8,9 @@ components:
           type: integer
           description: "Sales Item Number"
           example: 1
+        original-item-id:
+          type: integer
+          description: "Original id in case of return"
         retail-type-code:
           $ref: "./retail-type.yaml#/components/schemas/retail-type"
         item-identifier:
