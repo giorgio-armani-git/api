@@ -68,12 +68,6 @@ paths:
           $ref: "../common/parameter/date-filter.yaml#/parameters/start-date"
         - name: business-date-end
           $ref: "../common/parameter/date-filter.yaml#/parameters/end-date"
-        - name: original-transaction-id
-          in: query
-          description: "Reference to Original Receipt for Transaction Number"
-          schema:
-            type: string
-            example: ""
         - name: fiscal-number
           in: query
           description: "Fiscal number"
@@ -268,10 +262,6 @@ components:
           example:
             id: "10934402"
             href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
-        original-transaction-id:
-          type: string
-          description: "Reference to Original Receipt for Transaction Number"
-          example: ""
         fiscal-number:
           type: string
           example: 16

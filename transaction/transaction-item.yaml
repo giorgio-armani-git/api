@@ -8,6 +8,10 @@ components:
           type: integer
           description: "Sales Item Number"
           example: 1
+        original-transaction-id:
+          type: string
+          description: "Reference to Original Receipt for Transaction Number"
+          example: ""
         original-item-id:
           type: integer
           description: "Original id in case of return"
