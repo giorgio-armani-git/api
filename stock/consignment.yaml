@@ -1,0 +1,24 @@
+components:
+  schemas:
+    consignment:
+      type: array
+      description: "open consignment, totalized amount per origin"
+      items:
+        consignment-item:
+          type: object
+          properties:
+            origin:
+              type: string
+              enum:
+                - backoffice
+                - pos
+            qty:
+            type: number
+            format: int32
+      example:
+        -
+          origin: "pos"
+          qty: 4
+        -
+          origin: "backoffice"
+          qty: 6

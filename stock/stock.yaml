@@ -129,56 +129,15 @@ components:
         storage:
           type: array
           items:
-            $ref: "#/components/schemas/stock-item"
+            $ref: "./stock-item.yaml#/components/schemas/stock-item"
         unitary-cost:
           description: moving average price (unit)
           $ref: "../common/money.yaml#/components/schemas/money"
         consignment:
-          $ref: "#/components/schemas/consignment"
+          $ref: "./consignment.yaml#/components/schemas/consignment"
         last-change-date:
           $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
 
-    stock-item:
-      type: object
-      properties:
-        storage-location:
-          $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
-        unrestricted-stock-qty:
-          type: number
-          format: int32
-          example: 8
-        allocated-stock-qty:
-          type: number
-          format: int32
-          example: 2
-        pos-retail-qty:
-          type: number
-          format: int32
-          example: 0
-        free-stock-qty:
-          type: number
-          format: int32
-          example: 6
 
-    consignment:
-      type: array
-      description: "open consignment, totalized amount per origin"
-      items:
-        consignment-item:
-          type: object
-          properties:
-            origin:
-              type: string
-              enum:
-                - backoffice
-                - pos
-            qty:
-            type: number
-            format: int32
-      example:
-        -
-          origin: "pos"
-          qty: 4
-        -
-          origin: "backoffice"
-          qty: 6
+
+

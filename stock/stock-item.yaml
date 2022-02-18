@@ -1,0 +1,23 @@
+components:
+  schemas:
+    stock-item:
+      type: object
+      properties:
+        storage-location:
+          $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
+        unrestricted-stock-qty:
+          type: number
+          format: int32
+          example: 8
+        allocated-stock-qty:
+          type: number
+          format: int32
+          example: 2
+        pos-retail-qty:
+          type: number
+          format: int32
+          example: 0
+        free-stock-qty:
+          type: number
+          format: int32
+          example: 6
