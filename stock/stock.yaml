@@ -80,6 +80,16 @@ paths:
           schema:
             type: string
             example: "XD1200393718 001LDU3"
+        - name: stock-mode
+          in: query
+          description: 'Returns positive quantities only or also zero quantities'
+          required: false
+          schema:
+            type: string
+            enum:
+              - positive
+              - total
+            default: total
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
