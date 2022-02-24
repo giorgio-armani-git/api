@@ -39,6 +39,23 @@ paths:
           schema:
             type: string
             example: "GA01"
+        - name: season-id
+          in: query
+          description: "season"
+          required: false
+          schema:
+            type: string
+            example: "FW22"
+        - name: status
+          in: query
+          description: "filter for active or cancelled prices"
+          required: false
+          schema:
+            type: string
+            enum:
+              - active
+              - cancelled
+            default: "active"
         - name: barcode
           in: query
           description: barcode
