@@ -1,0 +1,11 @@
+components:
+  schemas:
+    price-item:
+      type: array
+      items:
+        type: object
+        properties:
+          barcode:
+            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+          price:
+            $ref: "../common/money.yaml#/components/schemas/money"
