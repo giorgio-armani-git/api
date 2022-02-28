@@ -41,8 +41,9 @@ paths:
             example: "GA01"
         - name: season-id
           in: query
-          description: "season"
+          description: "season, can be multiple season-id=FW22,FW21,FW20"
           required: false
+          explode: false
           schema:
             type: string
             example: "FW22"
