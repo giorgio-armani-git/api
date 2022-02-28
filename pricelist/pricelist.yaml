@@ -121,9 +121,5 @@ components:
               type: array
               items:
                 $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
-            season:
-              $ref: "../common/season.yaml#/components/schemas/season"
-            status:
-              $ref: "../common/status.yaml#/components/schemas/status"
         price-item:
           $ref: "price-item.yaml#/components/schemas/price-item"
