@@ -10,11 +10,4 @@ components:
           seasons:
             type: array
             items:
-              type: object
-              properties:
-                season:
-                  $ref: "../common/season.yaml#/components/schemas/season"
-                price:
-                  $ref: "../common/money.yaml#/components/schemas/money"
-                status:
-                  $ref: "../common/status.yaml#/components/schemas/status"
+              $ref: "season-price.yaml#/components/schemas/season-price"
