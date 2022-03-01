@@ -23,3 +23,11 @@ components:
               description: Fall/Winter 2022
             - language: it
               description: Autunno/Inverno 2022
+        season-type:
+          type: string
+          nullable: true
+          enum:
+            - active-season
+            - creation-season
+            - disabled-season
+          default: ""

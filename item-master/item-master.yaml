@@ -190,15 +190,37 @@ components:
           example: XYZ010XOI69 001
           description: sku or generic article id
         item-type:
-          $ref: "#/components/schemas/item-type"
+          $ref: "item-type.yaml#/components/schemas/item-type"
         href:
           type: string
           format: url
           example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
-        active-season:
-          $ref: "../common/season.yaml#/components/schemas/season"
-        creation-season:
-          $ref: "../common/season.yaml#/components/schemas/season"
+        seasons:
+          type: array
+          items:
+            $ref: "../common/season.yaml#/components/schemas/season"
+          example:
+            - id: "FW22"
+              code: "FW"
+              year: "2022"
+              description:
+                - language: "en"
+                  description: "Fall Winter 2022"
+              season-type: "active-season"
+            - id: "FW20"
+              code: "FW"
+              year: "2020"
+              description:
+                - language: "en"
+                  description: "Fall Winter 2020"
+              season-type: "disabled-season"
+            - id: "FW19"
+              code: "FW"
+              year: "2019"
+              description:
+                - language: "en"
+                  description: "Fall Winter 2019"
+              season-type: "creation-season"
         style:
           $ref: "../common/style.yaml#/components/schemas/style"
         fabric:
@@ -273,62 +295,4 @@ components:
         related-items:
           type: array
           items:
-            $ref: "#/components/schemas/real-item"
-
-    real-item:
-      type: object
-      properties:
-        id:
-          type: string
-          example: XYZ010XOI69 00102N
-        item-type:
-          $ref: "#/components/schemas/item-type"
-        href:
-          type: string
-          format: url
-          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 00102N"
-        related-generic-id:
-          type: string
-          format: url
-          example: "XYZ010XOI69 001"
-        related-generic-href:
-          type: string
-          format: url
-          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
-        size:
-          $ref: "../common/size.yaml#/components/schemas/size"
-        alias-size:
-          $ref: "../common/size.yaml#/components/schemas/size"
-        color:
-          $ref: "../common/color.yaml#/components/schemas/color"
-        drop:
-          $ref: "../common/drop.yaml#/components/schemas/drop"
-        article-description:
-          type: array
-          example:
-            - language: en
-              description: XYZ010 XOI69 A553 SNK COW SUEDE+CALF V
-            - language: it
-              description: XYZ010 XOI69 A553 Vitello V
-          items:
-            $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
-        barcodes:
-          type: array
-          items:
-            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
-        rfid-enabled:
-          type: boolean
-          default: false
-        status:
-          $ref: "../common/status.yaml#/components/schemas/item-status"
-        creation-date:
-          $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
-        last-change-date:
-          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
-
-
-    item-type:
-      type: string
-      enum:
-        - generic-article
-        - real-article
+            $ref: "real-item.yaml#/components/schemas/real-item"

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    item-type:
+      type: string
+      enum:
+        - generic-article
+        - real-article
