@@ -30,4 +30,4 @@ components:
             - active-season
             - creation-season
             - disabled-season
-          default: ""
+          default:
