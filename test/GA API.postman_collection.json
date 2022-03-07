@@ -1,0 +1,2154 @@
+{
+	"info": {
+		"_postman_id": "7c5f7641-8447-4dc2-9485-c7beb3c2d8e3",
+		"name": "GA API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "basic",
+					"item": [
+						{
+							"name": "transaction invalid api-key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", () => {",
+											"  pm.response.to.have.status(401);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "not-an-api.key",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transaction/MDAwNDAxVTExMTE1MDAzLTRTVTEtMjAyMi0wMi0wMVQxNTowMDowMA==",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transaction",
+										"MDAwNDAxVTExMTE1MDAzLTRTVTEtMjAyMi0wMi0wMVQxNTowMDowMA=="
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction not existing",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", () => {",
+											"  pm.response.to.have.status(404);",
+											"});",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"check code\", () => {",
+											"  pm.expect(responseJson.code).to.eql(\"404\")",
+											"});",
+											"",
+											"",
+											"pm.test(\"check reason\", () => {",
+											"  pm.expect(responseJson.reason).to.eql(\"Not found\")",
+											"});",
+											"",
+											"pm.test(\"check message\", () => {",
+											"  pm.expect(responseJson.message).to.eql(\"No results\")",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transaction/MTIzNDU2Ni00U1UxLTIwMjItMDItMDFUMTY6MDA6MDBa",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transaction",
+										"MTIzNDU2Ni00U1UxLTIwMjItMDItMDFUMTY6MDA6MDBa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction invalid id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", () => {",
+											"  pm.response.to.have.status(404);",
+											"});",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"check code\", () => {",
+											"  pm.expect(responseJson.code).to.eql(\"404\")",
+											"});",
+											"",
+											"",
+											"pm.test(\"check reason\", () => {",
+											"  pm.expect(responseJson.reason).to.eql(\"Not found\")",
+											"});",
+											"",
+											"pm.test(\"check message\", () => {",
+											"  pm.expect(responseJson.message).to.eql(\"No results\")",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transaction/12321312",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transaction",
+										"12321312"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"id is correct\", () => {",
+											"  pm.expect(responseJson.id).to.eql(pm.environment.get(\"sample_transaction_id\"))",
+											"});",
+											"",
+											"",
+											"pm.test(\"channel is correct\", () => {",
+											"  pm.expect(responseJson.channel).to.eql(\"retail-fixed-pos\")",
+											"});",
+											"",
+											"pm.test(\"transaction-id is correct\", () => {",
+											"    console.log(responseJson)",
+											"    pm.expect(responseJson['transaction-id']).to.equal(pm.environment.get(\"sample_transaction\"))",
+											"});",
+											"",
+											"pm.test(\"workstation-id is correct\", () => {",
+											"  pm.expect(responseJson['workstation-id']).to.eql(\"0000000002\")",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transaction/{{sample_transaction_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transaction",
+										"{{sample_transaction_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction cancelled",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"const responseJson = pm.response.json();",
+											"",
+											"pm.test(\"status is correct\", () => {",
+											"  pm.expect(responseJson[0].status.id).to.eql(\"canceled\")",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&transaction-id={{tx_cancelled}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "transaction-id",
+											"value": "{{tx_cancelled}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"const responseJson = pm.response.json()[0];",
+											"",
+											"pm.test(\"id is correct\", () => {",
+											"  pm.expect(responseJson.id).to.eql(pm.environment.get(\"sample_transaction_id_2\"))  ",
+											"});",
+											"",
+											"",
+											"pm.test(\"channel is correct\", () => {",
+											"  pm.expect(responseJson.channel).to.eql(pm.environment.get(\"retail-pos\"))",
+											"});",
+											"",
+											"pm.test(\"transaction-id is correct\", () => {",
+											"    console.log(responseJson)",
+											"    pm.expect(responseJson['transaction-id']).to.equal(pm.environment.get(\"sample_transaction_2\"))",
+											"});",
+											"",
+											"pm.test(\"workstation-id is correct\", () => {",
+											"  pm.expect(responseJson['workstation-id']).to.eql(\"0000000001\")",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&creation-date-start=2022-02-09T08:30:00Z&creation-date-end=2022-02-21T19:22:00Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "creation-date-start",
+											"value": "2022-02-09T08:30:00Z"
+										},
+										{
+											"key": "creation-date-end",
+											"value": "2022-02-21T19:22:00Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction empty - uat only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", () => {",
+											"  pm.response.to.have.status(400);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"transaction-id\": \"000401U11115017\",\n\n}"
+								},
+								"url": {
+									"raw": "https://apiarmanidev.gateway.webmethodscloud.de/gateway/car_transaction/1.0/transactions/",
+									"protocol": "https",
+									"host": [
+										"apiarmanidev",
+										"gateway",
+										"webmethodscloud",
+										"de"
+									],
+									"path": [
+										"gateway",
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transaction valid",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"check saved id transaction\", () => {",
+											"    ",
+											"    const postresponse = pm.response.json();",
+											"   ",
+											"    pm.expect(postresponse.id).to.not.be.null;  ",
+											"",
+											"    pm.collectionVariables.set(\"new-transaction-id\",postresponse.id);",
+											"    ",
+											"    console.log(postresponse.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"transaction-id\": \"1234566\",\n\"transaction-type\": \"sales\",\n\"business-date\": \"2022-02-01T16:00:00Z\",\n\"transaction-start\": \"2022-02-01T16:00:01Z\",\n\"transaction-end\": \"2022-02-01T16:00:15Z\",\n\"workstation-id\": \"0000000001\",\n\"retail-store-id\": {\n\"id\": \"4SU1\"\n},\n\"channel\": \"retail-mobile-pos\",\n\"operator-id\": {\n\"id\": \"B7L700\"\n},\n\"partner-id\": {\n\"id\": \"BNOQ00\"\n},\n\"transaction-items\": [{\n\"id\": \"0000000001\",\n\"retail-type-code\": {\n\"id\": \"0060\"\n},\n\"barcode\": {\n\"item-id\": \"942650CC794 00101N\",\n\"barcode\": \"8059823244421\"},\n\"quantity\": 10,\n\"sales-amount\": {\n\"amount\": 45000,\n\"currency\": \"EUR\"\n},\n\"actual-unit-price\": {\n\"amount\": 4500,\n\"currency\": \"EUR\"\n},\n\"tax\": {\n\"id\": \"4301\",\n\"tax-amount\": {\n\"amount\": 19800,\n\"currency\": \"EUR\"\n},\n\"tax-percentage\": {\n\"value\": 22,\n\"unit\": \"percent\"\n}\n},\n\"commission\": {\n\"employee\": {\n\"id\": \"AMET01\"\n}\n}\n}],\n\"tenders\": [{\n\"id\": 1,\n\"tender-type\": \"0163\",\n\"description\": \"eur cash\",\n\"amount\": {\n\"amount\": 50000,\n\"currency\": \"EUR\"\n}\n}, {\n\"id\": 2,\n\"tender-type\": \"0163\",\n\"description\": \"eur cash\",\n\"amount\": {\n\"amount\": -5000,\n\"currency\": \"EUR\"\n}\n}]\n}"
+								},
+								"url": {
+									"raw": "https://apiarmanidev.gateway.webmethodscloud.de/gateway/car_transaction/1.0/transactions/",
+									"protocol": "https",
+									"host": [
+										"apiarmanidev",
+										"gateway",
+										"webmethodscloud",
+										"de"
+									],
+									"path": [
+										"gateway",
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "param",
+					"item": [
+						{
+							"name": "param business-date range",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0].id).to.eql(pm.environment.get(\"param_1\"))\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&business-date-start=2022-02-04T06:01:24Z&business-date-end=2022-02-20T06:18:24Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "business-date-start",
+											"value": "2022-02-04T06:01:24Z"
+										},
+										{
+											"key": "business-date-end",
+											"value": "2022-02-20T06:18:24Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param creation-date range",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0].id).to.eql(pm.environment.get(\"param_2\"))\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&creation-date-start=2022-01-21T06:01:24Z&creation-date-end=2022-02-21T11:00:00Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "creation-date-start",
+											"value": "2022-01-21T06:01:24Z"
+										},
+										{
+											"key": "creation-date-end",
+											"value": "2022-02-21T11:00:00Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param last-change-date range",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&last-change-date-start=2022-02-02T06:01:24Z&last-change-date-end=2022-02-20T19:00:00Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "last-change-date-start",
+											"value": "2022-02-02T06:01:24Z"
+										},
+										{
+											"key": "last-change-date-end",
+											"value": "2022-02-20T19:00:00Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param channel param",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Values check\", () => {\r",
+											"    pm.expect(responseJson[0].id).to.equal(pm.environment.get(\"param_3\"));\r",
+											"    pm.expect(responseJson[0].channel).to.equal(\"retail-mobile-pos\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&channel-id=retail-mobile-pos&business-date-start=2022-02-01T16:00:00Z&business-date-end=2022-02-21T16:00:15Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "channel-id",
+											"value": "retail-mobile-pos"
+										},
+										{
+											"key": "business-date-start",
+											"value": "2022-02-01T16:00:00Z"
+										},
+										{
+											"key": "business-date-end",
+											"value": "2022-02-21T16:00:15Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param transaction-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0]['transaction-id']).to.equal(pm.environment.get(\"sample_transaction\"))\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&transaction-id={{sample_transaction}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "transaction-id",
+											"value": "{{sample_transaction}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param transaction-id original-tx-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0]['transaction-items'][0]['original-transaction-id']).to.equal(\"0004CW011042429\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SCW&transaction-id=0004CW011042851",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SCW"
+										},
+										{
+											"key": "transaction-id",
+											"value": "0004CW011042851"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param transaction-id original-tx-id search",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SCW&transaction-id=0004CW011042429",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SCW"
+										},
+										{
+											"key": "transaction-id",
+											"value": "0004CW011042429"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param operator-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0]['operator-id'].id).to.equal(\"H7T200\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&channel-id=retail-mobile-pos&operator-id=H7T200",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "channel-id",
+											"value": "retail-mobile-pos"
+										},
+										{
+											"key": "operator-id",
+											"value": "H7T200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param partner-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"ID found\", () => {\r",
+											"    pm.expect(responseJson[0]['partner-id'].id).to.equal(\"BNOQ00\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&channel-id=retail-mobile-pos&partner-id=BNOQ00",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "channel-id",
+											"value": "retail-mobile-pos"
+										},
+										{
+											"key": "partner-id",
+											"value": "BNOQ00"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param invoice-number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Invoice Number\", () => {\r",
+											"    pm.expect(responseJson[0]['invoice-number']).to.equal(pm.environment.get(\"invoice_number\"))\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&invoice-number={{invoice_number}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "invoice-number",
+											"value": "{{invoice_number}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param transaction-type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Fiscal Number\", () => {\r",
+											"    const jsonData = pm.response.json();\r",
+											"    pm.expect(responseJson[0]['transaction-type']).to.equal(\"end-of-day\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&transaction-type=end-of-day",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "transaction-type",
+											"value": "end-of-day"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param pagination",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Page content\", () => {\r",
+											"    \r",
+											"    //console.log(responseJson.length);\r",
+											"    pm.expect(responseJson.length).to.eql(10);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "param fiscal-number",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Fiscal Number\", () => {\r",
+											"    pm.expect(responseJson[0]['fiscal-number']).to.equal('6')\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json;",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&fiscal-number=6",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "fiscal-number",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "test POST/GET",
+					"item": [
+						{
+							"name": "post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"check saved id transaction\", () => {",
+											"    ",
+											"    const postresponse = pm.response.json();",
+											"   ",
+											"    pm.expect(postresponse.id).to.not.be.null;  ",
+											"",
+											"    pm.collectionVariables.set(\"new-transaction-id\",postresponse.id);",
+											"    ",
+											"    console.log(postresponse.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"transaction-id\": \"1234566\",\n\"transaction-type\": \"sales\",\n\"business-date\": \"2022-02-01T16:00:00Z\",\n\"transaction-start\": \"2022-02-01T16:00:01Z\",\n\"transaction-end\": \"2022-02-01T16:00:15Z\",\n\"workstation-id\": \"0000000001\",\n\"retail-store-id\": {\n\"id\": \"4SU1\"\n},\n\"channel\": \"retail-mobile-pos\",\n\"operator-id\": {\n\"id\": \"B7L700\"\n},\n\"partner-id\": {\n\"id\": \"BNOQ00\"\n},\n\"transaction-items\": [{\n\"id\": \"0000000001\",\n\"retail-type-code\": {\n\"id\": \"0060\"\n},\n\"barcode\": {\n\"item-id\": \"942650CC794 00101N\",\n\"barcode\": \"8059823244421\"},\n\"quantity\": 10,\n\"sales-amount\": {\n\"amount\": 45000,\n\"currency\": \"EUR\"\n},\n\"actual-unit-price\": {\n\"amount\": 4500,\n\"currency\": \"EUR\"\n},\n\"tax\": {\n\"id\": \"4301\",\n\"tax-amount\": {\n\"amount\": 19800,\n\"currency\": \"EUR\"\n},\n\"tax-percentage\": {\n\"value\": 22,\n\"unit\": \"percent\"\n}\n},\n\"commission\": {\n\"employee\": {\n\"id\": \"AMET01\"\n}\n}\n}],\n\"tenders\": [{\n\"id\": 1,\n\"tender-type\": \"0163\",\n\"description\": \"eur cash\",\n\"amount\": {\n\"amount\": 50000,\n\"currency\": \"EUR\"\n}\n}, {\n\"id\": 2,\n\"tender-type\": \"0163\",\n\"description\": \"eur cash\",\n\"amount\": {\n\"amount\": -5000,\n\"currency\": \"EUR\"\n}\n}]\n}"
+								},
+								"url": {
+									"raw": "https://apiarmanidev.gateway.webmethodscloud.de/gateway/car_transaction/1.0/transactions/",
+									"protocol": "https",
+									"host": [
+										"apiarmanidev",
+										"gateway",
+										"webmethodscloud",
+										"de"
+									],
+									"path": [
+										"gateway",
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"  setTimeout(function(){",
+											"          console.log(\"Sleeping for 60 seconds before next request.\");",
+											"  }, 60000);",
+											"",
+											"pm.test(\"Status code is 200\", () => { ",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"id is correct\", () => {",
+											"",
+											"    const id = pm.collectionVariables.get(\"new-transaction-id\");",
+											"    ",
+											"    console.log(id);",
+											"    console.log(pm.response);",
+											"    const responseJson = pm.response.json();",
+											"    ",
+											"    pm.expect(responseJson.id).to.eql(id);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://apiarmanidev.gateway.webmethodscloud.de/gateway/car_transaction/1.0/transaction/{{new-transaction-id}}",
+									"protocol": "https",
+									"host": [
+										"apiarmanidev",
+										"gateway",
+										"webmethodscloud",
+										"de"
+									],
+									"path": [
+										"gateway",
+										"car_transaction",
+										"1.0",
+										"transaction",
+										"{{new-transaction-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GO LIVE",
+					"item": [
+						{
+							"name": "transactions 16.2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&creation-date-start=2022-02-16T00:01:00Z&creation-date-end=2022-02-16T19:30:00Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "creation-date-start",
+											"value": "2022-02-16T00:01:00Z"
+										},
+										{
+											"key": "creation-date-end",
+											"value": "2022-02-16T19:30:00Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactions STATS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"const json = pm.response.json();",
+											"",
+											"pm.test(\"STATS\", ()=>{",
+											"",
+											"    txs = json.length;",
+											"    sales = 0;",
+											"    good_movement = 0;",
+											"    eod = 0;",
+											"    amount = 0;",
+											"",
+											"    for (tx of json) { ",
+											"        if (tx['transaction-type']=='sales'){",
+											"            sales++;",
+											"            for(a of tx['tenders']){",
+											"                if (a.amount.currency=='EUR')",
+											"                    amount += a.amount.amount;",
+											"                else",
+											"                    amount += a['foreign-currency-amount'].amount;",
+											"            }",
+											"        }",
+											"        if (tx['transaction-type']=='good-movement')",
+											"            good_movement++;",
+											"        if (tx['transaction-type']=='end-of-day')",
+											"            eod++;",
+											"    }",
+											"",
+											"",
+											"    console.log(\"============  STATS ============\");",
+											"    console.log(\" Total txs     : \"+txs);",
+											"    console.log(\" Total sales   : \"+sales);",
+											"    console.log(\" Total GM      : \"+good_movement);",
+											"    console.log(\" Total EOD     : \"+eod);",
+											"    console.log(\" Total amount  : \"+(amount/100)+\" €\");",
+											"    console.log(\" Average sales : \"+((amount/sales)/100).toFixed(2)+\" €\");",
+											"    console.log(\"================================\");",
+											"",
+											"    ENABLE_LIST = false;",
+											"",
+											"    if (ENABLE_LIST){",
+											"        console.log(\"==== LIST OF TXS ====\")",
+											"    ",
+											"        let n = 1;",
+											"        for (tx of json) { ",
+											"            let ta = 0;",
+											"            for(a of tx['tenders'])",
+											"                if (a.amount.currency=='EUR')",
+											"                    ta += a.amount.amount;",
+											"                else",
+											"                    ta += a['foreign-currency-amount'].amount;",
+											"                ",
+											"            console.log(n + \" [\"+tx['transaction-id']+\"] amount: \"+ta/100);",
+											"            n++;",
+											"        }",
+											"    }",
+											"",
+											"    pm.expect(1).to.eql(1);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&creation-date-start=2022-02-24T00:01:00Z&creation-date-end=2022-02-24T23:59:00Z&limit=10000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "creation-date-start",
+											"value": "2022-02-24T00:01:00Z"
+										},
+										{
+											"key": "creation-date-end",
+											"value": "2022-02-24T23:59:00Z"
+										},
+										{
+											"key": "limit",
+											"value": "10000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactions 16.2 mobile-pos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&channel-id=retail-mobile-pos&creation-date-start=2022-02-16T00:01:00Z&creation-date-end=2022-02-16T19:30:00Z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "channel-id",
+											"value": "retail-mobile-pos"
+										},
+										{
+											"key": "creation-date-start",
+											"value": "2022-02-16T00:01:00Z"
+										},
+										{
+											"key": "creation-date-end",
+											"value": "2022-02-16T19:30:00Z"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "transactions single transaction",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Gateway-APIKey",
+										"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/car_transaction/1.0/transactions/?retail-store-id=4SU1&transaction-id=0004U1011001245",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"car_transaction",
+										"1.0",
+										"transactions",
+										""
+									],
+									"query": [
+										{
+											"key": "retail-store-id",
+											"value": "4SU1"
+										},
+										{
+											"key": "transaction-id",
+											"value": "0004U1011001245"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Customer",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "stock",
+			"item": [
+				{
+					"name": "stock & barcode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"id is correct\", () => {\r",
+									"    console.log(responseJson.barcode.barcode);\r",
+									"    pm.expect(responseJson.barcode.barcode).to.eql(\"8051518718446\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-APIKey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stock/1.0/stock/?retail-store-id=4SU1&barcode=8051518718446",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stock",
+								"1.0",
+								"stock",
+								""
+							],
+							"query": [
+								{
+									"key": "retail-store-id",
+									"value": "4SU1"
+								},
+								{
+									"key": "barcode",
+									"value": "8051518718446"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stock free stock check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"free-stock-qty must be > 0\", () => {\r",
+									"    let tmp = responseJson.storage['storage-location'][0];\r",
+									"    //console.log(tmp['free-stock-qty']);\r",
+									"    pm.expect(tmp['free-stock-qty']).above(-1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-APIKey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stock/1.0/stock/?retail-store-id=4S01&barcode=8055187329354",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stock",
+								"1.0",
+								"stock",
+								""
+							],
+							"query": [
+								{
+									"key": "retail-store-id",
+									"value": "4S01"
+								},
+								{
+									"key": "barcode",
+									"value": "8055187329354"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stock & item-id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"id is correct\", () => {\r",
+									"    console.log(responseJson.barcode['item-id']);\r",
+									"    pm.expect(responseJson.barcode['item-id']).to.eql(\"09GXX00X002 00115R\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-APIKey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stock/1.0/stock/?retail-store-id=4SU1&item-id=09GXX00X002 00115R",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stock",
+								"1.0",
+								"stock",
+								""
+							],
+							"query": [
+								{
+									"key": "retail-store-id",
+									"value": "4SU1"
+								},
+								{
+									"key": "item-id",
+									"value": "09GXX00X002 00115R"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"items count\", () => {    \r",
+									"    pm.expect(responseJson.length).to.eql(100);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-APIKey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stock/1.0/stock/?retail-store-id=4SU1&limit=100&offset=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stock",
+								"1.0",
+								"stock",
+								""
+							],
+							"query": [
+								{
+									"key": "retail-store-id",
+									"value": "4SU1"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								},
+								{
+									"key": "offset",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "stock stock-mode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"pm.test(\"items count\", () => {    \r",
+									"    pm.expect(responseJson[0].storage['storage-location'][0]['free-stock-qty']).to.above(0);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-APIKey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/stock/1.0/stock/?retail-store-id=4SU1&stock-mode=positive",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stock",
+								"1.0",
+								"stock",
+								""
+							],
+							"query": [
+								{
+									"key": "retail-store-id",
+									"value": "4SU1"
+								},
+								{
+									"key": "stock-mode",
+									"value": "positive"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pricelist",
+			"item": [
+				{
+					"name": "pricelsit barcode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-apikey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pricelist/1.0/pricelist/ITR1/?sales-organization=GA01&barcode=8055352365309",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pricelist",
+								"1.0",
+								"pricelist",
+								"ITR1",
+								""
+							],
+							"query": [
+								{
+									"key": "sales-organization",
+									"value": "GA01"
+								},
+								{
+									"key": "barcode",
+									"value": "8055352365309"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pricelsit status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-apikey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pricelist/1.0/pricelist/ITR1/?sales-organization=GA01&barcode=8055352365309",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pricelist",
+								"1.0",
+								"pricelist",
+								"ITR1",
+								""
+							],
+							"query": [
+								{
+									"key": "sales-organization",
+									"value": "GA01"
+								},
+								{
+									"key": "barcode",
+									"value": "8055352365309"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pricelsit ITR1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-gateway-apikey",
+								"value": "3331140a-9c52-49b4-a7ba-a42ac93611d9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pricelist/1.0/pricelist/ITR1/?sales-organization=GA01&limit=100&offset=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pricelist",
+								"1.0",
+								"pricelist",
+								"ITR1",
+								""
+							],
+							"query": [
+								{
+									"key": "sales-organization",
+									"value": "GA01"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "item",
+			"item": [
+				{
+					"name": "Item MOCK",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "new-transaction",
+			"value": ""
+		},
+		{
+			"key": "new-transaction-id",
+			"value": ""
+		}
+	]
+}
