@@ -134,10 +134,47 @@ paths:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: transaction
+            in: body
+            required: true
+            schema:
+              $ref: "#/components/schemas/transaction"
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: synthetic id
+                    example: "MDAwNENXMDExMDYzNTE2LTRTQ1ctMjAyMS0xMi0yOVQxNDozMDo1OC41OTFa"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+    patch:
+      summary: Update a transaction
+      description: Update a transaction
+      operationId: ""
+      parameters:
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: transaction
           in: body
           required: true
           schema:
-            $ref: "#/components/schemas/transaction"
+            $ref: "#/components/schemas/patch-transaction"
       responses:
         "200":
           description: successful operation
@@ -162,7 +199,6 @@ paths:
             application/json:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
-
 
   /transaction/{id}:
     get:
@@ -290,7 +326,43 @@ components:
           items:
             $ref: "./tender.yaml#/components/schemas/tender"
 
-
+    patch-transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          example: MDAwNENXMDExMDYzNTE2LTRTQ1ctMjAyMS0xMi0yOVQxNDozMDo1OC41OTFa
+          description: synthetic id (base64 encoding)
+        operator-id:
+          $ref: "../employee/employee.yaml#/components/schemas/employee"
+          example:
+            id: "AY85GT"
+            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+        partner-id:
+          $ref: "../customer/customer.yaml#/components/schemas/customer"
+          example:
+            id: "10934402"
+            href: "https://apiarmani.gateway.webmethodscloud.de/gateway/GA_ALL_CAR_CUSTOMER_DATA_IN/1/CustomerSet?$filter=substringof('10934402', Partner)&$format=json"
+        document-type:
+          $ref: "./document-type.yaml#/components/schemas/document-type"
+        invoice-number:
+          type: string
+          example: "11820054"
+        status:
+          $ref: "../common/status.yaml#/components/schemas/status"
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+        transaction-items:
+          type: array
+          items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: "Sales Item Number"
+                  example: 1
+                commission:
+                  $ref: "./commission.yaml#/components/schemas/commission"
 
 
 
