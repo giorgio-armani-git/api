@@ -134,10 +134,10 @@ paths:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
         - name: transaction
-            in: body
-            required: true
-            schema:
-              $ref: "#/components/schemas/transaction"
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/transaction"
       responses:
         "201":
           description: successful operation
