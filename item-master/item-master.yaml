@@ -191,6 +191,8 @@ components:
           description: sku or generic article id
         item-type:
           $ref: "item-type.yaml#/components/schemas/item-type"
+        item-category:
+          $ref: "../common/item-category.yaml#/components/schemas/item-category"
         href:
           type: string
           format: url
