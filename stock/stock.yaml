@@ -98,9 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/stock"
+                $ref: "#/components/schemas/list"
         "401":
           description: Unauthorized Error
           content:
@@ -149,5 +147,11 @@ components:
           $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
 
 
-
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/stock"
 

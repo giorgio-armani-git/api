@@ -79,9 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/pricelist"
+                $ref: "#/components/schemas/list"
         "401":
           description: Unauthorized Error
           content:
@@ -124,3 +122,11 @@ components:
                 $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         price-item:
           $ref: "price-item.yaml#/components/schemas/price-item"
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/pricelist"

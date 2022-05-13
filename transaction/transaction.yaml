@@ -110,9 +110,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/transaction"
+                $ref: "#/components/schemas/list"
         "401":
           description: Unauthorized Error
           content:
@@ -365,6 +363,13 @@ components:
                   $ref: "./commission.yaml#/components/schemas/commission"
 
 
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/transaction"
 
 
 
