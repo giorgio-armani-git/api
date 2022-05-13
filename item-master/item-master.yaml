@@ -4,7 +4,7 @@ info:
   description: Giorgio Armani Item Master
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:
@@ -116,9 +116,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/item"
+                $ref: "#/components/schemas/list"
         "401":
           description: Unauthorized Error
           content:
@@ -189,44 +187,25 @@ components:
           type: string
           example: XYZ010XOI69 001
           description: sku or generic article id
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/item/XYZ010XOI69 001"
         item-type:
           $ref: "item-type.yaml#/components/schemas/item-type"
         item-category:
           $ref: "../common/item-category.yaml#/components/schemas/item-category"
-        href:
-          type: string
-          format: url
-          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
-        seasons:
-          type: array
-          items:
-            $ref: "../common/season.yaml#/components/schemas/season"
           example:
-            - id: "FW22"
-              code: "FW"
-              year: "2022"
-              description:
-                - language: "en"
-                  description: "Fall Winter 2022"
-              season-type: "active-season"
-            - id: "FW20"
-              code: "FW"
-              year: "2020"
-              description:
-                - language: "en"
-                  description: "Fall Winter 2020"
-              season-type: "disabled-season"
-            - id: "FW19"
-              code: "FW"
-              year: "2019"
-              description:
-                - language: "en"
-                  description: "Fall Winter 2019"
-              season-type: "creation-season"
+            id: Z001
+            href: https://api.armani.it/v1/item-category/Z001
         style:
           $ref: "../common/style.yaml#/components/schemas/style"
+          example:
+            id: "XYZ010"
         fabric:
           $ref: "../common/fabric.yaml#/components/schemas/fabric"
+          example:
+            id: "XOI69"
         variant:
           type: string
           example: ""
@@ -242,48 +221,91 @@ components:
               description: Vitello V
           items:
             $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+        item-description:
+            $ref: "../item-description/item-description.yaml#/components/schemas/item-description"
+            example:
+              href: https://api.armani.it/v1/item-description/XYZ010XOI69 001
         division:
           $ref: "../common/division.yaml#/components/schemas/division"
-        collection:
-          $ref: "../common/collection.yaml#/components/schemas/collection"
-        theme:
-          $ref: "../common/theme.yaml#/components/schemas/theme"
+          example:
+            id: JB
+            href: https://api.armani.it/v1/division/JB
         product:
           $ref: "../common/product.yaml#/components/schemas/product"
+          example:
+            id: 629
+            href: https://api.armani.it/v1/product/629
         product-type:
           $ref: "../common/product-type.yaml#/components/schemas/product-type"
+          example:
+            id: 40
+            href: https://api.armani.it/v1/product-type/40
         product-kind:
           $ref: "../common/product-kind.yaml#/components/schemas/product-kind"
+          example:
+            id: 11
+            href: https://api.armani.it/v1/product-kind/11
         merchandise-category:
           $ref: "../common/merchandise-category.yaml#/components/schemas/merchandise-category"
+          example:
+            id: 119
+            href: https://api.armani.it/v1/merchandase-category/119
         merchandise-group:
           $ref: "../common/merchandise-group.yaml#/components/schemas/merchandise-group"
+          example:
+            id: 67
+            href: https://api.armani.it/v1/merchandase-group/67
         category:
           $ref: "../common/category.yaml#/components/schemas/category"
+          example:
+            id: 10
+            href: https://api.armani.it/v1/category/10
         brand:
           $ref: "../common/brand.yaml#/components/schemas/brand"
+          example:
+            id: 10
+            href: https://api.armani.it/v1/brand/10
         made-in:
           type: array
           items:
             $ref: "../common/made-in.yaml#/components/schemas/made-in"
-        fashion-grade:
-          $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
+          example:
+            id: ITA
+            href: https://api.armani.it/v1/made-in/ITA
         gender:
           $ref: "../common/gender.yaml#/components/schemas/gender"
+          example:
+            id: man
+            href: https://api.armani.it/v1/gender/man
         cites:
           $ref: "../common/cites.yaml#/components/schemas/cites"
-        underline:
-          $ref: "../common/underline.yaml#/components/schemas/underline"
+          example:
+            id: 4
+            href: https://api.armani.it/v1/cites/4
         commodity-code:
           $ref: "../common/commodity-code.yaml#/components/schemas/commodity-code"
+          example:
+            id: 41032000
+            href: https://api.armani.it/v1/commodity-code/41032000
         packaging-type:
           $ref: "../common/packaging-type.yaml#/components/schemas/packaging-type"
+          example:
+            id: Z003
+            href: https://api.armani.it/v1/packaging-type/Z003
         range-name:
           $ref: "../common/range-name.yaml#/components/schemas/range-name"
+          example:
+            id: 1565
+            href: https://api.armani.it/v1/range-name/1565
         capsule-special-projects:
           $ref: "../common/capsule-special-projects.yaml#/components/schemas/capsule-special-projects"
+          example:
+            id: ABC
+            href: https://api.armani.it/v1/range-name/ABC
         luxury-article:
           $ref: "../common/luxury-article.yaml#/components/schemas/luxury-article"
+          example:
+            id: L
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         creation-date:
@@ -294,7 +316,23 @@ components:
           format: date-time
         composition:
           $ref: "../common/composition.yaml#/components/schemas/composition"
-        related-items:
+          example:
+            href: https://api.armani.it/v1/composition/XYZ010XOI69 001
+        taxes:
+          $ref: "../common/item-tax.yaml#/components/schemas/item-tax"
+#          example:
+#            href: https://api.armani.it/v1/item-tax/XYZ010XOI69 001
+        sku-items:
           type: array
           items:
-            $ref: "real-item.yaml#/components/schemas/real-item"
+            $ref: "sku-item.yaml#/components/schemas/sku-item"
+
+
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/item"

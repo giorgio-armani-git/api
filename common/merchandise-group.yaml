@@ -5,6 +5,9 @@ components:
       properties:
         id:
           type: string
+        href:
+          type: string
+          format: url
         description:
           type: array
           items:

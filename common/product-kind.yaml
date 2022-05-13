@@ -6,6 +6,9 @@ components:
         id:
           type: string
           example: A21
+        href:
+          type: string
+          format: url
         description:
           type: array
           items:

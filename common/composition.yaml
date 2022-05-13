@@ -3,6 +3,10 @@ components:
     composition:
       type: object
       properties:
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/composition/XYZ010XOI69 001"
         description:
           type: array
           items:

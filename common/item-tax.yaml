@@ -1,0 +1,59 @@
+components:
+  schemas:
+    item-tax:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ABC
+        href:
+          type: string
+          format: url
+        country:
+          type: object
+          properties:
+            id:
+              type: string
+              example: IT
+            href:
+              type: string
+              format: url
+            description:
+              type: array
+              items:
+                $ref: './localized-message.yaml#/components/schemas/localized-message'
+              example:
+                - language: en
+                  description: "Italy"
+        tax-category:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "MWST"
+            href:
+              type: string
+              format: url
+            description:
+              type: array
+              items:
+                $ref: './localized-message.yaml#/components/schemas/localized-message'
+              example:
+                - language: en
+                  description: "Output Tax"
+        tax-classification:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+            href:
+              type: string
+              format: url
+            description:
+              type: array
+              items:
+                $ref: './localized-message.yaml#/components/schemas/localized-message'
+              example:
+                - language: en
+                  description: "Full Tax"

@@ -6,6 +6,9 @@ components:
         id:
           type: string
           example: '10'
+        href:
+          type: string
+          format: url
         description:
           type: string
           example: Giorgio Armani

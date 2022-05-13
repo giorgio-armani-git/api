@@ -1,17 +1,17 @@
 components:
   schemas:
-    real-item:
+    sku-item:
       type: object
       properties:
         id:
           type: string
-          example: XYZ010XOI69 00102N
+          example: "XYZ010XOI69 00102N"
         item-type:
           $ref: "item-type.yaml#/components/schemas/item-type"
         href:
           type: string
           format: url
-          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 00102N"
+          example: "https://api.armani.it/v1/item/XYZ010XOI69 00102N"
         related-generic-id:
           type: string
           format: url
@@ -19,7 +19,11 @@ components:
         related-generic-href:
           type: string
           format: url
-          example: "https://api.giorgioarmani.it/v1/item/XYZ010XOI69 001"
+          example: "https://api.armani.it/v1/item/XYZ010XOI69 001"
+        seasons:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/season/XYZ010XOI69 00102N"
         size:
           $ref: "../common/size.yaml#/components/schemas/size"
         alias-size:
@@ -41,6 +45,14 @@ components:
           type: array
           items:
             $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        fashion-grade:
+          $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
+        collection:
+          $ref: "../common/collection.yaml#/components/schemas/collection"
+        theme:
+          $ref: "../common/theme.yaml#/components/schemas/theme"
+        underline:
+          $ref: "../common/underline.yaml#/components/schemas/underline"
         rfid-enabled:
           type: boolean
           default: false

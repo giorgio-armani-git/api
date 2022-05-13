@@ -22,7 +22,7 @@ components:
           description: "service item, 1=normal item, 2 service item"
           default: 1
         barcode:
-          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+          $ref: "../barcode/season.yaml#/components/schemas/barcode"
         quantity:
           type: integer
           description: "Quantity in Sales Unit"
@@ -40,7 +40,7 @@ components:
           $ref: "../employee/employee.yaml#/components/schemas/employee"
           example:
             id: "AY85GT"
-            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+            href: "https://api.armani.it/v1/employee/AY85GT"
         sales-amount:
           $ref: "../common/money.yaml#/components/schemas/money"
         actual-unit-price:

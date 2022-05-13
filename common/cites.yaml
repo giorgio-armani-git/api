@@ -8,6 +8,9 @@ components:
           type: integer
           format: int32
           example: '4'
+        href:
+          type: string
+          format: url
         description:
           type: array
           items:

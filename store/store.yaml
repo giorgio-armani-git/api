@@ -4,7 +4,7 @@ info:
   description: Giorgio Armani Stores
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:
@@ -112,7 +112,7 @@ components:
         href:
           type: string
           format: uri
-          example: "https://api.giorgioarmani.it/v1/store/4S01"
+          example: "https://api.armani.it/v1/store/4S01"
         description:
           type: string
           example: "Giorgio Armani Boutique"

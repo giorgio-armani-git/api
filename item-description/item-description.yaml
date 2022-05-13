@@ -1,0 +1,101 @@
+openapi: "3.0.0"
+info:
+  title: Item-description
+  description: All usefull descriptions about a given Item, emotional descriptions, ecommerce, long, short, etc...
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /item-description/{item-id}:
+    get:
+      summary: Return descriptions for specified item-id
+      description: Return descriptions for specified item-id
+      operationId: ''
+      parameters:
+        - name: item-id
+          in: path
+          description: item-id can be generica item or sku
+          required: true
+          explode: true
+          schema:
+            type: string
+            default: "XYZ010XOI69 001"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/item-description"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    item-description:
+      type: object
+      properties:
+        item-id:
+          type: string
+          example: XYZ010XOI69 001
+        href:
+          type: string
+          format: uri
+          example: "https://api.armani.it/v1/item-description/XYZ010XOI69 001"
+        descriptions:
+          type: array
+          items:
+            $ref: "#/components/schemas/description"
+
+    description:
+      type: object
+      properties:
+        description-type:
+          type: string
+        content:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+      example:
+        - description-type: EMOTIONAL
+          content:
+            - language: en
+              message: Oh my gosh is so emotional!
+            - language: it
+              message: mamma mia che emozione!
+        - description-type: ECOMMERCE
+          content:
+            - language: en
+              message: Specified message for e-comm site
+            - language: it
+              message: Specifico messaggi per sito e-comm

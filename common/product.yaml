@@ -6,6 +6,9 @@ components:
         id:
           type: string
           example: '629'
+        href:
+          type: string
+          format: url
         description:
           type: array
           items:

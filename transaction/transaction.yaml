@@ -4,7 +4,7 @@ info:
   description: Giorgio Armani transaction
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:
@@ -272,7 +272,7 @@ components:
           $ref: "../store/store.yaml#/components/schemas/store"
           example:
             id: "4SCW"
-            href: "https://api.giorgioarmani.it/v1/store/4SCW"
+            href: "https://api.armani.it/v1/store/4SCW"
         channel:
           $ref: "./pos-channel-type.yaml#/components/schemas/pos-channel-type"
           example: "retail-mobile"
@@ -290,7 +290,7 @@ components:
           $ref: "../employee/employee.yaml#/components/schemas/employee"
           example:
             id: "AY85GT"
-            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+            href: "https://api.armani.it/v1/employee/AY85GT"
         partner-id:
           $ref: "../customer/customer.yaml#/components/schemas/customer"
           example:
@@ -335,7 +335,7 @@ components:
           $ref: "../employee/employee.yaml#/components/schemas/employee"
           example:
             id: "AY85GT"
-            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+            href: "https://api.armani.it/v1/employee/AY85GT"
         partner-id:
           $ref: "../customer/customer.yaml#/components/schemas/customer"
           example:

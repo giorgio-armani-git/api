@@ -4,7 +4,7 @@ info:
   description: Giorgio Armani Barcodes
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:
@@ -112,15 +112,15 @@ components:
         href:
           type: string
           format: uri
-          example: "https://api.giorgioarmani.it/v1/barcode/8054804724299"
+          example: "https://api.armani.it/v1/barcode/8054804724299"
         sku-href:
           type: string
           format: uri
-          example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 00102N"
+          example: "https://api.armani.it/v1/barcode/?item-id=XYZ010XOI69 00102N"
         generic-article-href:
           type: string
           format: uri
-          example: "https://api.giorgioarmani.it/v1/barcode/?item-id=XYZ010XOI69 001"
+          example: "https://api.armani.it/v1/barcode/?item-id=XYZ010XOI69 001"
         barcode-type:
           type: string
           enum:

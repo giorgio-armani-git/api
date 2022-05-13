@@ -4,7 +4,7 @@ info:
   description: Pricelist
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:

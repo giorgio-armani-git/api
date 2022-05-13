@@ -11,6 +11,9 @@ components:
             - unisex
             - boy
             - girl
+        href:
+          type: string
+          format: url
         description:
           type: array
           items:

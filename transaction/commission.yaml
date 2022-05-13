@@ -8,4 +8,4 @@ components:
           $ref: "../employee/employee.yaml#/components/schemas/employee"
           example:
             id: "AY85GT"
-            href: "https://api.giorgioarmani.it/v1/employee/AY85GT"
+            href: "https://api.armani.it/v1/employee/AY85GT"

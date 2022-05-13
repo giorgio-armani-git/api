@@ -4,7 +4,7 @@ info:
   description: Store Stock
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.giorgioarmani.it/v1'
+  - url: '{protocol}://{environment}.armani.it/v1'
     variables:
       protocol:
         enum:
@@ -131,9 +131,9 @@ components:
           $ref: "../store/store.yaml#/components/schemas/store"
           example:
             id: "4S09"
-            href: "https://api.giorgioarmani.it/v1/store/4S09"
+            href: "https://api.armani.it/v1/store/4S09"
         barcode:
-          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+          $ref: "../barcode/season.yaml#/components/schemas/barcode"
         storage:
           type: array
           items:

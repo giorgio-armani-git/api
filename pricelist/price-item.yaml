@@ -6,7 +6,7 @@ components:
         type: object
         properties:
           barcode:
-            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+            $ref: "../barcode/season.yaml#/components/schemas/barcode"
           seasons:
             type: array
             items:
