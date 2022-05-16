@@ -78,30 +78,11 @@ paths:
           description: "Invoice number"
           schema:
             type: string
-        - name: creation-date-start
-          in: query
-          schema:
-            type: string
-            format: date-time
-            default: "2000-01-01T00:01:01.000Z"
-        - name: creation-date-end
-          in: query
-          schema:
-            type: string
-            format: date-time
-            default: "2000-01-01T00:01:01.000Z"
-        - name: last-change-date-start
-          in: query
-          schema:
-            type: string
-            format: date-time
-            default: "2000-01-01T00:01:01.000Z"
-        - name: last-change-date-end
-          in: query
-          schema:
-            type: string
-            format: date-time
 
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:

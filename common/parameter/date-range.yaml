@@ -1,0 +1,38 @@
+parameters:
+  creation-date-start:
+    name: creation-date-start
+    description: Creation date start range
+    in: query
+    required: false
+    schema:
+      type: string
+      format: date-time
+      default: "2000-01-01T00:01:01.000Z"
+
+  creation-date-end:
+    name: creation-date-end
+    description: Creation date end range
+    in: query
+    required: false
+    schema:
+      type: string
+      format: date-time
+
+  last-change-date-start:
+    name: last-change-date-start
+    description: Last-change start range
+    in: query
+    required: false
+    schema:
+      type: string
+      format: date-time
+      default: "2000-01-01T00:01:01.000Z"
+
+  last-change-date-end:
+    name: last-change-date-end
+    description: Last-change end range
+    in: query
+    required: false
+    schema:
+      type: string
+      format: date-time

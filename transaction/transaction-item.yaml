@@ -22,7 +22,7 @@ components:
           description: "service item, 1=normal item, 2 service item"
           default: 1
         barcode:
-          $ref: "../barcode/season.yaml#/components/schemas/barcode"
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         quantity:
           type: integer
           description: "Quantity in Sales Unit"

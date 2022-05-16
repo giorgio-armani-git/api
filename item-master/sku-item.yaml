@@ -8,6 +8,8 @@ components:
           example: "XYZ010XOI69 00102N"
         item-type:
           $ref: "item-type.yaml#/components/schemas/item-type"
+          example:
+            item-type: "real-article"
         href:
           type: string
           format: url

@@ -108,6 +108,10 @@ paths:
           schema:
             type: string
 
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
@@ -152,9 +156,69 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/item"
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /item/season/{season-id}/{brand-id}/{gender}/{category-id}:
+    get:
+      summary: Returns by season-id
+      description: Returns view of season/brand/gender/category
+      operationId: ""
+      parameters:
+        season-id:
+          - name: season-id
+            in: path
+            description: "example: /season/FW22"
+            required: true
+            schema:
+              type: string
+
+        brand-id:
+          - name: brand-id
+            in: path
+            description: "example: /season/FW22/10"
+            required: false
+            schema:
+              type: string
+        gender:
+          - name: gender
+            in: path
+            description: "example: /season/FW22/10/man"
+            required: false
+            schema:
+              type: string
+       category-id:
+          - name: category-id
+            in: path
+            description: "example: /season/FW22/10/man/20"
+            required: false
+            schema:
+              type: string
+
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/view-season"
         "401":
           description: Unauthorized Error
           content:
@@ -180,151 +244,56 @@ components:
       name: X-Gateway-APIKey
 
   schemas:
-    item:
+
+    view-season:
       type: object
       properties:
-        id:
+        season:
           type: string
-          example: XYZ010XOI69 001
-          description: sku or generic article id
-        href:
-          type: string
-          format: url
-          example: "https://api.armani.it/v1/item/XYZ010XOI69 001"
-        item-type:
-          $ref: "item-type.yaml#/components/schemas/item-type"
-        item-category:
-          $ref: "../common/item-category.yaml#/components/schemas/item-category"
-          example:
-            id: Z001
-            href: https://api.armani.it/v1/item-category/Z001
-        style:
-          $ref: "../common/style.yaml#/components/schemas/style"
-          example:
-            id: "XYZ010"
-        fabric:
-          $ref: "../common/fabric.yaml#/components/schemas/fabric"
-          example:
-            id: "XOI69"
-        variant:
-          type: string
-          example: ""
-        variant-type:
-          type: string
-          example: ""
-        style-fabric-description:
-          type: array
-          example:
-            - language: en
-              description: SNK COW SUEDE+CALF V
-          items:
-            $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
-        item-description:
-            $ref: "../item-description/item-description.yaml#/components/schemas/item-description"
-            example:
-              href: https://api.armani.it/v1/item-description/XYZ010XOI69 001
-        division:
-          $ref: "../common/division.yaml#/components/schemas/division"
-          example:
-            id: JB
-            href: https://api.armani.it/v1/division/JB
-        product:
-          $ref: "../common/product.yaml#/components/schemas/product"
-          example:
-            id: 629
-            href: https://api.armani.it/v1/product/629
-        product-type:
-          $ref: "../common/product-type.yaml#/components/schemas/product-type"
-          example:
-            id: 40
-            href: https://api.armani.it/v1/product-type/40
-        product-kind:
-          $ref: "../common/product-kind.yaml#/components/schemas/product-kind"
-          example:
-            id: 11
-            href: https://api.armani.it/v1/product-kind/11
-        merchandise-category:
-          $ref: "../common/merchandise-category.yaml#/components/schemas/merchandise-category"
-          example:
-            id: 119
-            href: https://api.armani.it/v1/merchandase-category/119
-        merchandise-group:
-          $ref: "../common/merchandise-group.yaml#/components/schemas/merchandise-group"
-          example:
-            id: 67
-            href: https://api.armani.it/v1/merchandase-group/67
-        category:
-          $ref: "../common/category.yaml#/components/schemas/category"
-          example:
-            id: 10
-            href: https://api.armani.it/v1/category/10
         brand:
           $ref: "../common/brand.yaml#/components/schemas/brand"
-          example:
-            id: 10
-            href: https://api.armani.it/v1/brand/10
-        made-in:
-          type: array
-          items:
-            $ref: "../common/made-in.yaml#/components/schemas/made-in"
-          example:
-            id: ITA
-            href: https://api.armani.it/v1/made-in/ITA
         gender:
           $ref: "../common/gender.yaml#/components/schemas/gender"
-          example:
-            id: man
-            href: https://api.armani.it/v1/gender/man
-        cites:
-          $ref: "../common/cites.yaml#/components/schemas/cites"
-          example:
-            id: 4
-            href: https://api.armani.it/v1/cites/4
-        commodity-code:
-          $ref: "../common/commodity-code.yaml#/components/schemas/commodity-code"
-          example:
-            id: 41032000
-            href: https://api.armani.it/v1/commodity-code/41032000
-        packaging-type:
-          $ref: "../common/packaging-type.yaml#/components/schemas/packaging-type"
-          example:
-            id: Z003
-            href: https://api.armani.it/v1/packaging-type/Z003
-        range-name:
-          $ref: "../common/range-name.yaml#/components/schemas/range-name"
-          example:
-            id: 1565
-            href: https://api.armani.it/v1/range-name/1565
-        capsule-special-projects:
-          $ref: "../common/capsule-special-projects.yaml#/components/schemas/capsule-special-projects"
-          example:
-            id: ABC
-            href: https://api.armani.it/v1/range-name/ABC
-        luxury-article:
-          $ref: "../common/luxury-article.yaml#/components/schemas/luxury-article"
-          example:
-            id: L
-        status:
-          $ref: "../common/status.yaml#/components/schemas/status"
-        creation-date:
-          type: string
-          format: date-time
-        last-change-date:
-          type: string
-          format: date-time
-        composition:
-          $ref: "../common/composition.yaml#/components/schemas/composition"
-          example:
-            href: https://api.armani.it/v1/composition/XYZ010XOI69 001
-        digital-assets:
-          $ref: "../digital-assets/digital-assets.yaml#/components/schemas/digital-assets"
-          example:
-            href: https://api.armani.it/v1/digital-assets/XYZ010XOI69 001
-        sku-items:
+        category:
+          $ref: "../common/category.yaml#/components/schemas/category"
+        items:
           type: array
           items:
-            $ref: "sku-item.yaml#/components/schemas/sku-item"
-
+            $ref: "item.yaml#/components/schemas/item"
+      example:
+          season: "FW22"
+          brand:
+            id: 10
+            href: "https://api.armani.it/v1/brand/10"
+          gender:
+            id: man
+          category:
+            id: 20
+            href: "https://api.armani.it/v1/category/20"
+          items:
+            - id: "ABC 001"
+              href:  "https://api.armani.it/v1/item/ABC 001"
+              item-type: generic-article
+              sku-item:
+                - id: "ABC 00102N"
+                  item-type: real-article
+                  href: "https://api.armani.it/v1/item/ABC 00102N"
+                - id: "ABC 00103N"
+                  item-type: real-article
+                  href: "https://api.armani.it/v1/item/ABC 00103N"
+                - id: "ABC 00104N"
+                  item-type: real-article
+                  href: "https://api.armani.it/v1/item/ABC 00104N"
+            - id: "ZZZ 001"
+              href:  "https://api.armani.it/v1/item/ZZZ 001"
+              item-type: generic-article
+              sku-item:
+                - id: "ZZZ 00102N"
+                  item-type: real-article
+                  href: "https://api.armani.it/v1/item/ZZZ 00102N"
+                - id: "ZZZ 00103N"
+                  item-type: real-article
+                  href: "https://api.armani.it/v1/item/ZZZ 00103N"
 
 
     list:
@@ -333,4 +302,4 @@ components:
         items:
           type: array
           items:
-            $ref: "#/components/schemas/item"
+            $ref: "item.yaml#/components/schemas/item"
