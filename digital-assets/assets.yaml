@@ -1,0 +1,54 @@
+components:
+  schemas:
+
+    content:
+      type: object
+      properties:
+        content-classification:
+          enum:
+            - main
+            - front
+            - back
+            - side
+            - swatch
+        link:
+          type: string
+          format: url
+
+    assets:
+      type: object
+      properties:
+        asset-type:
+          type: string
+          enum:
+            - image
+            - video
+            - e-commerce
+            - 3d
+        content:
+          $ref: "#/components/schemas/content"
+      example:
+        - asset-type: image
+          content:
+            - content-classification: main
+              link: http://dam.armani.it/12345111.jpg
+            - content-classification: front
+              link: http://dam.armani.it/12345112.jpg
+            - content-classification: side
+              link: http://dam.armani.it/12345113.jpg
+            - content-classification: back
+              link: http://dam.armani.it/12345114.jpg
+        - asset-type: e-commerce
+          content:
+            - content-classification: main
+              link: http://dam.armani.it/12345111.jpg
+            - content-classification: front
+              link: http://dam.armani.it/12345112.jpg
+            - content-classification: side
+              link: http://dam.armani.it/12345113.jpg
+            - content-classification: back
+              link: http://dam.armani.it/12345114.jpg
+        - asset-type: video
+          content:
+            - content-classification: main
+              link: http://dam.armani.it/12345111-v.mp4

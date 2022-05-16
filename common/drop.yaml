@@ -6,6 +6,10 @@ components:
         id:
           type: string
           example: 'N'
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/drop/N"
         description:
           type: array
           items:

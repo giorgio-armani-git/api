@@ -6,6 +6,10 @@ components:
         id:
           type: string
           example: 'M'
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/size/M"
         description:
           type: array
           items:

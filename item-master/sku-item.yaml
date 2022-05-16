@@ -26,19 +26,29 @@ components:
           example: "https://api.armani.it/v1/season/XYZ010XOI69 00102N"
         size:
           $ref: "../common/size.yaml#/components/schemas/size"
+          example:
+            id: M
+            href: https://api.armani.it/v1/size/M
         alias-size:
           $ref: "../common/size.yaml#/components/schemas/size"
+          example:
+            id: M
+            href: https://api.armani.it/v1/size/M
         color:
           $ref: "../common/color.yaml#/components/schemas/color"
+          example:
+            id: M
+            href: https://api.armani.it/v1/color/001
         drop:
           $ref: "../common/drop.yaml#/components/schemas/drop"
+          example:
+            id: N
+            href: https://api.armani.it/v1/drop/N
         article-description:
           type: array
           example:
             - language: en
               description: XYZ010 XOI69 A553 SNK COW SUEDE+CALF V
-            - language: it
-              description: XYZ010 XOI69 A553 Vitello V
           items:
             $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         barcodes:
@@ -47,15 +57,31 @@ components:
             $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         fashion-grade:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
+          example:
+            id: seasonal
+            href: https://api.armani.it/v1/seasonality/seasonal
         collection:
           $ref: "../common/collection.yaml#/components/schemas/collection"
+          example:
+            id: JB
+            href: https://api.armani.it/v1/collection/JB
         theme:
           $ref: "../common/theme.yaml#/components/schemas/theme"
+          example:
+            id: 28
+            href: https://api.armani.it/v1/theme/28
         underline:
           $ref: "../common/underline.yaml#/components/schemas/underline"
+          example:
+            id: "00"
+            href: https://api.armani.it/v1/underline/00
         rfid-enabled:
           type: boolean
           default: false
+        taxes:
+          $ref: "../common/item-tax.yaml#/components/schemas/item-tax"
+          example:
+            href: https://api.armani.it/v1/item-tax/XYZ010XOI69 00102N
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         creation-date:

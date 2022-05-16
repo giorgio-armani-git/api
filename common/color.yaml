@@ -6,6 +6,10 @@ components:
         id:
           type: string
           example: '001'
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/color/001"
         description:
           type: array
           items:

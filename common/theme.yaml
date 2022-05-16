@@ -7,6 +7,10 @@ components:
         id:
           type: string
           example: '28'
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/theme/28"
         description:
           type: array
           items:

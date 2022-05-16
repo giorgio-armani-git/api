@@ -9,6 +9,10 @@ components:
             - seasonal
             - continuous
             - repurposed
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/seasonality/seasonal"
         description:
           type: array
           items:

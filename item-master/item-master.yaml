@@ -217,8 +217,6 @@ components:
           example:
             - language: en
               description: SNK COW SUEDE+CALF V
-            - language: it
-              description: Vitello V
           items:
             $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         item-description:
@@ -318,10 +316,10 @@ components:
           $ref: "../common/composition.yaml#/components/schemas/composition"
           example:
             href: https://api.armani.it/v1/composition/XYZ010XOI69 001
-        taxes:
-          $ref: "../common/item-tax.yaml#/components/schemas/item-tax"
-#          example:
-#            href: https://api.armani.it/v1/item-tax/XYZ010XOI69 001
+        digital-assets:
+          $ref: "../digital-assets/digital-assets.yaml#/components/schemas/digital-assets"
+          example:
+            href: https://api.armani.it/v1/digital-assets/XYZ010XOI69 001
         sku-items:
           type: array
           items:
