@@ -1,0 +1,95 @@
+openapi: "3.0.0"
+info:
+  title: Item-composition
+  description: Item Composition
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /item-composition:
+    get:
+      summary: Return item composition as a string
+      description: Return item composition as a string
+      operationId: ''
+      parameters:
+        - name: item-id
+          in: query
+          description: item-id must be a sku or generic
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "XYZ010XOI69 001"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/item-composition"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    item-composition:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        composition:
+          type: array
+          items:
+            $ref: "#/components/schemas/composition"
+      example:
+        id: XYZ010XOI69 001
+        href: https://api.armani.it/v1/item-composition/?item-id=XYZ010XOI69 001
+        composition:
+          - composition-type: string
+            composition-description:
+              - language: en
+                description: 80% Wool, 15% Acrylic, 4% Plastic, 1% Gold
+
+    composition:
+      type: object
+      properties:
+        composition-type:
+          type: string
+          example: "string"
+        composition-description:
+          $ref : "../common/localized-message.yaml#/components/schemas/localized-message"
