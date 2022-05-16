@@ -1,0 +1,19 @@
+components:
+  schemas:
+    tax-classification:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/tax-classification/1"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Full Tax"

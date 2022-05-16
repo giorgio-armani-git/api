@@ -18,20 +18,41 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /digital-assets/{item-id}:
+  /digital-assets:
     get:
       summary: Return urls to images and video for specified item-id
       description: Return urls to images and video for specified item-id
       operationId: ''
       parameters:
         - name: item-id
-          in: path
+          in: query
           description: item-id can be generica item or sku
           required: true
           explode: true
           schema:
             type: string
             default: "XYZ010XOI69 001"
+        - name: barcode
+          in: query
+          description: barcode
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: "800012927333"
+        - name: asset-type
+          in: query
+          description: type of assets, images, e-commerce,video, 3d, etc...
+          required: false
+          explode: true
+          schema:
+            $ref: "asset-type.yaml#/components/schemas/asset-type"
+        - name: content-classification
+          in: query
+          description: content classification (main,front,side,etc )
+          required: false
+          schema:
+            $ref: "content-classification.yaml#/components/schemas/content"
       responses:
         "200":
           description: successful operation

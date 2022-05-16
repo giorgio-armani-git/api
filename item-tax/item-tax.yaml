@@ -1,0 +1,117 @@
+openapi: "3.0.0"
+info:
+  title: Item-tax
+  description: Item Tax
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /item-tax:
+    get:
+      summary: Return taxes for specified item-id (sku)
+      description: Return taxes for specified item-id (sku)
+      operationId: ''
+      parameters:
+        - name: item-id
+          in: query
+          description: item-id must be a sku
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "XYZ010XOI69 00102N"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/item-tax"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    item-tax:
+      type: object
+      properties:
+        id:
+          type: string
+          example: XYZ010XOI69 00102N
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/item-tax/?item-id=XYZ010XOI69 00102N"
+        taxes:
+          type: array
+          items:
+            $ref : "tax.yaml#/components/schemas/tax"
+          example:
+            - country:
+                id: IT
+                href: "https://api.armani.it/v1/country/IT"
+                description:
+                  - language: en
+                    description: Italy
+              tax-category:
+                id: MWST
+                href: "https://api.armani.it/v1/tax-category/MWST"
+                description:
+                  - language: en
+                    description: tax category description
+              tax-classification:
+                id: 1
+                href: "https://api.armani.it/v1/tax-classification/1"
+                description:
+                  - language: en
+                    description: tax classification description
+            - country:
+                id: UK
+                href: "https://api.armani.it/v1/country/UK"
+                description:
+                  - language: en
+                    description: United Kindom
+              tax-category:
+                id: EXTP
+                href: "https://api.armani.it/v1/tax-category/EXTP"
+                description:
+                  - language: en
+                    description: tax category description
+              tax-classification:
+                id: 2
+                href: "https://api.armani.it/v1/tax-classification/2"
+                description:
+                  - language: en
+                    description: tax classification description

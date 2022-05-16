@@ -18,14 +18,14 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /item-description/{item-id}:
+  /item-description:
     get:
       summary: Return descriptions for specified item-id
       description: Return descriptions for specified item-id
       operationId: ''
       parameters:
         - name: item-id
-          in: path
+          in: query
           description: item-id can be generica item or sku
           required: true
           explode: true
@@ -73,29 +73,9 @@ components:
         href:
           type: string
           format: uri
-          example: "https://api.armani.it/v1/item-description/XYZ010XOI69 001"
+          example: "https://api.armani.it/v1/item-description/?item-id=XYZ010XOI69 001"
         descriptions:
           type: array
           items:
-            $ref: "#/components/schemas/description"
+            $ref: "description.yaml#/components/schemas/description"
 
-    description:
-      type: object
-      properties:
-        description-type:
-          type: string
-        content:
-          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
-      example:
-        - description-type: EMOTIONAL
-          content:
-            - language: en
-              message: Oh my gosh is so emotional!
-            - language: it
-              message: mamma mia che emozione!
-        - description-type: ECOMMERCE
-          content:
-            - language: en
-              message: Specified message for e-comm site
-            - language: it
-              message: Specifico messaggi per sito e-comm

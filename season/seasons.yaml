@@ -1,0 +1,49 @@
+components:
+  schemas:
+    seasons:
+      type: object
+      properties:
+        item-id:
+          type: string
+          example: "XYZ010XOI69 00102N"
+        href:
+          type: string
+          format: uri
+          example: "https://api.armani.it/v1/season/item/XYZ010XOI69 00102N"
+        seasons:
+          type: array
+          items:
+            $ref: "../common/season.yaml#/components/schemas/season"
+          example:
+            - id: FW20
+              href: "https://api.armani.it/v1/season/FW20"
+              code: FW
+              year: 2020
+              season-type: creation-season
+              description:
+                - language: en
+                  description: Fall Winter
+            - id: FW21
+              href: "https://api.armani.it/v1/season/FW21"
+              code: FW
+              year: 2021
+              season-type: disabled-season
+              description:
+                - language: en
+                  description: Fall Winter
+            - id: SS21
+              href: "https://api.armani.it/v1/season/SS21"
+              code: SS
+              year: 2021
+              season-type: creation-season
+              description:
+                - language: en
+                  description: Spring Summer
+            - id: SS22
+              href: "https://api.armani.it/v1/season/SS22"
+              code: SS
+              year: 2022
+              season-type: active-season
+              description:
+                - language: en
+                  description: Spring Summer

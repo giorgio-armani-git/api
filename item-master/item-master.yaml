@@ -20,14 +20,14 @@ servers:
 paths:
   /item:
     get:
-      summary: Returns active items by season-id
-      description: Returns active items by season-id
+      summary: Returns active items
+      description: Returns active items
       operationId: ""
       parameters:
-        - name: season-id
+        - name: season-creation-id
           in: query
-          description: Season values that need to be considered for filter
-          required: true
+          description: Season-creation values that need to be considered for filter
+          required: false
           explode: true
           schema:
             type: string
@@ -107,6 +107,13 @@ paths:
           explode: true
           schema:
             type: string
+        - name: gender-id
+          in: query
+          description: gender
+          required: false
+          explode: true
+          schema:
+            type: string
 
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
@@ -156,7 +163,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/list"
+                $ref: "item.yaml#/components/schemas/item"
         "401":
           description: Unauthorized Error
           content:
@@ -170,67 +177,6 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /item/season/{season-id}/{brand-id}/{gender}/{category-id}:
-    get:
-      summary: Returns by season-id
-      description: Returns view of season/brand/gender/category
-      operationId: ""
-      parameters:
-        season-id:
-          - name: season-id
-            in: path
-            description: "example: /season/FW22"
-            required: true
-            schema:
-              type: string
-
-        brand-id:
-          - name: brand-id
-            in: path
-            description: "example: /season/FW22/10"
-            required: false
-            schema:
-              type: string
-        gender:
-          - name: gender
-            in: path
-            description: "example: /season/FW22/10/man"
-            required: false
-            schema:
-              type: string
-       category-id:
-          - name: category-id
-            in: path
-            description: "example: /season/FW22/10/man/20"
-            required: false
-            schema:
-              type: string
-
-        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
-        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
-        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
-        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
-        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
-        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/view-season"
-        "401":
-          description: Unauthorized Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
-        "default":
-          description: Unexpected Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/error"
 
 security:
   - api-key-auth: []
@@ -244,57 +190,6 @@ components:
       name: X-Gateway-APIKey
 
   schemas:
-
-    view-season:
-      type: object
-      properties:
-        season:
-          type: string
-        brand:
-          $ref: "../common/brand.yaml#/components/schemas/brand"
-        gender:
-          $ref: "../common/gender.yaml#/components/schemas/gender"
-        category:
-          $ref: "../common/category.yaml#/components/schemas/category"
-        items:
-          type: array
-          items:
-            $ref: "item.yaml#/components/schemas/item"
-      example:
-          season: "FW22"
-          brand:
-            id: 10
-            href: "https://api.armani.it/v1/brand/10"
-          gender:
-            id: man
-          category:
-            id: 20
-            href: "https://api.armani.it/v1/category/20"
-          items:
-            - id: "ABC 001"
-              href:  "https://api.armani.it/v1/item/ABC 001"
-              item-type: generic-article
-              sku-item:
-                - id: "ABC 00102N"
-                  item-type: real-article
-                  href: "https://api.armani.it/v1/item/ABC 00102N"
-                - id: "ABC 00103N"
-                  item-type: real-article
-                  href: "https://api.armani.it/v1/item/ABC 00103N"
-                - id: "ABC 00104N"
-                  item-type: real-article
-                  href: "https://api.armani.it/v1/item/ABC 00104N"
-            - id: "ZZZ 001"
-              href:  "https://api.armani.it/v1/item/ZZZ 001"
-              item-type: generic-article
-              sku-item:
-                - id: "ZZZ 00102N"
-                  item-type: real-article
-                  href: "https://api.armani.it/v1/item/ZZZ 00102N"
-                - id: "ZZZ 00103N"
-                  item-type: real-article
-                  href: "https://api.armani.it/v1/item/ZZZ 00103N"
-
 
     list:
       type: object

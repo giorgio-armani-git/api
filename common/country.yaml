@@ -1,0 +1,19 @@
+components:
+  schemas:
+    country:
+      type: object
+      properties:
+        id:
+          type: string
+          example: IT
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/country/IT"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Italy"

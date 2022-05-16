@@ -1,0 +1,32 @@
+components:
+  schemas:
+    season-items:
+      type: object
+      properties:
+        season:
+          $ref: "../common/season.yaml#/components/schemas/season"
+        real-items:
+          type: array
+          items:
+            $ref: "../item-master/real-item.yaml#/components/schemas/real-item"
+      example:
+        season:
+          id: FW23
+          href: https://api.armani.it/v1/season/FW23
+          season-type: active-season
+        real-items:
+          - id: ABCD 00102N
+            href: https://api.armani.it/v1/item-master/ABCD 00102N
+            related-generic-href: https://api.armani.it/v1/item-master/ABCD 001
+          - id: CCCC 00501N
+            href: https://api.armani.it/v1/item-master/CCCC 00501N
+            related-generic-href: https://api.armani.it/v1/item-master/CCCC 005
+          - id: CCCC 00502N
+            href: https://api.armani.it/v1/item-master/CCCC 00502N
+            related-generic-href: https://api.armani.it/v1/item-master/CCCC 005
+          - id: CCCC 00503N
+            href: https://api.armani.it/v1/item-master/CCCC 00503N
+            related-generic-href: https://api.armani.it/v1/item-master/CCCC 005
+          - id: A000001 01R
+            href: https://api.armani.it/v1/item-master/A000001 01R
+            related-generic-href: https://api.armani.it/v1/item-master/A000001

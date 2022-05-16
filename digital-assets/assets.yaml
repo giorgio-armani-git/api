@@ -1,32 +1,13 @@
 components:
   schemas:
 
-    content:
-      type: object
-      properties:
-        content-classification:
-          enum:
-            - main
-            - front
-            - back
-            - side
-            - swatch
-        link:
-          type: string
-          format: url
-
     assets:
       type: object
       properties:
         asset-type:
-          type: string
-          enum:
-            - image
-            - video
-            - e-commerce
-            - 3d
+          $ref: "asset-type.yaml#/components/schemas/asset-type"
         content:
-          $ref: "#/components/schemas/content"
+          $ref: "content-classification.yaml#/components/schemas/content"
       example:
         - asset-type: image
           content:

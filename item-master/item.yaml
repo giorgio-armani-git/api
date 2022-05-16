@@ -32,17 +32,11 @@ components:
         variant-type:
           type: string
           example: ""
-        style-fabric-description:
-          type: array
+        description:
+          $ref: "../item-description/description.yaml#/components/schemas/description"
           example:
-            - language: en
-              description: SNK COW SUEDE+CALF V
-          items:
-            $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
-        item-description:
-          $ref: "../item-description/item-description.yaml#/components/schemas/item-description"
-          example:
-            href: https://api.armani.it/v1/item-description/XYZ010XOI69 001
+            description-type: "style-fabric"
+            content: SNK COW SUEDE+CALF V
         division:
           $ref: "../common/division.yaml#/components/schemas/division"
           example:
@@ -132,16 +126,8 @@ components:
         last-change-date:
           type: string
           format: date-time
-        composition:
-          $ref: "../common/composition.yaml#/components/schemas/composition"
-          example:
-            href: https://api.armani.it/v1/composition/XYZ010XOI69 001
-        digital-assets:
-          $ref: "../digital-assets/digital-assets.yaml#/components/schemas/digital-assets"
-          example:
-            href: https://api.armani.it/v1/digital-assets/XYZ010XOI69 001
-        sku-items:
+        related-items:
           type: array
           items:
-            $ref: "sku-item.yaml#/components/schemas/sku-item"
+            $ref: "real-item.yaml#/components/schemas/real-item"
 

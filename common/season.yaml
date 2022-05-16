@@ -18,11 +18,11 @@ components:
           type: array
           items:
             $ref: './localized-message.yaml#/components/schemas/localized-message'
-          example:
-            - language: en
-              description: Fall/Winter 2022
-            - language: it
-              description: Autunno/Inverno 2022
+            example:
+              - language: en
+                description: Fall/Winter 2022
+              - language: it
+                description: Autunno/Inverno 2022
         season-type:
           type: string
           nullable: true
@@ -30,4 +30,3 @@ components:
             - active-season
             - creation-season
             - disabled-season
-          default: active-season

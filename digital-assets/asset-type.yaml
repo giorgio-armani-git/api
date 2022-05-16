@@ -1,0 +1,9 @@
+components:
+  schemas:
+    asset-type:
+      type: string
+      enum:
+        - image
+        - video
+        - e-commerce
+        - 3d

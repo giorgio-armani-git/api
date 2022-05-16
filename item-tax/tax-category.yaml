@@ -1,0 +1,19 @@
+components:
+  schemas:
+    tax-category:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "MWST"
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/tax-category/MWST"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Output Tax"

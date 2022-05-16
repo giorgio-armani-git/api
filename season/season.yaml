@@ -18,27 +18,27 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /season/{item-id}:
+  /season:
     get:
-      summary: Returns all seasons for a given item-id (sku)
-      description: Return descriptions for specified item-id (sku)
+      summary: Returns all season for a given item-id
+      description: Returns all season for a given item-id
       operationId: ''
       parameters:
         - name: item-id
-          in: path
-          description: item-id is the SKU
+          in: query
+          description: item-id
           required: true
           explode: true
           schema:
             type: string
-            default: "XYZ010XOI69 00102N"
+            example: "AX94DGT 00101N"
       responses:
         "200":
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/seasons"
+                $ref: "seasons.yaml#/components/schemas/seasons"
         "401":
           description: Unauthorized Error
           content:
@@ -52,6 +52,145 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
+  /season/{season-id}:
+    get:
+      summary: Returns the given season-id
+      description: Return descriptions for season-id
+      operationId: ''
+      parameters:
+        - name: season-id
+          in: path
+          description: season-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "FW23"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "../common/season.yaml#/components/schemas/season"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+  /season/{season-id}/items:
+    get:
+      summary: Returns all items for a given season-id
+      description: Returns all items for a given season-id
+      operationId: ''
+      parameters:
+        - name: season-id
+          in: path
+          description: season-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "FW23"
+        - name: brand-id
+          in: query
+          description: brand-id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "EA7"
+        - name: gender
+          in: query
+          description: gender
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: 30
+        - name: category-id
+          in: query
+          description: category-id
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: 10
+        - name: collection-id
+          in: query
+          description: collection code
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: ""
+        - name: seasonality-id
+          in: query
+          description: seasonality code
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: ""
+        - name: merchandise-category-id
+          in: query
+          description: merchandise category code
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: product-id
+          in: query
+          description: product code
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: customer-code
+          in: query
+          description: customer master code, if you want to filter for items orderd by the given customer code
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: "5855.BO"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "season-items.yaml#/components/schemas/season-items"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+
 security:
   - api-key-auth: []
 
@@ -64,17 +203,10 @@ components:
       name: X-Gateway-APIKey  # name of the header, query parameter or cookie
 
   schemas:
-    seasons:
-      type: object
-      properties:
-        item-id:
-          type: string
-          example: "XYZ010XOI69 00102N"
-        href:
-          type: string
-          format: uri
-          example: "https://api.armani.it/v1/season/XYZ010XOI69 00102N"
-        seasons:
-          type: array
-          items:
-            $ref: "../common/season.yaml#/components/schemas/season"
+
+    season:
+      $ref: "../common/season.yaml#/components/schemas/season"
+
+
+
+

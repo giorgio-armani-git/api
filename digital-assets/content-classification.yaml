@@ -1,0 +1,17 @@
+components:
+  schemas:
+
+    content:
+      type: object
+      properties:
+        content-classification:
+          type: string
+          enum:
+            - main
+            - front
+            - back
+            - side
+            - swatch
+        link:
+          type: string
+          format: url

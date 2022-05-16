@@ -1,6 +1,6 @@
 components:
   schemas:
-    sku-item:
+    real-item:
       type: object
       properties:
         id:
@@ -8,8 +8,7 @@ components:
           example: "XYZ010XOI69 00102N"
         item-type:
           $ref: "item-type.yaml#/components/schemas/item-type"
-          example:
-            item-type: "real-article"
+          example: "real-article"
         href:
           type: string
           format: url
@@ -23,9 +22,15 @@ components:
           format: url
           example: "https://api.armani.it/v1/item/XYZ010XOI69 001"
         seasons:
-          type: string
-          format: url
-          example: "https://api.armani.it/v1/season/XYZ010XOI69 00102N"
+          type: array
+          items:
+            $ref: "../common/season.yaml#/components/schemas/season"
+            example:
+              - id: FW20
+                href: "https://api.armani.it/v1/season/FW20"
+                code: FW
+                year: 2020
+                season-type: creation-season
         size:
           $ref: "../common/size.yaml#/components/schemas/size"
           example:
@@ -46,17 +51,20 @@ components:
           example:
             id: N
             href: https://api.armani.it/v1/drop/N
-        article-description:
-          type: array
+        description:
+          $ref: "../item-description/description.yaml#/components/schemas/description"
           example:
-            - language: en
-              description: XYZ010 XOI69 A553 SNK COW SUEDE+CALF V
-          items:
-            $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+            description-type: "style-fabric"
+            content: SNK COW SUEDE+CALF V Black
         barcodes:
           type: array
           items:
             $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+            example:
+              - barcode: "8054804724299"
+                barcode-type: gtin13
+              - barcode: "805480472429901234567899"
+                barcode-type: atom24
         fashion-grade:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
           example:
@@ -80,10 +88,6 @@ components:
         rfid-enabled:
           type: boolean
           default: false
-        taxes:
-          $ref: "../common/item-tax.yaml#/components/schemas/item-tax"
-          example:
-            href: https://api.armani.it/v1/item-tax/XYZ010XOI69 00102N
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         creation-date:

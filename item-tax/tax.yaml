@@ -1,0 +1,11 @@
+components:
+  schemas:
+    tax:
+      type: object
+      properties:
+        country:
+          $ref: '../common/country.yaml#/components/schemas/country'
+        tax-category:
+          $ref: "tax-category.yaml#/components/schemas/tax-category"
+        tax-classification:
+          $ref: "tax-classification.yaml#/components/schemas/tax-classification"

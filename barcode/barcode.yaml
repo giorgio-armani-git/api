@@ -107,7 +107,7 @@ components:
           type: string
           example: XYZ010XOI69 00102N
         barcode:
-          type: integer
+          type: string
           example: 8054804724299
         href:
           type: string
