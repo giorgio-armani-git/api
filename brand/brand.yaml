@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Brand
+  description: Brand
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /brand/{id}:
+    get:
+      summary: Return brand description
+      description: Return brand description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: brand id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/brand"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /brand:
+    get:
+      summary: Return list of brands
+      description: Return list of brands
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    brand:
+      $ref : "../common/brand.yaml#/components/schemas/brand"
+
+      example:
+        id: "10"
+        href: "https://api.armani.it/v1/brand/10"
+        description:
+          - language: en
+            description: GIORGIO ARMANI
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/brand"
+
+      example:
+        items:
+          - id: "10"
+            href: "https://api.armani.it/v1/brand/10"
+            description:
+              - language: en
+                description: GIORGIO ARMANI
+          - id: "11"
+            href: "https://api.armani.it/v1/brand/11"
+            description:
+              - language: en
+                description: ARMANI PRIVE'
+          - id: "70"
+            href: "https://api.armani.it/v1/brand/70"
+            description:
+              - language: en
+                description: ARMANI EXCHANGE

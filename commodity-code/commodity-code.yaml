@@ -1,0 +1,124 @@
+openapi: "3.0.0"
+info:
+  title: Commodity Code
+  description: Commodity Code
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /commodity-code/{id}:
+    get:
+      summary: Return commodity-code description
+      description: Return commodity-code description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: commodity-code id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commodity-code"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /commodity-code:
+    get:
+      summary: Return list of commodity-codes
+      description: Return list of commodity-codes
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    commodity-code:
+      $ref : "../common/commodity-code.yaml#/components/schemas/commodity-code"
+
+      example:
+        id: "4202290000"
+        href: "https://api.armani.it/v1/commodity-code/4202290000"
+        description:
+          - language: en
+            description: Bags and other materials
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/commodity-code"
+
+      example:
+        items:
+          - id: "4202290000"
+            href: "https://api.armani.it/v1/commodity-code/4202290000"
+            description:
+              - language: en
+                description: Bags and other materials
+          - id: "2022901230"
+            href: "https://api.armani.it/v1/commodity-code/2022901230"
+            description:
+              - language: en
+                description: Others

@@ -6,16 +6,16 @@ components:
         id:
           type: string
           example: 'M'
-        href:
-          type: string
-          format: url
-          example: "https://api.armani.it/v1/size/M"
-        description:
-          type: array
-          items:
-            $ref: './localized-message.yaml#/components/schemas/localized-message'
-          example:
-            - language: en
-              description: 'Medium'
-            - language: it
-              description: 'Media'
+#        href:
+#          type: string
+#          format: url
+#          example: "https://api.armani.it/v1/size/M"
+#        description:
+#          type: array
+#          items:
+#            $ref: './localized-message.yaml#/components/schemas/localized-message'
+#          example:
+#            - language: en
+#              description: 'Medium'
+#            - language: it
+#              description: 'Media'

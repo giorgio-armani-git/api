@@ -1,0 +1,130 @@
+openapi: "3.0.0"
+info:
+  title: Product
+  description: Product
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /product/{id}:
+    get:
+      summary: Return product description
+      description: Return product description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: product id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "629"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/product"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /product:
+    get:
+      summary: Return list of products
+      description: Return list of products
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    product:
+      $ref : "../common/product.yaml#/components/schemas/product"
+
+      example:
+        id: "629"
+        href: "https://api.armani.it/v1/product/629"
+        description:
+          - language: en
+            description: SNEAKER
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/product"
+
+      example:
+        items:
+          - id: "629"
+            href: "https://api.armani.it/v1/product/629"
+            description:
+              - language: en
+                description: SNEAKERS
+          - id: "225"
+            href: "https://api.armani.it/v1/product/225"
+            description:
+              - language: en
+                description: FOULARD
+          - id: "134"
+            href: "https://api.armani.it/v1/product/134"
+            description:
+              - language: en
+                description: T-SHIRT

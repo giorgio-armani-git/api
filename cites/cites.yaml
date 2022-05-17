@@ -1,0 +1,126 @@
+openapi: "3.0.0"
+info:
+  title: CITES - Washington Declaration
+  description: CITES - Washington Declaration
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /cites/{id}:
+    get:
+      summary: Return cites description
+      description: Return cites description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: cites id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cites"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /cites:
+    get:
+      summary: Return list of cites
+      description: Return list of cites
+      operationId: ''
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    cites:
+      $ref : "../common/cites.yaml#/components/schemas/cites"
+
+      example:
+        id: "1"
+        href: "https://api.armani.it/v1/cites/1"
+        description:
+          - language: en
+            description: Require CITES certificates
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/cites"
+
+      example:
+        items:
+          - id: "1"
+            href: "https://api.armani.it/v1/cites/1"
+            description:
+              - language: en
+                description: Require CITES certificates
+          - id: "2"
+            href: "https://api.armani.it/v1/cites/2"
+            description:
+              - language: en
+                description: Fish & WIld Life
+          - id: "6"
+            href: "https://api.armani.it/v1/cites/6"
+            description:
+              - language: en
+                description: SKINS (generic)

@@ -35,17 +35,18 @@ components:
           $ref: "../common/size.yaml#/components/schemas/size"
           example:
             id: M
-            href: https://api.armani.it/v1/size/M
         alias-size:
           $ref: "../common/size.yaml#/components/schemas/size"
           example:
             id: M
-            href: https://api.armani.it/v1/size/M
         color:
           $ref: "../common/color.yaml#/components/schemas/color"
           example:
-            id: M
-            href: https://api.armani.it/v1/color/001
+            id: 00459
+            href: https://api.armani.it/v1/color/00459
+            description:
+              - language: en
+                description: Blue Navy
         drop:
           $ref: "../common/drop.yaml#/components/schemas/drop"
           example:

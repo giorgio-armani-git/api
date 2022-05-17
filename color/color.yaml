@@ -1,0 +1,124 @@
+openapi: "3.0.0"
+info:
+  title: Color
+  description: Color
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /color/{id}:
+    get:
+      summary: Return color description
+      description: Return color description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: color id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/color"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /color:
+    get:
+      summary: Return list of colors
+      description: Return list of colors
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    color:
+      $ref : "../common/color.yaml#/components/schemas/color"
+
+      example:
+        id: "00459"
+        href: "https://api.armani.it/v1/color/00459"
+        description:
+          - language: en
+            description: 2574-FANTASIA BLU
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/color"
+
+      example:
+        items:
+          - id: "00459"
+            href: "https://api.armani.it/v1/color/00459"
+            description:
+              - language: en
+                description: 2574-FANTASIA BLU
+          - id: "00010"
+            href: "https://api.armani.it/v1/color/00010"
+            description:
+              - language: en
+                description: 25BE-CANEEL BAY-BL

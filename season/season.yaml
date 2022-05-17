@@ -163,6 +163,14 @@ paths:
           schema:
             type: string
             example: "5855.BO"
+        - name: item-category-id
+          in: query
+          description: item-category
+          required: false
+          explode: true
+          schema:
+            type: string
+
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
         - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"

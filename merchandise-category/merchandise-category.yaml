@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Merchandise Category
+  description: Merchandise Category
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /merchandise-category/{id}:
+    get:
+      summary: Return merchandise-category description
+      description: Return merchandise-category description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: merchandise-category id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/merchandise-category"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /merchandise-category:
+    get:
+      summary: Return list of merchandise-categories
+      description: Return list of merchandise-categories
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    merchandise-category:
+      $ref : "../common/merchandise-category.yaml#/components/schemas/merchandise-category"
+
+      example:
+        id: "1002027"
+        href: "https://api.armani.it/v1/merchandise-category/1002027"
+        description:
+          - language: en
+            description: SUITS - SUIT
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/merchandise-category"
+
+      example:
+        items:
+          - id: "1002027"
+            href: "https://api.armani.it/v1/merchandise-category/1002027"
+            description:
+              - language: en
+                description: SUITS - SUIT
+          - id: "1003191"
+            href: "https://api.armani.it/v1/merchandise-category/1003191"
+            description:
+              - language: en
+                description: SKIRTS/PANTS - BERMUDA SHORTS
+          - id: "1004071"
+            href: "https://api.armani.it/v1/merchandise-category/1004071"
+            description:
+              - language: en
+                description: SHIRTS - TROUSER

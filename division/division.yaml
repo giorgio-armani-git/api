@@ -1,0 +1,135 @@
+openapi: "3.0.0"
+info:
+  title: Division
+  description: Division
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /division/{id}:
+    get:
+      summary: Return division description
+      description: Return division description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: division id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "EW"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/division"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /division:
+    get:
+      summary: Return list of divisions
+      description: Return list of divisions
+      operationId: ''
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    division:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        description:
+          $ref : "../common/localized-message.yaml#/components/schemas/localized-message"
+
+      example:
+        id: "EW"
+        href: "https://api.armani.it/v1/division/Z001"
+        description:
+          - language: en
+            description: 302060 EA WOMAN
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/division"
+
+      example:
+        items:
+          - id: "EW"
+            href: "https://api.armani.it/v1/division/EW"
+            description:
+              - language: en
+                description: 302060 EA WOMAN
+          - id: "GW"
+            href: "https://api.armani.it/v1/division/GW"
+            description:
+              - language: en
+                description: 100160 GA WOMEN
+          - id: "GM"
+            href: "https://api.armani.it/v1/division/GM"
+            description:
+              - language: en
+                description: 100130 GA MAN

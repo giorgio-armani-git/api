@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Product-kind
+  description: Product-kind
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /product-kind/{id}:
+    get:
+      summary: Return product-kind description
+      description: Return product-kind description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: product-kind id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/product-kind"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /product-kind:
+    get:
+      summary: Return list of product-kinds
+      description: Return list of product-kinds
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    product-kind:
+      $ref : "../common/product-kind.yaml#/components/schemas/product-kind"
+
+      example:
+        id: "002"
+        href: "https://api.armani.it/v1/product-kind/002"
+        description:
+          - language: en
+            description: RAINCOAT/OVERCOAT
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/product-kind"
+
+      example:
+        items:
+          - id: "002"
+            href: "https://api.armani.it/v1/product-kind/002"
+            description:
+              - language: en
+                description: RAINCOAT/OVERCOAT
+          - id: "003"
+            href: "https://api.armani.it/v1/product-kind/003"
+            description:
+              - language: en
+                description: JACKET
+          - id: "947"
+            href: "https://api.armani.it/v1/product-kind/947"
+            description:
+              - language: en
+                description: PYJAMAS
