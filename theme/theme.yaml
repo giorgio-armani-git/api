@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Theme
+  description: Theme
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /theme/{id}:
+    get:
+      summary: Return theme description
+      description: Return theme description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: theme id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/theme"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /theme:
+    get:
+      summary: Return list of themes
+      description: Return list of themes
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    theme:
+      $ref : "../common/theme.yaml#/components/schemas/theme"
+
+      example:
+        id: "10"
+        href: "https://api.armani.it/v1/theme/10"
+        description:
+          - language: en
+            description: Exit  1 Delivery 0
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/theme"
+
+      example:
+        items:
+          - id: "10"
+            href: "https://api.armani.it/v1/theme/10"
+            description:
+              - language: en
+                description: Exit  1 Delivery 0
+          - id: "20"
+            href: "https://api.armani.it/v1/theme/20"
+            description:
+              - language: en
+                description: Ext.2 Dl.0
+          - id: "30"
+            href: "https://api.armani.it/v1/theme/30"
+            description:
+              - language: en
+                description: Exit 3 Delivery 0

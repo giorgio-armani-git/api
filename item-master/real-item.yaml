@@ -51,7 +51,6 @@ components:
           $ref: "../common/drop.yaml#/components/schemas/drop"
           example:
             id: N
-            href: https://api.armani.it/v1/drop/N
         description:
           $ref: "../item-description/description.yaml#/components/schemas/description"
           example:
@@ -70,7 +69,6 @@ components:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
           example:
             id: seasonal
-            href: https://api.armani.it/v1/seasonality/seasonal
         collection:
           $ref: "../common/collection.yaml#/components/schemas/collection"
           example:

@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Underline
+  description: underline
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /underline/{id}:
+    get:
+      summary: Return underline description
+      description: Return underline description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: underline id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/underline"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /underline:
+    get:
+      summary: Return list of underlines
+      description: Return list of underlines
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    underline:
+      $ref : "../common/underline.yaml#/components/schemas/underline"
+
+      example:
+        id: "19"
+        href: "https://api.armani.it/v1/underline/Z19"
+        description:
+          - language: en
+            description: SKI SCHOOLS
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/underline"
+
+      example:
+        items:
+          - id: "19"
+            href: "https://api.armani.it/v1/underline/19"
+            description:
+              - language: en
+                description: SKI SCHOOLS
+          - id: "82"
+            href: "https://api.armani.it/v1/underline/82"
+            description:
+              - language: en
+                description: ARMANI HOTELS RESORTS (NOT SEAS)
+          - id: "SF"
+            href: "https://api.armani.it/v1/underline/SF"
+            description:
+              - language: en
+                description: SPECIAL FERRARI

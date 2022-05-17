@@ -7,18 +7,19 @@ components:
         id:
           enum:
             - seasonal
-            - continuous
-            - repurposed
-        href:
-          type: string
-          format: url
-          example: "https://api.armani.it/v1/seasonality/seasonal"
-        description:
-          type: array
-          items:
-            $ref: './localized-message.yaml#/components/schemas/localized-message'
-          example:
-            - language: en
-              description: Repurposed
-            - language: it
-              description: Riproposto
+            - essential
+            - repeated
+            - Iconic
+#        href:
+#          type: string
+#          format: url
+#          example: "https://api.armani.it/v1/seasonality/seasonal"
+#        description:
+#          type: array
+#          items:
+#            $ref: './localized-message.yaml#/components/schemas/localized-message'
+#          example:
+#            - language: en
+#              description: Repurposed
+#            - language: it
+#              description: Riproposto

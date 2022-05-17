@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Collection
+  description: Collection
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /collection/{id}:
+    get:
+      summary: Return collection description
+      description: Return collection description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: collection id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/collection"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /collection:
+    get:
+      summary: Return list of collections
+      description: Return list of collections
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    collection:
+      $ref : "../common/collection.yaml#/components/schemas/collection"
+
+      example:
+        id: "E1"
+        href: "https://api.armani.it/v1/collection/E1"
+        description:
+          - language: en
+            description: EAWoman
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/collection"
+
+      example:
+        items:
+          - id: "GM"
+            href: "https://api.armani.it/v1/collection/GM"
+            description:
+              - language: en
+                description: GA Man
+          - id: "JB"
+            href: "https://api.armani.it/v1/collection/JB"
+            description:
+              - language: en
+                description: EA Boy
+          - id: "HU"
+            href: "https://api.armani.it/v1/collection/HU"
+            description:
+              - language: en
+                description: Armani Casa

@@ -1,0 +1,124 @@
+openapi: "3.0.0"
+info:
+  title: Range Name
+  description: Range Name
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /range-name/{id}:
+    get:
+      summary: Return range-name description
+      description: Return range-name description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: range-name id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/range-name"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /range-name:
+    get:
+      summary: Return list of range-names
+      description: Return list of range-names
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    range-name:
+      $ref : "../common/range-name.yaml#/components/schemas/range-name"
+
+      example:
+        id: "0076"
+        href: "https://api.armani.it/v1/range-name/0076"
+        description:
+          - language: en
+            description: AMSTERDAM
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/range-name"
+
+      example:
+        items:
+          - id: "0120"
+            href: "https://api.armani.it/v1/range-name/0120"
+            description:
+              - language: en
+                description: ARIEL
+          - id: "0076"
+            href: "https://api.armani.it/v1/range-name/0076"
+            description:
+              - language: en
+                description: AMSTERDAM

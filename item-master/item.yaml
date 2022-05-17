@@ -30,8 +30,10 @@ components:
           type: string
           example: ""
         variant-type:
-          type: string
-          example: ""
+          $ref: "../common/variant-type.yaml#/components/schemas/variant-type"
+          example:
+            id: 1
+            href: https://api.armani.it/v1/variant-type/1
         description:
           $ref: "../item-description/description.yaml#/components/schemas/description"
           example:
@@ -117,7 +119,10 @@ components:
         luxury-article:
           $ref: "../common/luxury-article.yaml#/components/schemas/luxury-article"
           example:
-            id: L
+            id: luxory
+        flag-di:
+          type: boolean
+          default: false
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         creation-date:

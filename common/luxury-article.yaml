@@ -5,16 +5,17 @@ components:
       properties:
         id:
           type: string
-          example: 'L'
-        href:
-          type: string
-          format: url
-        description:
-          type: array
-          items:
-            $ref: './localized-message.yaml#/components/schemas/localized-message'
-          example:
-            - language: en
-              description: Luxory
-            - language: it
-              description: Lusso
+          enum:
+            - luxory
+#        href:
+#          type: string
+#          format: url
+#        description:
+#          type: array
+#          items:
+#            $ref: './localized-message.yaml#/components/schemas/localized-message'
+#          example:
+#            - language: en
+#              description: Luxory
+#            - language: it
+#              description: Lusso

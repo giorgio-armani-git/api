@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  title: Packaging Type
+  description: Packaging Type
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /packaging-type/{id}:
+    get:
+      summary: Return packaging-type description
+      description: Return packaging-type description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: packaging-type id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/packaging-type"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /packaging-type:
+    get:
+      summary: Return list of packaging-types
+      description: Return list of packaging-types
+      operationId: ''
+      parameters:
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    packaging-type:
+      $ref : "../common/packaging-type.yaml#/components/schemas/packaging-type"
+
+      example:
+        id: "Z001"
+        href: "https://api.armani.it/v1/packaging-type/Z001"
+        description:
+          - language: en
+            description: Go Hang
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/packaging-type"
+
+      example:
+        items:
+          - id: "Z001"
+            href: "https://api.armani.it/v1/packaging-type/Z001"
+            description:
+              - language: en
+                description: Go Hang
+          - id: "Z002"
+            href: "https://api.armani.it/v1/packaging-type/Z002"
+            description:
+              - language: en
+                description: Flat
+          - id: "ZD0E"
+            href: "https://api.armani.it/v1/packaging-type/ZD0E"
+            description:
+              - language: en
+                description: Extended
