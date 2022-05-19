@@ -1,6 +1,5 @@
 components:
   schemas:
-    # Person
     person:
       type: object
       description: A person :-)
@@ -27,9 +26,20 @@ components:
         firstname:
           type: string
           description: name
+        middlename:
+          type: string
+          description: name
         lastname:
           type: string
           description: surname
+        documents:
+          type: array
+          items:
+            $ref: "./entity-document.yaml#/components/schemas/personal-document"
+        contacts:
+          type: array
+          items:
+            $ref: "./contact.yaml#/components/schemas/contact"
         addresses:
           type: array
           items:

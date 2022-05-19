@@ -13,6 +13,8 @@ components:
             - office
             - residence
             - domicile
+            - fiscal
+            - legal
             - other
         street:
           type: string
@@ -22,6 +24,10 @@ components:
           type: string
         city:
           $ref: "city.yaml#/components/schemas/city"
+        contacts:
+          type: array
+          items:
+            $ref: "contact.yaml#/components/schemas/contact"
         region:
           type: string
         country:

@@ -66,6 +66,26 @@ paths:
           schema:
             type: string
             default: "italy"
+
+        # customer-type
+        # gender
+        # firstname/middlename/lastname
+        # company-name
+        # company-description
+        # sector
+        # document id
+        # document type
+        # nationality
+        # contact-id
+        # contact-type
+        # city
+        # region
+        # country
+
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
       responses:
@@ -74,9 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/customer"
+                $ref: "#/components/schemas/list"
         "401":
           description: Unauthorized Error
           content:
@@ -102,6 +120,225 @@ components:
       name: X-Gateway-APIKey  # name of the header, query parameter or cookie
 
   schemas:
+    customer-type:
+      type: string
+      enum:
+        - person
+        - company
+
+    customer-discount:
+      $ref: "../common/unit.yaml#/components/schemas/unit"
+
+    status:
+      $ref: "../common/status.yaml#/components/schemas/status"
+      example: active
+
+    creation-date:
+      type: string
+      format: date-time
+      example: "2022-03-05T00:00:00.000Z"
+    last-change-date:
+      type: string
+      format: date-time
+      example: "2022-03-05T00:00:00.000Z"
+
     customer:
       anyOf:
         - $ref: "../common/person.yaml#/components/schemas/person"
+        - $ref: "../common/company.yaml#/components/schemas/company"
+        - $ref: "#/components/schemas/customer-type"
+        - $ref: "#/components/schemas/customer-discount"
+        - $ref: "#/components/schemas/status"
+        - $ref: "#/components/schemas/creation-date"
+        - $ref: "#/components/schemas/last-change-date"
+
+      example:
+        customer-type: person
+        id: "12345678"
+        href: "https://api.armani.it/v1/customer/12345678"
+        gender: male
+        birthday: "1976-03-05T00:00:00.000Z"
+        firstname: Alberto
+        middlename: Ariel
+        lastname: Sfolcini
+        documents:
+          - id: AB123456
+            document-type: id
+            description: Carta di Identità
+            issue-date: "2016-05-11T00:00:00.000Z"
+            expire-date: "2026-05-10T00:00:00.000Z"
+            issuer: Comune di Milano
+          - id: PSSP123734849559348
+            document-type: passport
+            issue-date: "2019-11-11T00:00:00.000Z"
+            expire-date: "2029-11-10T00:00:00.000Z"
+            issuer: Italian Governament
+            nationality: Italian
+        contacts:
+          - contact-id: "+393392840643"
+            contact-type: mobile
+            priority: main
+          - contact-id: "+39029515651"
+            contact-type: landline
+            priority: secondary
+          - contact-id: "a.sfolcini@gmail.com"
+            contact-type: email
+            priority: main
+          - contact-id: "asfolcini"
+            contact-type: social
+            priority: secondary
+            desription: Instagram
+          - contact-id: "https://surprisalx.com"
+            contact-type: website
+            priority: secondary
+        addresses:
+          - address-type: residence
+            street: via Amerigo Vespucci
+            street-number: 31
+            zip-code: 20063
+            contacts:
+              - contact-id: "+39029515651"
+                contact-type: landline
+                priority: main
+            city:
+              id: Milano
+              href: "https://api.armani.it/v1/city/Milano"
+            region:
+              id: LOM
+              href: "https://api.armani.it/v1/region/LOM"
+            country:
+              id: IT
+              href: "https://api.armani.it/v1/country/IT"
+          - address-type: office
+            street: via Bergognone
+            street-number: 46
+            zip-code: 20121
+            contacts:
+              - contact-id: "+390283106505"
+                contact-type: landline
+                priority: main
+              - contact-id: "+390283106"
+                contact-type: contact-center
+                priority: secondary
+            city:
+              id: Milano
+              href: "https://api.armani.it/v1/city/Milano"
+            region:
+              id: LOM
+              href: "https://api.armani.it/v1/region/LOM"
+            country:
+              id: IT
+              href: "https://api.armani.it/v1/country/IT"
+          - address-type: other
+            street: Ben Yahuda St
+            city:
+              id: TLV
+              href: "https://api.armani.it/v1/city/TLV"
+            country:
+              id: IL
+              href: "https://api.armani.it/v1/country/IL"
+        customer-discount:
+          value: 5500
+          unit: "percent"
+        status: "active"
+        creation-date: "2022-03-05T00:00:00.000Z"
+        last-change-date: "2022-03-05T00:00:00.000Z"
+
+
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/customer"
+
+          example:
+              - customer-type: person
+                id: "12345678"
+                href: "https://api.armani.it/v1/customer/12345678"
+                gender: male
+                birthday: "1976-03-05T00:00:00.000Z"
+                firstname: Alberto
+                lastname: Sfolcini
+                documents:
+                  - id: PSSP123734849559348
+                    document-type: passport
+                    issue-date: "2019-11-11T00:00:00.000Z"
+                    expire-date: "2029-11-10T00:00:00.000Z"
+                    issuer: Italian Governament
+                    nationality: italian
+                contacts:
+                  - contact-id: "+393392840643"
+                    contact-type: mobile
+                    priority: main
+                  - contact-id: "a.sfolcini@gmail.com"
+                    contact-type: email
+                    priority: main
+                addresses:
+                  - address-type: residence
+                    street: via Amerigo Vespucci
+                    street-number: 31
+                    zip-code: 20063
+                    contacts:
+                      - contact-id: "+39029515651"
+                        contact-type: landline
+                        priority: main
+                    city:
+                      id: Milano
+                      href: "https://api.armani.it/v1/city/Milano"
+                    region:
+                      id: LOM
+                      href: "https://api.armani.it/v1/region/LOM"
+                    country:
+                      id: IT
+                      href: "https://api.armani.it/v1/country/IT"
+                customer-discount:
+                  value: 5500
+                  unit: "percent"
+                status: "active"
+                creation-date: "2022-03-05T00:00:00.000Z"
+                last-change-date: "2022-03-05T00:00:00.000Z"
+
+              - customer-type: company
+                id: "987654321"
+                href: "https://api.armani.it/v1/customer/987654321"
+                name: "Hilton Hotels Group"
+                description: "Hilton Hotels"
+                sector: "Travel"
+                documents:
+                  - id: VAT122334445444444444
+                    document-type: other
+                    issue-date: "2019-11-11T00:00:00.000Z"
+                contacts:
+                  - contact-id: "+00127361526277"
+                    contact-type: contact-center
+                    priority: secondary
+                  - contact-id: "contact@hiltongroup.com"
+                    contact-type: email
+                    priority: main
+                addresses:
+                  - address-type: legal
+                    street: 5th Avenue
+                    street-number: 1400
+                    zip-code: K2K202
+                    contacts:
+                      - contact-id: "+001273816288"
+                        contact-type: contact-center
+                        priority: main
+                    city:
+                      id: NYC
+                      href: "https://api.armani.it/v1/city/NYC"
+                    region:
+                      id: NY
+                      href: "https://api.armani.it/v1/region/NY"
+                    country:
+                      id: USA
+                      href: "https://api.armani.it/v1/country/USA"
+                customer-discount:
+                  value: 650
+                  unit: "percent"
+                status: "active"
+                creation-date: "2022-03-05T00:00:00.000Z"
+                last-change-date: "2022-03-05T00:00:00.000Z"

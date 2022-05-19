@@ -1,0 +1,36 @@
+components:
+  schemas:
+    personal-document:
+      type: object
+      description: Personal document like ID, Visa, Passport, etc...
+      properties:
+        id:
+          type: string
+          description: person id
+          required: true
+        href:
+          type: string
+          format: uri
+          required: true
+        document-type:
+          type: string
+          enum:
+            - id
+            - driver-license
+            - passport
+            - visa
+            - other
+        description:
+          type: string
+          description: description of the personal document
+        issue-date:
+          type: string
+          format: date-time
+        expire-date:
+          type: string
+          format: date-time
+        issuer:
+          type: string
+          description: document issuer
+        nationality:
+          type: string

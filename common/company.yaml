@@ -13,5 +13,19 @@ components:
         name:
           type: string
           example: Giorgio Armani Retail Srl
-        address:
-          $ref: '../common/address.yaml#/components/schemas/address'
+        description:
+          type: string
+        sector:
+          type: string
+        documents:
+          type: array
+          items:
+            $ref: "./entity-document.yaml#/components/schemas/personal-document"
+        contacts:
+          type: array
+          items:
+            $ref: "./contact.yaml#/components/schemas/contact"
+        addresses:
+          type: array
+          items:
+            $ref: "./address.yaml#/components/schemas/address"

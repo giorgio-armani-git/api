@@ -1,0 +1,27 @@
+components:
+  schemas:
+    contact:
+      type: object
+      properties:
+        contact-id:
+          type: string
+        contact-type:
+          type: string
+          enum:
+            - landline
+            - mobile
+            - mobile-private
+            - mobile-office
+            - email
+            - social
+            - website
+            - contact-center
+            - other
+        priority:
+          type: string
+          enum:
+            - main
+            - secondary
+        description:
+          type: string
+
