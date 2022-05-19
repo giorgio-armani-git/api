@@ -261,6 +261,7 @@ components:
                 gender: male
                 birthday: "1976-03-05T00:00:00.000Z"
                 firstname: Alberto
+                middlename: Ariel
                 lastname: Sfolcini
                 documents:
                   - id: PSSP123734849559348
