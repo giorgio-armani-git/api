@@ -11,18 +11,18 @@ components:
         - description-type: "style-fabric"
           content:
             - language: en
-              message: 5 Pockets jeans
+              description: 5 Pockets jeans
             - language: it
-              message: Jeans 5 tasche
+              description: Jeans 5 tasche
         - description-type: EMOTIONAL
           content:
             - language: en
-              message: Oh my gosh is so emotional!
+              description: Oh my gosh is so emotional!
             - language: it
-              message: mamma mia che emozione!
+              description: mamma mia che emozione!
         - description-type: ECOMMERCE
           content:
             - language: en
-              message: Specified message for e-comm site
+              description: Specified message for e-comm site
             - language: it
-              message: Specifico messaggi per sito e-comm
+              description: Specifico messaggi per sito e-comm

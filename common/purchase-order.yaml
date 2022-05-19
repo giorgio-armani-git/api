@@ -1,0 +1,11 @@
+components:
+  schemas:
+    purchase-order:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '1002996808'
+        href:
+          type: string
+          format: url

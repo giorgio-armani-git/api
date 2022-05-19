@@ -1,0 +1,218 @@
+openapi: "3.0.0"
+info:
+  title: Stock Movements
+  description: Stock Movements
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /stock-movement/{id}:
+    get:
+      summary: Return stock-movement description
+      description: Return stock-movement description
+      operationId: ''
+      parameters:
+        - name: id
+          in: query
+          description: stock-movement id (synthetic)
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/stock-movement"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /stock-movement:
+    get:
+      summary: Return list of stock-movements
+      description: Return list of stock-movements
+      operationId: ''
+      parameters:
+        - name: movement-number
+          in: query
+          description: movement-number
+          explode: true
+          schema:
+            type: string
+        - name: movement-type
+          in: query
+          description: movement-type
+          explode: true
+          schema:
+            type: string
+        - name: company-id
+          in: query
+          description: company-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "0004"
+        - name: retail-store-id
+          in: query
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: 4S01
+        - name: storage-location-id
+          in: query
+          explode: true
+          schema:
+            type: string
+        - name: item-id
+          in: query
+          description: sku item
+          explode: true
+          schema:
+            type: string
+        - name: purchase-order-id
+          in: query
+          explode: true
+          schema:
+            type: string
+        - name: delivery-id
+          in: query
+          explode: true
+          schema:
+            type: string
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+        - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+        - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/list"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    stock-movement:
+      type: object
+      properties:
+        id:
+          type: string
+          description: syntetic ID encode_base64(movement-number + movement-row + movement-type)
+          example: "NTAwNDczNzUzMS0xLTEwMQ=="
+        company:
+          $ref: "../common/company.yaml#/components/schemas/company"
+          example:
+            id: "0004"
+            href: "https://api.armani.it/v1/company/0004"
+        movement-number:
+          type: integer
+          example: 5004737531
+        movement-row:
+          type: integer
+          example: 1
+        movement-type:
+          $ref: "../common/movement-type.yaml#/components/schemas/movement-type"
+          example:
+            id: "101"
+            href: https://api.armani.it/v1/101
+        retail-store-id:
+          $ref: "../store/store.yaml#/components/schemas/store"
+          example:
+            id: "4SU1"
+            href: "https://api.armani.it/v1/store/4SU1"
+        storage-location:
+          $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
+          example:
+            id: 0001
+            href: "https://api.armani.it/v1/storage-location/0001"
+        item-id:
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+          example:
+            item-id: 942646CC793 00301N
+            sku-href: "https://api.armani.it/v1/item-master/942646CC793 00301N"
+        quantity:
+          type: integer
+          description: "Signed quantity in unit, it can be +1 for inbound and -1 for outbound"
+          example: 4
+        special-stock:
+          $ref: "../common/special-stock.yaml#/components/schemas/special-stock"
+          example:
+            id: "O"
+            href: "https://api.armani.it/v1/special-stock/O"
+        purchase-order:
+          $ref: "../common/purchase-order.yaml#/components/schemas/purchase-order"
+          example:
+            id: "1002996808"
+            href: "https://api.armani.it/v1/purchase-order/1002996808"
+        delivery:
+          $ref: "../common/delivery.yaml#/components/schemas/delivery"
+          example:
+            delivery-id: "3305733424"
+            href: "https://api.armani.it/v1/delivery/3305733424"
+        registered-date:
+          type: string
+          format: date-time
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+
+
+
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/stock-movement"
+

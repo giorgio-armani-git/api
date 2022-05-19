@@ -1,18 +1,20 @@
 components:
   schemas:
-    storage-location:
+    movement-type:
       type: object
       properties:
         id:
           type: string
-          example: "0001"
+          example: '612'
         href:
           type: string
           format: url
         description:
-          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
           example:
             - language: en
-              description: Free Stock
+              description: LEATHER
             - language: it
-              description: Giacenza Libera
+              description: Pelle

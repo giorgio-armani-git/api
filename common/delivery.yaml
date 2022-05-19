@@ -1,0 +1,21 @@
+components:
+  schemas:
+    delivery:
+      type: object
+      properties:
+        delivery-id:
+          type: string
+          description: delivery id
+          example: "3305733424"
+        delivery-row:
+          type: string
+          example: "1"
+        href:
+          type: string
+          format: url
+        delivery-type:
+          type: string
+          enum:
+            - inbound
+            - outbound
+          example: inbound

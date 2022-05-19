@@ -1,0 +1,19 @@
+components:
+  schemas:
+    city:
+      type: object
+      properties:
+        id:
+          type: string
+          example: Milano
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/country/Milano"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Milan"

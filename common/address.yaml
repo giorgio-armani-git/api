@@ -16,13 +16,13 @@ components:
             - other
         street:
           type: string
-        street1:
+        street-number:
           type: string
         zip-code:
           type: string
         city:
-          type: string
+          $ref: "city.yaml#/components/schemas/city"
         region:
           type: string
-        state:
-          type: string
+        country:
+          $ref: "country.yaml#/components/schemas/country"

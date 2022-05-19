@@ -1,0 +1,17 @@
+components:
+  schemas:
+    company:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '0004'
+        href:
+          type: string
+          format: url
+          example: https://api.armani.it/v1/company/0004
+        name:
+          type: string
+          example: Giorgio Armani Retail Srl
+        address:
+          $ref: '../common/address.yaml#/components/schemas/address'

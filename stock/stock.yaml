@@ -133,7 +133,7 @@ components:
             id: "4S09"
             href: "https://api.armani.it/v1/store/4S09"
         barcode:
-          $ref: "../barcode/season.yaml#/components/schemas/barcode"
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
         storage:
           type: array
           items:

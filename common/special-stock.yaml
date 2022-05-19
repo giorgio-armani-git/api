@@ -1,0 +1,15 @@
+components:
+  schemas:
+    special-stock:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 'E'
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/special-stock/E"
+        description:
+          type: string
+          example: "Orders on hand"
