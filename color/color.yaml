@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /color:
+  /colors:
     get:
       summary: Return list of colors
       description: Return list of colors

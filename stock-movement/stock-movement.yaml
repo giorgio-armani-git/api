@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /stock-movement:
+  /stock-movements:
     get:
       summary: Return list of stock-movements
       description: Return list of stock-movements

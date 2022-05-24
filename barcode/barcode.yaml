@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /barcode:
+  /barcodes:
     get:
       summary: Return all active barcodes
       description: 'Return all active barcodes, parameters: item-id (can be both sku or generic-article) and pagination limit&offset'

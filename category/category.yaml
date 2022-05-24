@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /category:
+  /categories:
     get:
       summary: Return list of categorys
       description: Return list of categorys

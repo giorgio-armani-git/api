@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /merchandise-group:
+  /merchandise-groups:
     get:
       summary: Return list of merchandise-categories
       description: Return list of merchandise-categories

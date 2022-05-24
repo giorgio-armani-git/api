@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /division:
+  /divisions:
     get:
       summary: Return list of divisions
       description: Return list of divisions

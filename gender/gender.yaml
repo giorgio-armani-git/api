@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /gender:
+  /genders:
     get:
       summary: Return list of gender
       description: Return list of gender

@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /brand:
+  /brands:
     get:
       summary: Return list of brands
       description: Return list of brands

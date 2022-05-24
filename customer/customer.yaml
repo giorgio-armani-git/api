@@ -147,7 +147,6 @@ components:
         - $ref: "../common/person.yaml#/components/schemas/person"
         - $ref: "../common/company.yaml#/components/schemas/company"
         - $ref: "#/components/schemas/customer-type"
-        - $ref: "#/components/schemas/customer-discount"
         - $ref: "#/components/schemas/status"
         - $ref: "#/components/schemas/creation-date"
         - $ref: "#/components/schemas/last-change-date"
@@ -237,9 +236,6 @@ components:
             country:
               id: IL
               href: "https://api.armani.it/v1/country/IL"
-        customer-discount:
-          value: 5500
-          unit: "percent"
         status: "active"
         creation-date: "2022-03-05T00:00:00.000Z"
         last-change-date: "2022-03-05T00:00:00.000Z"

@@ -18,7 +18,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /item:
+  /items:
     get:
       summary: Returns active items
       description: Returns active items

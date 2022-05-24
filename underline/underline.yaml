@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /underline:
+  /underlines:
     get:
       summary: Return list of underlines
       description: Return list of underlines

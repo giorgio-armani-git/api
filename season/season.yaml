@@ -18,7 +18,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /season:
+  /seasons:
     get:
       summary: Returns all season for a given item-id
       description: Returns all season for a given item-id

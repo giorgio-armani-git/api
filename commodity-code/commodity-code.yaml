@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /commodity-code:
+  /commodity-codes:
     get:
       summary: Return list of commodity-codes
       description: Return list of commodity-codes

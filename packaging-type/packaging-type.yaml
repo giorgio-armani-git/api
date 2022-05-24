@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /packaging-type:
+  /packaging-types:
     get:
       summary: Return list of packaging-types
       description: Return list of packaging-types

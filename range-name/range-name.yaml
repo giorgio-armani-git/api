@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /range-name:
+  /range-names:
     get:
       summary: Return list of range-names
       description: Return list of range-names

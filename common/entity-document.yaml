@@ -32,5 +32,5 @@ components:
         issuer:
           type: string
           description: document issuer
-        nationality:
+        country:
           type: string

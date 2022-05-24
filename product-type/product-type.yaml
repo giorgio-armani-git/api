@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /product-type:
+  /product-types:
     get:
       summary: Return list of product-types
       description: Return list of products-types

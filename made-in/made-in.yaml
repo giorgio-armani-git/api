@@ -51,7 +51,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /made-in:
+  /made-ins:
     get:
       summary: Return list of made-ins
       description: Return list of made-ins
