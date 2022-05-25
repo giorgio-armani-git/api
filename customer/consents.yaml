@@ -1,0 +1,14 @@
+components:
+  schemas:
+    consents:
+      type: object
+      properties:
+        marketing-consent:
+          $ref: "../common/consent.yaml#/components/schemas/consent"
+        profiling-consent:
+          $ref: "../common/consent.yaml#/components/schemas/consent"
+        data-sharing-consent:
+          $ref: "../common/consent.yaml#/components/schemas/consent"
+        recovery-date:
+          type: string
+          format: date-time

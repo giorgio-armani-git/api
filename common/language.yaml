@@ -1,0 +1,19 @@
+components:
+  schemas:
+    language:
+      type: object
+      properties:
+        id:
+          type: string
+          example: en
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/language/en"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "English"

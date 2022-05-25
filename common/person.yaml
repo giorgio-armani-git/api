@@ -23,15 +23,24 @@ components:
           type: string
           format: date-time
           description: date of birth
+        title:
+          type: string
+          descripton: persons's title
         firstname:
           type: string
           description: name
+        localized_firstname:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         middlename:
           type: string
           description: name
+        localized_middlename:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         lastname:
           type: string
           description: surname
+        localized_lastname:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         documents:
           type: array
           items:

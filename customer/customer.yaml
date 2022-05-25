@@ -58,29 +58,132 @@ paths:
       description: 'Return all customers'
       operationId: ''
       parameters:
-        - name: state
+        - name: id
           in: query
           description: state
           required: false
           explode: true
           schema:
             type: string
-            default: "italy"
-
-        # customer-type
-        # gender
-        # firstname/middlename/lastname
-        # company-name
-        # company-description
-        # sector
-        # document id
-        # document type
-        # nationality
-        # contact-id
-        # contact-type
-        # city
-        # region
-        # country
+            example: "12345678"
+        - name: customer-type
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: celebrity
+        - name: gender
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: firstname
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: middlename
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: lastname
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: company-name
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: document-id
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: document-type
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: passport
+        - name: nationality
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: city
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: Tel Aviv
+        - name: province
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: region
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: country
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: contact-type
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: email
+        - name: contact-id
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: a.sfolcini@gmail.com
+        - name: status
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: cancelled
 
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
@@ -120,14 +223,6 @@ components:
       name: X-Gateway-APIKey  # name of the header, query parameter or cookie
 
   schemas:
-    customer-type:
-      type: string
-      enum:
-        - person
-        - company
-
-    customer-discount:
-      $ref: "../common/unit.yaml#/components/schemas/unit"
 
     status:
       $ref: "../common/status.yaml#/components/schemas/status"
@@ -141,25 +236,51 @@ components:
       type: string
       format: date-time
       example: "2022-03-05T00:00:00.000Z"
+    registration-employee:
+      $ref: "../employee/employee.yaml#/components/schemas/employee"
+    registration-store:
+      $ref: "../store/store.yaml#/components/schemas/store"
+
+
+    communication-languages:
+      type: array
+      items:
+        $ref: "../common/language.yaml#/components/schemas/language"
+
 
     customer:
       anyOf:
         - $ref: "../common/person.yaml#/components/schemas/person"
+        - $ref: "../employee/employee.yaml#/components/schemas/employee"
         - $ref: "../common/company.yaml#/components/schemas/company"
-        - $ref: "#/components/schemas/customer-type"
+        - $ref: "./customer-type.yaml#/components/schemas/customer-type"
+        - $ref: "./consents.yaml#/components/schemas/consents"
+        - $ref: "#/components/schemas/communication-languages"
         - $ref: "#/components/schemas/status"
+        - $ref: "#/components/schemas/registration-employee"
+        - $ref: "#/components/schemas/registration-store"
         - $ref: "#/components/schemas/creation-date"
         - $ref: "#/components/schemas/last-change-date"
 
       example:
-        customer-type: person
+        customer-type: customer
         id: "12345678"
         href: "https://api.armani.it/v1/customer/12345678"
         gender: male
         birthday: "1976-03-05T00:00:00.000Z"
+        title: Mr.
         firstname: Alberto
+        localized_firstname:
+          language: "he"
+          description: "אלברטו"
         middlename: Ariel
+        localized_middlename:
+          language: "he"
+          description: "אריאל"
         lastname: Sfolcini
+        localized_lastname:
+          language: "he"
+          description: "ספולצ'יני"
         documents:
           - id: AB123456
             document-type: id
@@ -177,12 +298,18 @@ components:
           - contact-id: "+393392840643"
             contact-type: mobile
             priority: main
+            authorization: denied
+            status: active
           - contact-id: "+39029515651"
             contact-type: landline
             priority: secondary
+            authorization: denied
+            status: active
           - contact-id: "a.sfolcini@gmail.com"
             contact-type: email
             priority: main
+            authorization: authorized
+            status: active
           - contact-id: "asfolcini"
             contact-type: social
             priority: secondary
@@ -199,9 +326,14 @@ components:
               - contact-id: "+39029515651"
                 contact-type: landline
                 priority: main
+                authorization: denied
+                status: active
             city:
               id: Milano
               href: "https://api.armani.it/v1/city/Milano"
+            province:
+              id: MILANO
+              href: "https://api.armani.it/v1/province/MILANO"
             region:
               id: LOM
               href: "https://api.armani.it/v1/region/LOM"
@@ -216,12 +348,19 @@ components:
               - contact-id: "+390283106505"
                 contact-type: landline
                 priority: main
+                authorization: authorized
+                status: active
               - contact-id: "+390283106"
                 contact-type: contact-center
                 priority: secondary
+                authorization: authorized
+                status: active
             city:
               id: Milano
               href: "https://api.armani.it/v1/city/Milano"
+            province:
+              id: MILANO
+              href: "https://api.armani.it/v1/province/MILANO"
             region:
               id: LOM
               href: "https://api.armani.it/v1/region/LOM"
@@ -236,7 +375,33 @@ components:
             country:
               id: IL
               href: "https://api.armani.it/v1/country/IL"
+        consents:
+          marketing-consent:
+            consent: true
+            last-change-date: "2021-03-05T00:00:00.000Z"
+          profiling-consent:
+            consent: false
+            last-change-date: "2021-03-05T00:00:00.000Z"
+          data-sharing-consent:
+            consent: true
+            last-change-date: "2021-03-05T00:00:00.000Z"
+          recovery-date: "2020-03-05T00:00:00.000Z"
+        communication-languages:
+          - language: it
+            description:
+              language: it
+              description: Italiano
+          - language: en
+            description:
+              language: it
+              description: Inglese
         status: "active"
+        registration-employee:
+          id: "AYH109"
+          href: "https://api.armani.it/v1/employee/AYH109"
+        registration-store:
+          id: "4S01"
+          href: "https://api.armani.it/v1/store/4S01"
         creation-date: "2022-03-05T00:00:00.000Z"
         last-change-date: "2022-03-05T00:00:00.000Z"
 
@@ -251,14 +416,24 @@ components:
             $ref: "#/components/schemas/customer"
 
           example:
-              - customer-type: person
+              - customer-type: customer
                 id: "12345678"
                 href: "https://api.armani.it/v1/customer/12345678"
                 gender: male
                 birthday: "1976-03-05T00:00:00.000Z"
+                title: Mr.
                 firstname: Alberto
+                localized_firstname:
+                  language: "he"
+                  description: "אלברטו"
                 middlename: Ariel
+                localized_middlename:
+                  language: "he"
+                  description: "אריאל"
                 lastname: Sfolcini
+                localized_lastname:
+                  language: "he"
+                  description: "ספולצ'יני"
                 documents:
                   - id: PSSP123734849559348
                     document-type: passport
@@ -270,9 +445,13 @@ components:
                   - contact-id: "+393392840643"
                     contact-type: mobile
                     priority: main
+                    authorization: authorized
+                    status: cancelled
                   - contact-id: "a.sfolcini@gmail.com"
                     contact-type: email
                     priority: main
+                    authorization: authorized
+                    status: active
                 addresses:
                   - address-type: residence
                     street: via Amerigo Vespucci
@@ -282,19 +461,42 @@ components:
                       - contact-id: "+39029515651"
                         contact-type: landline
                         priority: main
+                        authorization: authorized
+                        status: cancelled
                     city:
                       id: Milano
                       href: "https://api.armani.it/v1/city/Milano"
+                    province:
+                      id: MILANO
+                      href: "https://api.armani.it/v1/province/MILANO"
                     region:
                       id: LOM
                       href: "https://api.armani.it/v1/region/LOM"
                     country:
                       id: IT
                       href: "https://api.armani.it/v1/country/IT"
-                customer-discount:
-                  value: 5500
-                  unit: "percent"
+                consents:
+                  marketing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  profiling-consent:
+                    consent: false
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  data-sharing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  recovery-date: "2020-03-05T00:00:00.000Z"
+                communication-languages:
+                  - language: it
+                  - language: en
+                  - language: he
                 status: "active"
+                registration-employee:
+                  id: "AYH109"
+                  href: "https://api.armani.it/v1/employee/AYH109"
+                registration-store:
+                  id: "4S01"
+                  href: "https://api.armani.it/v1/store/4S01"
                 creation-date: "2022-03-05T00:00:00.000Z"
                 last-change-date: "2022-03-05T00:00:00.000Z"
 
@@ -302,7 +504,13 @@ components:
                 id: "987654321"
                 href: "https://api.armani.it/v1/customer/987654321"
                 name: "Hilton Hotels Group"
+                localized_name:
+                  language: "he"
+                  description: "מלונות הילטון"
                 description: "Hilton Hotels"
+                localized_description:
+                  language: "he"
+                  description: "רשת מלונות מקבוצת מלונות הילטון"
                 sector: "Travel"
                 documents:
                   - id: VAT122334445444444444
@@ -312,9 +520,13 @@ components:
                   - contact-id: "+00127361526277"
                     contact-type: contact-center
                     priority: secondary
+                    authorization: denied
+                    status: active
                   - contact-id: "contact@hiltongroup.com"
                     contact-type: email
                     priority: main
+                    authorization: authorized
+                    status: active
                 addresses:
                   - address-type: legal
                     street: 5th Avenue
@@ -324,6 +536,8 @@ components:
                       - contact-id: "+001273816288"
                         contact-type: contact-center
                         priority: main
+                        authorization: authorized
+                        status: active
                     city:
                       id: NYC
                       href: "https://api.armani.it/v1/city/NYC"
@@ -333,9 +547,79 @@ components:
                     country:
                       id: USA
                       href: "https://api.armani.it/v1/country/USA"
-                customer-discount:
-                  value: 650
-                  unit: "percent"
+                consents:
+                  marketing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  profiling-consent:
+                    consent: false
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  data-sharing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                communication-languages:
+                  - language: en
                 status: "active"
+                registration-employee:
+                  id: "AYH109"
+                  href: "https://api.armani.it/v1/employee/AYH109"
+                registration-store:
+                  id: "4S01"
+                  href: "https://api.armani.it/v1/store/4S01"
+                creation-date: "2022-03-05T00:00:00.000Z"
+                last-change-date: "2022-03-05T00:00:00.000Z"
+
+              - customer-type: employee
+                id: "AY1200"
+                href: "https://api.armani.it/v1/employee/AY1200"
+                gender: male
+                birthday: "1982-03-05T00:00:00.000Z"
+                title: Mr.
+                firstname: Giuliano
+                lastname: Pretali
+                contacts:
+                  - contact-id: "giuliano.pretali@giorgioarmani.it"
+                    contact-type: email
+                    priority: main
+                    authorization: authorized
+                    status: active
+                addresses:
+                  - address-type: residence
+                    street: via dei pretali
+                    street-number: 39
+                    zip-code: 20100
+                    city:
+                      id: Milano
+                      href: "https://api.armani.it/v1/city/Milano"
+                    province:
+                      id: MILANO
+                      href: "https://api.armani.it/v1/province/MILANO"
+                    region:
+                      id: LOM
+                      href: "https://api.armani.it/v1/region/LOM"
+                    country:
+                      id: IT
+                      href: "https://api.armani.it/v1/country/IT"
+                consents:
+                  marketing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  profiling-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  data-sharing-consent:
+                    consent: true
+                    last-change-date: "2021-03-05T00:00:00.000Z"
+                  recovery-date: "2020-03-05T00:00:00.000Z"
+                communication-languages:
+                  - language: it
+                  - language: en
+                status: "active"
+                registration-employee:
+                  id: "AYH109"
+                  href: "https://api.armani.it/v1/employee/AYH109"
+                registration-store:
+                  id: "4S01"
+                  href: "https://api.armani.it/v1/store/4S01"
                 creation-date: "2022-03-05T00:00:00.000Z"
                 last-change-date: "2022-03-05T00:00:00.000Z"

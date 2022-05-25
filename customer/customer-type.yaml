@@ -1,0 +1,20 @@
+components:
+  schemas:
+    customer-type:
+      type: string
+      enum:
+        - customer
+        - company
+        - celebrity
+        - press
+        - default-customer
+        - dms-store
+        - partner
+        - landlord
+        - personal-shopper
+        - concierge
+        - trade-partner
+        - dummy-customer
+        - employee
+        - former-employee
+        - other

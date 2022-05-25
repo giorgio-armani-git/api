@@ -24,4 +24,12 @@ components:
             - secondary
         description:
           type: string
+        authorization:
+          type: string
+          enum:
+            - authorized
+            - denied
+            - not-specified
+        status:
+          $ref: "../common/status.yaml#/components/schemas/status"
 

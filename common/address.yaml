@@ -20,6 +20,10 @@ components:
           type: string
         street-number:
           type: string
+        floor:
+          type: string
+        building:
+          type: string
         zip-code:
           type: string
         city:
@@ -28,7 +32,10 @@ components:
           type: array
           items:
             $ref: "contact.yaml#/components/schemas/contact"
+        province:
+          $ref: "region.yaml#/components/schemas/region"
         region:
-          type: string
+          $ref: "region.yaml#/components/schemas/region"
         country:
           $ref: "country.yaml#/components/schemas/country"
+

@@ -1,0 +1,14 @@
+components:
+  schemas:
+    consent:
+      type: object
+      properties:
+        consent:
+          type: boolean
+          example: 'True'
+          format: url
+        description:
+          type: string
+          example: Consent description if exists
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"

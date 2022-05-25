@@ -13,8 +13,12 @@ components:
         name:
           type: string
           example: Giorgio Armani Retail Srl
+        localized_name:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         description:
           type: string
+        localized_description:
+          $ref: "../common/localized-message.yaml#/components/schemas/localized-message"
         sector:
           type: string
         documents:
