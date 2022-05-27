@@ -157,7 +157,7 @@ paths:
             type: string
         - name: customer-code
           in: query
-          description: customer master code, if you want to filter for items orderd by the given customer code
+          description: customer master code (invoice customer code), if you want to filter for items orderd by the given customer code
           required: false
           explode: true
           schema:
