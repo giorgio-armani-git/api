@@ -112,6 +112,7 @@ components:
             - sku
             - package
           default: sku
+          description: default item-type is sku barcode, package item-type refers to barcodes of the package also known as SSCC
         barcode:
           type: string
           example: 8054804724299
