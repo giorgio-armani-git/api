@@ -106,6 +106,12 @@ components:
         item-id:
           type: string
           example: XYZ010XOI69 00102N
+        item-type:
+          type: string
+          enum:
+            - sku
+            - package
+          default: sku
         barcode:
           type: string
           example: 8054804724299
