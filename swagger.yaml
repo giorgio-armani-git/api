@@ -16,11 +16,11 @@
   "host": "api.armani.it",
   "basePath": "/v1",
   "tags": [{
-    "name": "pet",
-    "description": "Everything about your Pets",
+    "name": "item-master",
+    "description": "Item master",
     "externalDocs": {
       "description": "Find out more",
-      "url": "http://swagger.io"
+      "url": "../item-master/item-master.yaml"
     }
   }, {
     "name": "store",
