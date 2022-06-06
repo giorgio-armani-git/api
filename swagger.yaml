@@ -22,20 +22,6 @@
       "description": "Find out more",
       "url": "../item-master/item-master.yaml"
     }
-  }, {
-    "name": "store",
-    "description": "Access to Petstore orders"
-  }, {
-    "name": "user",
-    "description": "Operations about user",
-    "externalDocs": {
-      "description": "Find out more about our store",
-      "url": "http://swagger.io"
-    }
   }],
-  "schemes": ["https"],
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
-  }
+  "schemes": ["https"]
 }
