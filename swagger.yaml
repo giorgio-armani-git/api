@@ -1,28 +1,11 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "description": "API documentation",
-    "version": "1.0",
-    "title": "Giorgio Armani APIs",
-    "termsOfService": "http://api.armani.it/terms/",
-    "contact": {
-      "email": "enterprise.architect@giorgioarmani.it"
-    },
-    "license": {
-      "name": "",
-      "url": ""
-    }
-  },
-  "host": "api.armani.it",
-  "basePath": "/v1",
-  "tags": [{
-    "name": "item-master",
-    "description": "Item master",
-    "externalDocs": {
-      "description": "Find out more",
-      "url": "../item-master/item-master.yaml"
-    }
-  }],
-  "schemes": ["https"],
-  "paths": "/item-master/item-master.yaml"
-}
+openapi: 3.0.0
+info:
+  title: Giorgio Armani API
+  description: GA API documentation
+  version: v1
+servers:
+  - url: http://api.armani.it/v1
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /item-master:
+      $ref: "./item-master/item-master.yaml#/components/schemas/item-master"
