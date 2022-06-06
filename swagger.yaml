@@ -23,5 +23,6 @@
       "url": "../item-master/item-master.yaml"
     }
   }],
-  "schemes": ["https"]
+  "schemes": ["https"],
+  "paths": "/item-master/item-master.yaml"
 }
