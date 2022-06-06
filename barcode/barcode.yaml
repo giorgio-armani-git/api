@@ -134,6 +134,7 @@ components:
             - gtin13
             - atin13
             - atom24
+            - sscc
           example: gtin13
         main:
           type: boolean

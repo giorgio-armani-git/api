@@ -63,8 +63,10 @@ components:
             example:
               - barcode: "8054804724299"
                 barcode-type: gtin13
+                item-type: sku
               - barcode: "805480472429901234567899"
                 barcode-type: atom24
+                item-type: sku
         fashion-grade:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
           example:
