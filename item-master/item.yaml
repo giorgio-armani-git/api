@@ -135,4 +135,3 @@ components:
           type: array
           items:
             $ref: "real-item.yaml#/components/schemas/real-item"
-
