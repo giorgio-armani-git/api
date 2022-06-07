@@ -5,7 +5,19 @@ window.onload = function() {
   window.ui = SwaggerUIBundle({
     urls: [
           {url: "./item-master/item-master.yaml", name: "ITEM MASTER"},
+          {url: "./item-category/item-category.yaml", name: "ITEM CATEGORY"},
+          {url: "./item-composition/item-composition.yaml", name: "ITEM COMPOSITION"},
+          {url: "./item-description/item-description.yaml", name: "ITEM DESCRIPTION"},
+          {url: "./item-tax/item-tax.yaml", name: "ITEM TAX"},
           {url: "./barcode/barcode.yaml", name: "BARCODES"},
+          {url: "./season/season.yaml", name: "SEASON"},
+          {url: "./customer/customer.yaml", name: "CUSTOMERS"},
+          {url: "./employee/employee.yaml", name: "EMPLOYEES"},
+          {url: "./pricelist/pricelist.yaml", name: "PRICELISTS"},
+          {url: "./stock/stock.yaml", name: "STOCK SNAPSHOT"},
+          {url: "./stock-movement/stock-movement.yaml", name: "STOCK MOVEMENTS"},
+          {url: "./transaction/transaction.yaml", name: "TRANSACTIONS"},
+
         ],
     dom_id: '#swagger-ui',
     deepLinking: true,
