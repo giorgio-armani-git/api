@@ -1,11 +1,1 @@
-openapi: 3.0.0
-info:
-  title: Giorgio Armani API
-  description: GA API documentation
-  version: v1
-servers:
-  - url: http://api.armani.it/v1
-    description: Optional server description, e.g. Main (production) server
-paths:
-  /item-master:
-      $ref: "./item-master/item-master.yaml#/components/schemas/item-master"
+$ref: "./item-master/item-master.yaml"
