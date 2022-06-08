@@ -17,6 +17,9 @@ window.onload = function() {
           {url: "./stock/stock.yaml", name: "STOCK SNAPSHOT"},
           {url: "./stock-movement/stock-movement.yaml", name: "STOCK MOVEMENTS"},
           {url: "./transaction/transaction.yaml", name: "TRANSACTIONS"},
+          {url: "./brand/brand.yaml", name: "BRANDS"},
+          {url: "./category/category.yaml", name: "CATEGORIES"},
+          {url: "./season/season.yaml", name: "SEASONS"},
 
         ],
     dom_id: '#swagger-ui',

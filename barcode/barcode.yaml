@@ -103,6 +103,9 @@ components:
     barcode:
       type: object
       properties:
+        id:
+          type: string
+          example: 8054804724299
         item-id:
           type: string
           example: XYZ010XOI69 00102N
@@ -113,9 +116,6 @@ components:
             - package
           default: sku
           description: default item-type is sku barcode, package item-type refers to barcodes of the package also known as SSCC
-        barcode:
-          type: string
-          example: 8054804724299
         href:
           type: string
           format: uri
