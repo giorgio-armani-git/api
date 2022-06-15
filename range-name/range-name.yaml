@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,10 +21,9 @@ paths:
     get:
       summary: Return range-name description
       description: Return range-name description
-      operationId: ''
       parameters:
         - name: id
-          in: query
+          in: path
           description: range-name id
           required: true
           explode: true
@@ -55,7 +53,6 @@ paths:
     get:
       summary: Return list of range-names
       description: Return list of range-names
-      operationId: ''
       parameters:
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"

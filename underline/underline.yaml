@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,10 +21,9 @@ paths:
     get:
       summary: Return underline description
       description: Return underline description
-      operationId: ''
       parameters:
         - name: id
-          in: query
+          in: path
           description: underline id
           required: true
           explode: true
@@ -55,7 +53,6 @@ paths:
     get:
       summary: Return list of underlines
       description: Return list of underlines
-      operationId: ''
       parameters:
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"

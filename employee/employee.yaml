@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Return the specified employee
       description: Return employee
-      operationId: ''
       parameters:
         - name: employee-id
           in: path
@@ -56,7 +54,6 @@ paths:
     get:
       summary: Return all employees
       description: 'Return all employees'
-      operationId: ''
       parameters:
         - name: hire-year
           in: query

@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Return the specified pricelist
       description: Return specific pricelist
-      operationId: ''
       parameters:
         - name: pricelist
           in: path

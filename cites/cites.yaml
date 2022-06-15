@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,10 +21,9 @@ paths:
     get:
       summary: Return cites description
       description: Return cites description
-      operationId: ''
       parameters:
         - name: id
-          in: query
+          in: path
           description: cites id
           required: true
           explode: true
@@ -55,7 +53,6 @@ paths:
     get:
       summary: Return list of cites
       description: Return list of cites
-      operationId: ''
       responses:
         "200":
           description: successful operation

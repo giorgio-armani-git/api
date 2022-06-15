@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Return the specified barcode
       description: Return stock availability for given barcode
-      operationId: ''
       parameters:
         - name: barcode
           in: path
@@ -63,7 +61,6 @@ paths:
     get:
       summary: Return all stock avalability
       description: 'Return stock availability for a given store-id, pagination with limit&offset'
-      operationId: ''
       parameters:
         - name: retail-store-id
           in: query

@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,10 +21,9 @@ paths:
     get:
       summary: Return packaging-type description
       description: Return packaging-type description
-      operationId: ''
       parameters:
         - name: id
-          in: query
+          in: path
           description: packaging-type id
           required: true
           explode: true
@@ -55,7 +53,6 @@ paths:
     get:
       summary: Return list of packaging-types
       description: Return list of packaging-types
-      operationId: ''
       parameters:
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"

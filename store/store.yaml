@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Return the specified store
       description: Return store
-      operationId: ''
       parameters:
         - name: store-id
           in: path
@@ -56,7 +54,6 @@ paths:
     get:
       summary: Return all stores
       description: 'Return stores, pagination with limit&offset'
-      operationId: ''
       parameters:
         - name: state-id
           in: query

@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -25,7 +24,7 @@ paths:
       operationId: ''
       parameters:
         - name: id
-          in: query
+          in: path
           description: gender id
           required: true
           explode: true
@@ -55,7 +54,6 @@ paths:
     get:
       summary: Return list of gender
       description: Return list of gender
-      operationId: ''
       responses:
         "200":
           description: successful operation

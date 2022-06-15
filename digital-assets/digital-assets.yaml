@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Return urls to images and video for specified item-id
       description: Return urls to images and video for specified item-id
-      operationId: ''
       parameters:
         - name: item-id
           in: query

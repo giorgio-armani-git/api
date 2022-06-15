@@ -8,7 +8,6 @@ servers:
     variables:
       protocol:
         enum:
-          - http
           - https
         default: https
       environment:
@@ -22,7 +21,6 @@ paths:
     get:
       summary: Returns transactions
       description: Returns transactions
-      operationId: ""
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
@@ -108,7 +106,6 @@ paths:
     post:
       summary: Create a new transaction
       description: Create a new transaction
-      operationId: ""
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
@@ -183,7 +180,6 @@ paths:
     get:
       summary: Returns a transaction by id
       description: Returns transaction by id
-      operationId: ""
       parameters:
         - name: x-idempotent-key
           $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
