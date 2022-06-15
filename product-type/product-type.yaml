@@ -54,7 +54,6 @@ paths:
     get:
       summary: Return list of product-types
       description: Return list of products-types
-      parameters:
       responses:
         "200":
           description: successful operation
