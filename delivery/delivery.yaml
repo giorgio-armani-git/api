@@ -141,15 +141,29 @@ components:
           $ref: "delivery-type.yaml#/components/schemas/delivery-type"
         ddt-number:
           type: string
+        document-date:
+          type: string
+          format: date-time
+        gross-weight:
+          $ref: "../common/uom-value.yaml#/components/schemas/uom-value"
+        net-weight:
+          $ref: "../common/uom-value.yaml#/components/schemas/uom-value"
+        volume:
+          $ref: "../common/uom-value.yaml#/components/schemas/uom-value"
+        total-package-number:
+          type: string
+        total-quantity:
+          type: string
+        shipment-number:
+          type: string
+        invoice-number:
+          type: string
 
+        creation-date:
+          $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
 
-
-      example:
-        id: "EW"
-        href: "https://api.armani.it/v1/division/Z001"
-        description:
-          - language: en
-            description: 302060 EA WOMAN
 
     list:
       type: object

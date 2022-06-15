@@ -31,7 +31,6 @@ window.onload = function() {
           {url: "./transaction/transaction.yaml", name: "TRANSACTIONS"},
           {url: "./brand/brand.yaml", name: "BRANDS"},
           {url: "./category/category.yaml", name: "CATEGORIES"},
-          {url: "./season/season.yaml", name: "SEASONS"},
           {url: "./store/store.yaml", name: "STORES"},
           {url: "./underline/underline.yaml", name: "UNDERLINE"},
           {url: "./theme/theme.yaml", name: "THEME"},

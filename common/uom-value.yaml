@@ -1,0 +1,14 @@
+components:
+  schemas:
+    uom-value:
+      type: object
+      properties:
+        uom:
+          type: string
+          example: kg
+        value:
+          type: number
+          description: number value
+      required:
+        - uom
+        - value
