@@ -24,7 +24,7 @@ paths:
       description: Return brand description
       parameters:
         - name: id
-          in: query
+          in: path
           description: brand id
           required: true
           explode: true
