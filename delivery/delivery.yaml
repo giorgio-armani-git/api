@@ -1,0 +1,160 @@
+openapi: "3.0.0"
+info:
+  title: Delivery
+  description: Delivery, can be inbound or outbound delivery
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+    /division/{id}:
+      get:
+        summary: Return the given delivery
+        description: Return the delivery
+        parameters:
+          - name: id
+            in: query
+            description: delivery id
+            required: true
+            explode: true
+            schema:
+              type: string
+              example: "321272833"
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/delivery"
+          "401":
+            description: Unauthorized Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+          "default":
+            description: Unexpected Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/error"
+
+      patch:
+        summary: Update the given delivery
+        description: Update the delivery
+        parameters:
+          - name: id
+            in: query
+            description: delivery id
+            required: true
+            explode: true
+            schema:
+              type: string
+              example: "321272833"
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/delivery"
+          "401":
+            description: Unauthorized Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+          "default":
+            description: Unexpected Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/error"
+
+    /deliveries:
+      get:
+        summary: Return list of deliveries
+        description: Return list of delvieries
+        parameters:
+          - name: delivery-type
+            in: query
+            description: delivery type
+            required: true
+            explode: true
+            schema:
+              type: string
+              enum:
+                - inbound
+                - outbound
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/list"
+          "401":
+            description: Unauthorized Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+          "default":
+            description: Unexpected Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/error"
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    delivery:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        delivery-type:
+          $ref: "delivery-type.yaml#/components/schemas/delivery-type"
+        ddt-number:
+          type: string
+
+
+
+      example:
+        id: "EW"
+        href: "https://api.armani.it/v1/division/Z001"
+        description:
+          - language: en
+            description: 302060 EA WOMAN
+
+    list:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/delivery"

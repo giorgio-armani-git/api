@@ -1,0 +1,7 @@
+components:
+  schemas:
+    delivery-type:
+      type: string
+      enum:
+        - inbound
+        - outbound
