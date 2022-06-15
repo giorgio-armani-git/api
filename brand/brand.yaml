@@ -22,7 +22,6 @@ paths:
     get:
       summary: Return brand description
       description: Return brand description
-      operationId: ''
       parameters:
         - name: id
           in: query
@@ -55,7 +54,6 @@ paths:
     get:
       summary: Return list of brands
       description: Return list of brands
-      operationId: ''
       parameters:
         - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
         - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
