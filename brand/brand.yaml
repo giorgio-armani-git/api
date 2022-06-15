@@ -23,7 +23,7 @@ paths:
       summary: Return brand description
       description: Return brand description
       parameters:
-        - name: {id}
+        - name: id
           in: path
           description: brand id
           required: true
