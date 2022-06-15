@@ -23,7 +23,7 @@ paths:
         description: Return the delivery
         parameters:
           - name: id
-            in: query
+            in: path
             description: delivery id
             required: true
             explode: true
@@ -55,7 +55,7 @@ paths:
         description: Update the delivery
         parameters:
           - name: id
-            in: query
+            in: path
             description: delivery id
             required: true
             explode: true
