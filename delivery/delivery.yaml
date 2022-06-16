@@ -164,13 +164,13 @@ components:
         external-asn-id:
           type: string
         destination-site:
-          $ref: "../common/site.yaml#/components/schemas/site"
+          $ref: "../store/store.yaml#/components/schemas/store"
         sending-site:
-          $ref: "../common/site.yaml#/components/schemas/site"
+          $ref: "../store/store.yaml#/components/schemas/store"
         receiving-point:
-          $ref: "../common/site.yaml#/components/schemas/site"
+          $ref: "../store/store.yaml#/components/schemas/store"
         shipping-point:
-          $ref: "../common/site.yaml#/components/schemas/site"
+          $ref: "../store/store.yaml#/components/schemas/store"
         vendor:
           $ref: "vendor.yaml#/components/schemas/vendor"
         forwarding-agent:
