@@ -17,7 +17,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-    /division/{id}:
+    /delivery/{id}:
       get:
         summary: Return the given delivery
         description: Return the delivery
@@ -158,12 +158,36 @@ components:
           type: string
         invoice-number:
           type: string
-
+        ref-delivery:
+          type: string
+          description: it can be outbound delivery or inbound delivery depengin on delivery-type
+        external-asn-id:
+          type: string
+        destination-site:
+          $ref: "../common/site.yaml#/components/schemas/site"
+        sending-site:
+          $ref: "../common/site.yaml#/components/schemas/site"
+        receiving-point:
+          $ref: "../common/site.yaml#/components/schemas/site"
+        shipping-point:
+          $ref: "../common/site.yaml#/components/schemas/site"
+        vendor:
+          $ref: "vendor.yaml#/components/schemas/vendor"
+        forwarding-agent:
+          $ref: "../forwarding-agent/forwarding-agent.yaml#/components/schemas/forwarding-agent"
+        expected-receiving-date:
+           type: string
+           format: date-time
+        count-type:
+          $ref: "count-type.yaml#/components/schemas/count-type"
+        delivery-status:
+           type: string
         creation-date:
           $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:
           $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
-
+        delivery-items:
+          $ref: "delivery-items.yaml#/components/schemas/delivery-items"
 
     list:
       type: object

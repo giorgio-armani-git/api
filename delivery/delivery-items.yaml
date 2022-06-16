@@ -1,0 +1,26 @@
+components:
+  schemas:
+    delivery-items:
+      type: array
+      items:
+        $ref: "#/components/schemas/row"
+
+
+    row:
+      type: object
+      properties:
+        id:
+          type: string
+        barcode:
+          $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+        delivery-item-status:
+          type: string
+        storage-location:
+          $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
+        cites:
+          $ref: "../cites/cites.yaml#/components/schemas/cites"
+        packages:
+          type: array
+          items:
+            $ref: "../package/package.yaml#/components/schemas/package"
+

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    count-type:
+      type: string
+      enum:
+        - sku
+        - package
+        - RFID

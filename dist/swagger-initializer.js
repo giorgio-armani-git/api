@@ -39,6 +39,8 @@ window.onload = function() {
           {url: "./collection/collection.yaml", name: "COLLECTION"},
           {url: "./cites/cites.yaml", name: "WASHINGTON DECLARATION"},
           {url: "./capsule-special-projects/capsule-special-projects.yaml", name: "CAPSULE SPECIAL PROJECTS"},
+          {url: "./forwarding-agent/forwarding-agent.yaml", name: "FORWARDING AGENT"},
+          {url: "./store/store.yaml", name: "STORES"},
 
         ],
     dom_id: '#swagger-ui',

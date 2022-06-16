@@ -1,0 +1,114 @@
+openapi: "3.0.0"
+info:
+  title: Package
+  description: Package
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /packaging-type/{id}:
+    get:
+      summary: Return package
+      description: Return package
+      parameters:
+        - name: id
+          in: path
+          description: package id
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/package"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+components:
+  schemas:
+
+      package-content:
+        type: object
+        properties:
+          id:
+            type: string
+          quantity:
+            type: string
+          barcode:
+            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+
+
+      package:
+        type: object
+        properties:
+          id:
+            type: string
+            description: internal package id
+          barcode:
+            $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+          quantity:
+            type: string
+          packaging-type:
+            $ref: "../packaging-type/packaging-type.yaml#/components/schemas/packaging-type"
+          content:
+            type: array
+            items:
+              $ref: "#/components/schemas/package-content"
+
+
+        example:
+          id: "415638"
+          barcode:
+            id: "1111222223333344444"
+            item-type: package
+            barcode-type: sscc
+          quantity: 8
+          packaging-type:
+            id: "Z001"
+            href: "https://api.armani.it/v1/packaging-type/Z001"
+          content:
+            - id: 1
+              quantity: 4
+              barcode:
+                id: "82637352662"
+                item-type: sku
+                barcode-type: gtin13
+            - id: 2
+              quantity: 3
+              barcode:
+                id: "82637352661"
+                item-type: sku
+                barcode-type: gtin13
+            - id: 3
+              quantity: 1
+              barcode:
+                id: "826373529999"
+                item-type: sku
+                barcode-type: gtin13
+

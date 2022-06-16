@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
-  title: Gender
-  description: Gender
+  title: Forwarding Agent
+  description: Forwarding Agent
   version: "1.0.0"
 servers:
   - url: '{protocol}://{environment}.armani.it/v1'
@@ -17,10 +17,10 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /gender/{id}:
+  /forwarding-agent/{id}:
     get:
-      summary: Return gender description
-      description: Return gender description
+      summary: Return Forwardign Agent description
+      description: Return Forwardign Agent description
       parameters:
         - name: id
           in: path
@@ -35,7 +35,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/gender"
+                $ref: "#/components/schemas/forwarding-agent"
         "401":
           description: Unauthorized Error
           content:
@@ -49,10 +49,10 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /genders:
+  /forwarding-agents:
     get:
-      summary: Return list of gender
-      description: Return list of gender
+      summary: Return list of forwarding-agents
+      description: Return list of forwarding-agents
       responses:
         "200":
           description: successful operation
@@ -86,15 +86,52 @@ components:
       name: X-Gateway-APIKey  # name of the header, query parameter or cookie
 
   schemas:
-    gender:
-      $ref : "../common/gender.yaml#/components/schemas/gender"
+    forwarding-agent:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        description:
+          type: string
+        addresses:
+          $ref : "../common/address.yaml#/components/schemas/address"
 
       example:
-        id: "60"
-        href: "https://api.armani.it/v1/gender/60"
+        id: "BRTMI"
+        href: "https://api.armani.it/v1/forwarding-agent/BRTMI"
         description:
           - language: en
-            description: WOMAN
+            description: BARTOLINI MILANO
+        addresses:
+          id: "1"
+          address-type: legal
+          street: "Via degli spedizionieri"
+          street-number: "34"
+          zip-code: "20100"
+          city:
+            id: "Milano"
+            href: "https://api.armani.it/v1/city/Milano"
+          contacts:
+            - contact-id: "+39029515651"
+              contact-type: landline
+              priority: main
+              status: active
+            - contact-id: "bartolini.legal.milano@spedizionieri.net"
+              contact-type: email
+              priority: main
+              status: active
+          province:
+            id: "Milano"
+          region:
+            id: "Lombardia"
+          country:
+            id: "Italia"
+
+
+
 
     list:
       type: object
@@ -102,22 +139,5 @@ components:
         items:
           type: array
           items:
-            $ref: "#/components/schemas/gender"
+            $ref: "#/components/schemas/forwarding-agent"
 
-      example:
-        items:
-          - id: "60"
-            href: "https://api.armani.it/v1/gender/60"
-            description:
-              - language: en
-                description: WOMAN
-          - id: "30"
-            href: "https://api.armani.it/v1/gender/30"
-            description:
-              - language: en
-                description: MAN
-          - id: "33"
-            href: "https://api.armani.it/v1/gender/33"
-            description:
-              - language: en
-                description: BOY

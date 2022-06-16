@@ -1,0 +1,14 @@
+components:
+  schemas:
+    site:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/site/4SU1"
+        anyOf:
+            - $ref: "../store/store.yaml#/components/schemas/store"
+
