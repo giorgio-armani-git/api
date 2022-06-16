@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   title: Delivery
-  description: Delivery, can be inbound or outbound delivery
+  description: Delivery, can be inbound or outbound delivery dependign on delivery-type, fields must be valorized accordingly.
   version: "1.0.0"
 servers:
   - url: '{protocol}://{environment}.armani.it/v1'
@@ -188,6 +188,84 @@ components:
           $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
         delivery-items:
           $ref: "delivery-items.yaml#/components/schemas/delivery-items"
+
+      example:
+        id: "3205703283"
+        href: "https://api.armani.it/v1/delivery/3205703283"
+        delivery-type: "outbound"
+        ddt-number: "string"
+        document-date: "2022-06-16T13:48:49.858Z"
+        gross-weight:
+          uom: "kg"
+          value: "1.2"
+        net-weight:
+          uom: "kg"
+          value: "1.15"
+        volume:
+          uom: "cm3"
+          value: "256"
+        total-package-number: 1
+        total-quantity: 8
+        shipment-number: "string"
+        invoice-number: "string"
+        ref-delivery: "string"
+        external-asn-id: "string"
+        destination-site:
+          id: "4SU1"
+          href: "https://api.armani.it/v1/site/4SU1"
+        sending-site:
+          id: "4S09"
+          href: "https://api.armani.it/v1/site/4S09"
+        receiving-point:
+          id: "4SU1"
+          href: "https://api.armani.it/v1/site/4SU1"
+        shipping-point:
+          id: "4S09"
+          href: "https://api.armani.it/v1/site/4S09"
+        vendor:
+          id: "12334"
+          href: "https://api.armani.it/v1/vendor/12334"
+        forwarding-agent:
+          id: "BRTMI"
+          href: "https://api.armani.it/v1/forwarding-agent/BRTMI"
+        expected-receiving-date: "2022-06-18T13:48:49.858Z"
+        count-type": "sku"
+        delivery-status: "open"
+        creation-date: "2022-06-16T13:48:49.858Z"
+        last-change-date: "2022-06-16T13:48:49.858Z"
+        delivery-items:
+          - id: "1"
+            barcode:
+              id: "8054804724299"
+              item-id: "XYZ010XOI69 00102N"
+              item-type: "sku"
+              barcode-type: "gtin13"
+            delivery-item-status: "open"
+            storage-location:
+              id: "0001"
+              href: "https://api.armani.it/v1/storage-location/0001"
+            cites:
+              id: 4,
+              href: "https://api.armani.it/v1/cites/4"
+            packages:
+              - id: "415638728"
+                barcode:
+                  id: "1111222223333344444333332222222"
+                  item-type: "package"
+                  barcode-type: "sscc"
+                quantity: 5
+                packaging-type:
+                  id: "Z001"
+                  href: "https://api.armani.it/v1/packaging-type/Z001"
+              - id: "415638729"
+                barcode:
+                  id: "111122222333334444433333229999999"
+                  item-type: "package"
+                  barcode-type: "sscc"
+                quantity: 3
+                packaging-type:
+                  id: "Z001"
+                  href: "https://api.armani.it/v1/packaging-type/Z001"
 
     list:
       type: object

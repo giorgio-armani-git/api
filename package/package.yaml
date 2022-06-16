@@ -17,7 +17,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /packaging-type/{id}:
+  /package/{id}:
     get:
       summary: Return package
       description: Return package
