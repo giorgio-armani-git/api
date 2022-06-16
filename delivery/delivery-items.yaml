@@ -19,6 +19,8 @@ components:
           $ref: "../common/storage-location.yaml#/components/schemas/storage-location"
         cites:
           $ref: "../cites/cites.yaml#/components/schemas/cites"
+        quantity:
+          type: string
         packages:
           type: array
           items:

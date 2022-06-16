@@ -235,6 +235,7 @@ components:
         last-change-date: "2022-06-16T13:48:49.858Z"
         delivery-items:
           - id: "1"
+            quantity: "8"
             barcode:
               id: "8054804724299"
               item-id: "XYZ010XOI69 00102N"
