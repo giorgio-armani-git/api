@@ -21,7 +21,6 @@ paths:
     get:
       summary: Returns active items
       description: Returns active items
-      operationId: ""
       parameters:
         - name: season-creation-id
           in: query
@@ -151,7 +150,6 @@ paths:
     get:
       summary: Returns active item by {item-id}
       description: Returns active item by {item-id}
-      operationId: ""
       parameters:
         - name: item-id
           in: path
