@@ -38,4 +38,7 @@ components:
           $ref: "region.yaml#/components/schemas/region"
         country:
           $ref: "country.yaml#/components/schemas/country"
+        time-zone:
+          $ref: "timezone.yaml#/components/schemas/timezone"
+
 

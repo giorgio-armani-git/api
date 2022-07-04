@@ -1,0 +1,19 @@
+components:
+  schemas:
+    timezone:
+      type: object
+      properties:
+        id:
+          type: string
+          example: CET
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/timezone/CET"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Central European Time"
