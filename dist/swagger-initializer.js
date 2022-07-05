@@ -42,6 +42,7 @@ window.onload = function() {
           {url: "./forwarding-agent/forwarding-agent.yaml", name: "FORWARDING AGENT"},
           {url: "./store/store.yaml", name: "STORES"},
           {url: "./vendor/vendor.yaml", name: "VENDORS"},
+          {url: "./vendor-detail/vendor-detail.yaml", name: "VENDOR DETAIL"},
 
         ],
     dom_id: '#swagger-ui',
