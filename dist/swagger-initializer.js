@@ -41,6 +41,7 @@ window.onload = function() {
           {url: "./capsule-special-projects/capsule-special-projects.yaml", name: "CAPSULE SPECIAL PROJECTS"},
           {url: "./forwarding-agent/forwarding-agent.yaml", name: "FORWARDING AGENT"},
           {url: "./store/store.yaml", name: "STORES"},
+          {url: "./vendor/vendor.yaml", name: "VENDORS"},
 
         ],
     dom_id: '#swagger-ui',
