@@ -1,0 +1,11 @@
+components:
+  schemas:
+    block:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+        description:
+          type: string
