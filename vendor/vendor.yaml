@@ -57,7 +57,7 @@ paths:
       parameters:
         - name: id
           in: query
-          description: state
+          description: vendor id
           required: false
           explode: true
           schema:
@@ -65,7 +65,7 @@ paths:
             example: "AFH8.00"
         - name: vendor-type
           in: query
-          description: state
+          description: vendor-type
           required: false
           explode: true
           schema:
@@ -73,42 +73,42 @@ paths:
             example: person
         - name: gender
           in: query
-          description: state
+          description: gender
           required: false
           explode: true
           schema:
             type: string
         - name: firstname
           in: query
-          description: state
+          description: firstname
           required: false
           explode: true
           schema:
             type: string
         - name: lastname
           in: query
-          description: state
+          description: lastname
           required: false
           explode: true
           schema:
             type: string
         - name: company-name
           in: query
-          description: state
+          description: company-name
           required: false
           explode: true
           schema:
             type: string
         - name: nationality
           in: query
-          description: state
+          description: nationality
           required: false
           explode: true
           schema:
             type: string
         - name: city
           in: query
-          description: state
+          description: city
           required: false
           explode: true
           schema:
@@ -116,28 +116,28 @@ paths:
             example: Tel Aviv
         - name: province
           in: query
-          description: state
+          description: province
           required: false
           explode: true
           schema:
             type: string
         - name: region
           in: query
-          description: state
+          description: region
           required: false
           explode: true
           schema:
             type: string
         - name: country
           in: query
-          description: state
+          description: country
           required: false
           explode: true
           schema:
             type: string
         - name: contact-type
           in: query
-          description: state
+          description: contact-type
           required: false
           explode: true
           schema:
@@ -145,7 +145,7 @@ paths:
             example: email
         - name: contact-id
           in: query
-          description: state
+          description: contact-id
           required: false
           explode: true
           schema:
@@ -153,12 +153,20 @@ paths:
             example: a.sfolcini@gmail.com
         - name: status
           in: query
-          description: state
+          description: status
           required: false
           explode: true
           schema:
             type: string
             example: cancelled
+        - name: gln-code
+          in: query
+          description: GLN code
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: 1234567890123
 
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
