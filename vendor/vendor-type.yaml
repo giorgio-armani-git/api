@@ -1,0 +1,8 @@
+components:
+  schemas:
+    vendor-type:
+      type: string
+      enum:
+        - customer
+        - company
+        - other

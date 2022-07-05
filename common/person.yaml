@@ -23,6 +23,8 @@ components:
           type: string
           format: date-time
           description: date of birth
+        place-of-birth:
+          type: string
         title:
           type: string
           descripton: persons's title
