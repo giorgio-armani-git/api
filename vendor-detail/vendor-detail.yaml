@@ -99,7 +99,7 @@ components:
               payment-terms:
                 $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
               alternative-payee:
-                $ref: "../vendor/vendor.yaml#/components/schemas/vendor"
+                $ref: "../vendor/business-partner.yaml#/components/schemas/vendor"
               payment-block:
                 $ref: "../common/block.yaml#/components/schemas/block"
         purchases:
@@ -121,6 +121,9 @@ components:
                 $ref: "../common/confirmation-control.yaml#/components/schemas/confirmation-control"
               purchase-block:
                 $ref: "../common/block.yaml#/components/schemas/block"
+              block:
+                $ref: "../common/block.yaml#/components/schemas/block"
+
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         creation-date:
@@ -171,6 +174,9 @@ components:
               id: "ID"
               href: "https://api.armani.it/v1/block/ID"
               description: "Block purchase order"
+            block:
+              id: "ID"
+              href: "https://api.armani.it/v1/block/ID"
         status: "active"
         creation-date: "2022-03-05T00:00:00.000Z"
         last-change-date: "2022-03-05T00:00:00.000Z"

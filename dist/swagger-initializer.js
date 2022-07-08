@@ -43,6 +43,7 @@ window.onload = function() {
           {url: "./store/store.yaml", name: "STORES"},
           {url: "./vendor/vendor.yaml", name: "VENDORS"},
           {url: "./vendor-detail/vendor-detail.yaml", name: "VENDOR DETAIL"},
+          {url: "./business-partner/business-partner.yaml", name: "BUSINESS PARTNER"},
 
         ],
     dom_id: '#swagger-ui',

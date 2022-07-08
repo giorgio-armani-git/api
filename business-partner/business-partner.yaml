@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
-  title: Vendor
-  description: Giorgio Armani Vendors
+  title: Business Partner
+  description: Giorgio Armani Business Partner
   version: "1.0.0"
 servers:
   - url: '{protocol}://{environment}.armani.it/v1'
@@ -17,14 +17,14 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /vendor/{vendor-id}:
+  /business-partner/{business-partner-id}:
     get:
-      summary: Return the specified vendor
-      description: Return vendor
+      summary: Return the specified Business Partner
+      description: Returns Business Partner
       parameters:
-        - name: vendor-id
+        - name: business-partner-id
           in: path
-          description: vendor-id
+          description: business-partner-id
           required: true
           explode: true
           schema:
@@ -36,7 +36,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/vendor"
+                $ref: "#/components/schemas/business-partner"
         "401":
           description: Unauthorized Error
           content:
@@ -50,22 +50,22 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /vendors:
+  /business-partners:
     get:
-      summary: Return all vendors
-      description: 'Return all vendors'
+      summary: Return all business-partners
+      description: 'Return all business-partners'
       parameters:
         - name: id
           in: query
-          description: vendor id
+          description: business-partner id
           required: false
           explode: true
           schema:
             type: string
             example: "AFH8.00"
-        - name: vendor-type
+        - name: business-partner-type
           in: query
-          description: vendor-type
+          description: business-partner-type
           required: false
           explode: true
           schema:
@@ -167,6 +167,21 @@ paths:
           schema:
             type: string
             example: 1234567890123
+        - name: document-id
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+        - name: document-type
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
+            example: sdi
 
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
         - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
@@ -226,17 +241,7 @@ components:
             expire-date:
               type: string
               format: date-time
-    taxes:
-      type: object
-      properties:
-        vat-registration-number:
-          type: string
-        vat-registration-number2:
-          type: string
-        fiscal-code:
-          type: string
-        sdi:
-          type: string
+
     business-partner-main:
       type: object
       properties:
@@ -269,28 +274,27 @@ components:
         $ref: "../common/language.yaml#/components/schemas/language"
 
 
-    vendor:
+    business-partners:
       anyOf:
         - $ref: "../common/person.yaml#/components/schemas/person"
         - $ref: "../employee/employee.yaml#/components/schemas/employee"
         - $ref: "../common/company.yaml#/components/schemas/company"
-        - $ref: "./business-partner-type.yaml#/components/schemas/vendor-type"
+        - $ref: "business-partner-type.yaml#/components/schemas/business-partner-type"
         - $ref: "#/components/schemas/communication-languages"
         - $ref: "#/components/schemas/business-partner-main"
         - $ref: "#/components/schemas/gln-code"
-        - $ref: "#/components/schemas/taxes"
         - $ref: "#/components/schemas/notes"
         - $ref: "#/components/schemas/status"
         - $ref: "#/components/schemas/creation-date"
         - $ref: "#/components/schemas/last-change-date"
 
       example:
-        vendor-type: person
+        business-partner-type: person
         id: "9PSN.00"
-        href: "https://api.armani.it/v1/vendor/9PSN.00"
+        href: "https://api.armani.it/v1/business-partner/9PSN.00"
         business-partner-main:
           id: "9PSN.00"
-          href: "https://api.armani.it/v1/vendor/9PSN.00"
+          href: "https://api.armani.it/v1/business-partner/9PSN.00"
         gender: male
         birthday: "1976-03-05T00:00:00.000Z"
         firstname: Alberto
@@ -391,11 +395,15 @@ components:
               language: it
               description: Inglese
         notes: "This is a simple note field"
-        taxes:
-          vat-registration-number: "IT03722500265"
-          vat-registration-number2: "03722500265"
-          fiscal-code: "RSSMNL70D02C957Z"
-          sdi: "0000123"
+        documents:
+          - id: "IT03722500265"
+            document-type: vat-registration-number
+          - id: "03722500265"
+            document-type: vat-registration-number2
+          - id: "RSSMNL70D02C957Z"
+            document-type: fiscal-code
+          - id: "123456"
+            document-type: sdi
         relationships:
           - relation-type:
               id: "Z0050"

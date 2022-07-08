@@ -1,0 +1,9 @@
+components:
+  schemas:
+    business-partner-type:
+      type: string
+      enum:
+        - customer
+        - company
+        - vendor
+        - other

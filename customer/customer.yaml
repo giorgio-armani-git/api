@@ -173,6 +173,14 @@ paths:
           schema:
             type: string
             example: a.sfolcini@gmail.com
+        - name: fuzzy
+          in: query
+          description: fuzzy
+          required: false
+          explode: true
+          schema:
+            type: boolean
+            default: false
         - name: status
           in: query
           description: state
