@@ -105,6 +105,13 @@ paths:
           explode: true
           schema:
             type: string
+        - name: barcode
+          in: query
+          description: barcode
+          required: false
+          explode: true
+          schema:
+            type: string
         - name: gender-id
           in: query
           description: gender
