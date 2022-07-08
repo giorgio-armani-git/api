@@ -85,6 +85,13 @@ paths:
           explode: true
           schema:
             type: string
+        - name: middlename
+          in: query
+          description: state
+          required: false
+          explode: true
+          schema:
+            type: string
         - name: lastname
           in: query
           description: lastname
@@ -151,6 +158,13 @@ paths:
           schema:
             type: string
             example: a.sfolcini@gmail.com
+        - name: fuzzy
+          in: query
+          description: fuzzy
+          required: false
+          explode: true
+          schema:
+            type: string
         - name: status
           in: query
           description: status
@@ -169,14 +183,14 @@ paths:
             example: 1234567890123
         - name: document-id
           in: query
-          description: state
+          description: document-id
           required: false
           explode: true
           schema:
             type: string
         - name: document-type
           in: query
-          description: state
+          description: document-type
           required: false
           explode: true
           schema:
@@ -274,7 +288,7 @@ components:
         $ref: "../common/language.yaml#/components/schemas/language"
 
 
-    business-partners:
+    business-partner:
       anyOf:
         - $ref: "../common/person.yaml#/components/schemas/person"
         - $ref: "../employee/employee.yaml#/components/schemas/employee"
@@ -433,5 +447,5 @@ components:
         items:
           type: array
           items:
-            $ref: "#/components/schemas/vendor"
+            $ref: "#/components/schemas/business-partner"
 
