@@ -172,7 +172,7 @@ components:
         shipping-point:
           $ref: "../store/store.yaml#/components/schemas/store"
         vendor:
-          $ref: "business-partner.yaml#/components/schemas/vendor"
+          $ref: "vendor.yaml#/components/schemas/vendor"
         forwarding-agent:
           $ref: "../forwarding-agent/forwarding-agent.yaml#/components/schemas/forwarding-agent"
         expected-receiving-date:
