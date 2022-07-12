@@ -71,6 +71,13 @@ paths:
           schema:
             type: string
             example: person
+        - name: relationship-business-partner
+          in: query
+          description: relationship-business-partner
+          required: false
+          explode: true
+          schema:
+            type: string
         - name: gender
           in: query
           description: gender
