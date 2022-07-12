@@ -229,7 +229,7 @@ components:
           id: "BRTMI"
           href: "https://api.armani.it/v1/forwarding-agent/BRTMI"
         expected-receiving-date: "2022-06-18T13:48:49.858Z"
-        count-type": "sku"
+        count-type: "sku"
         delivery-status: "open"
         creation-date: "2022-06-16T13:48:49.858Z"
         last-change-date: "2022-06-16T13:48:49.858Z"
