@@ -310,7 +310,9 @@ components:
         - $ref: "#/components/schemas/last-change-date"
 
       example:
-        business-partner-type: person
+        business-partner-type:
+          - employee
+          - customer
         id: "9PSN.00"
         href: "https://api.armani.it/v1/business-partner/9PSN.00"
         business-partner-main:

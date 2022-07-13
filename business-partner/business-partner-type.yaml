@@ -1,9 +1,12 @@
 components:
   schemas:
     business-partner-type:
-      type: string
-      enum:
-        - customer
-        - company
-        - vendor
-        - other
+      type: array
+      items:
+        type: string
+        enum:
+          - customer
+          - company
+          - vendor
+          - employee
+          - other
