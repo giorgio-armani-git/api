@@ -311,8 +311,8 @@ components:
 
       example:
         business-partner-type:
-          - employee
-          - customer
+          - id: employee
+          - id: customer
         id: "9PSN.00"
         href: "https://api.armani.it/v1/business-partner/9PSN.00"
         business-partner-main:
