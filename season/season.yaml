@@ -30,6 +30,13 @@ paths:
           schema:
             type: string
             example: "AX94DGT 00101N"
+        - name: company-id
+          in: query
+          description: company-id
+          required: true
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: successful operation
@@ -84,7 +91,7 @@ paths:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
 
-  /season/{season-id}/items:
+  /season/items/{season-id}:
     get:
       summary: Returns all items for a given season-id
       description: Returns all items for a given season-id
