@@ -99,7 +99,7 @@ components:
               payment-terms:
                 $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
               alternative-payee:
-                $ref: "../vendor/business-partner.yaml#/components/schemas/vendor"
+                $ref: "../vendor/vendor.yaml#/components/schemas/vendor"
               payment-block:
                 $ref: "../common/block.yaml#/components/schemas/block"
         purchases:

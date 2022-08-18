@@ -1,0 +1,68 @@
+openapi: "3.0.0"
+info:
+  title: Outbound Confirmation
+  description: Outound delivery confirmation, shipment confirmation.
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+    /delivery:
+      post:
+        summary: confirm the outbound delivery
+        description: confirm the outbound delivery
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/outbound-confirmation"
+          "401":
+            description: Unauthorized Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+          "default":
+            description: Unexpected Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    outbound-confirmation:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+
+      example:
+        id: "3202831154"
+        date: "2022-06-16T13:48:49.858Z"

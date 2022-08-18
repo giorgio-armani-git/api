@@ -1,0 +1,94 @@
+openapi: "3.0.0"
+info:
+  title: Delivery Inbound Receipt & Close
+  description: Delivery Inbound Receipt & Close
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+    /delivery/:
+      patch:
+        summary: Update the given delivery
+        description: Update the delivery
+        responses:
+          "200":
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/inbound-receipt"
+          "401":
+            description: Unauthorized Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+          "default":
+            description: Unexpected Error
+            content:
+              application/json:
+                schema:
+                  $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    inbound-receipt:
+      type: object
+      properties:
+        id:
+          type: string
+        stop-count:
+          type: flag
+          default: "false"
+        package-id:
+          type: string
+        date:
+          type: string
+          format: datetime
+        package-items:
+          type: array
+          items:
+            row:
+              type: string
+            quantity:
+              type: number
+            barcode:
+              $ref: "../barcode/barcode.yaml#/components/schemas/barcode"
+
+      example:
+        id: "3302831154"
+        stop-count: "false"
+        package-id: "HU11111111333333"
+        package-items:
+          - row: "0010"
+            quantity: 1
+            barcode:
+              id: "8055187688604"
+              barcode-type: "gtin13"
+          - row: "0030"
+            quantity: 2
+            barcode:
+              id: "8055187688601"
+              barcode-type: "gtin13"
