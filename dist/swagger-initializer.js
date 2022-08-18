@@ -15,6 +15,8 @@ window.onload = function() {
           {url: "./digital-assets/digital-assets.yaml", name: "DIGITAL ASSETS"},
           {url: "./season/season.yaml", name: "SEASON"},
           {url: "./delivery/delivery.yaml", name: "DELIVERY"},
+          {url: "./inbound-receipt/inbound-receipt.yaml", name: "DELIVERY - INBOUND RECEIPT"},
+          {url: "./outbound-confirmation/outbound-confirmation.yaml", name: "DELIVERY - OUTBOUND CONFIRMATION"},
           {url: "./gender/gender.yaml", name: "GENDER"},
           {url: "./merchandise-category/merchandise-category.yaml", name: "MERCHANDISE CATEGORY"},
           {url: "./merchandise-group/merchandise-group.yaml", name: "MERCHANDISE GROUP"},
