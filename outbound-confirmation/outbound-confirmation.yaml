@@ -17,7 +17,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-    /delivery:
+    /outbound-confirmation:
       post:
         summary: confirm the outbound delivery
         description: confirm the outbound delivery

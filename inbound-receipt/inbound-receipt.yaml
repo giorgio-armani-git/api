@@ -17,7 +17,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-    /delivery/:
+    /inbound-receipt/:
       patch:
         summary: Update the given delivery
         description: Update the delivery
