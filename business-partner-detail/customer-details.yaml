@@ -1,0 +1,53 @@
+components:
+  schemas:
+    customer-details:
+      type: object
+      properties:
+        companies:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              payment-terms:
+                $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
+              customer-type:
+                type: string
+              customer-category:
+                type: string
+        sales:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              partner-function:
+                type: string
+
+        letter-of-intent:
+          type: array
+          items:
+            type: object
+            properties:
+              protocol-id:
+                type: string
+              protocol-internal-id:
+                type: string
+              protocol-date:
+                type: string
+                format: datetime
+              license-date:
+                type: string
+                format: datetime
+              vat-exempt-code:
+                type: string
+              platfond:
+                $ref: "../common/money.yaml#/components/schemas/money"
+              valid-from:
+                type: string
+                format: datetime
+              valid-to:
+                type: string
+                format: datetime

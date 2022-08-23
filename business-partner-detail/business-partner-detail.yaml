@@ -1,0 +1,168 @@
+openapi: "3.0.0"
+info:
+  title: Business Partner Detail
+  description: Business Partner Detail
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /business-partner-detail/{business-partner-id}:
+    get:
+      summary: Returns details for a given business-partner-id
+      description: Returns details for a given business-partner-id
+      parameters:
+        - name: business-partner-id
+          in: path
+          description: business-partner-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "AHQ8.01"
+        - name: company
+          in: query
+          description: company-id
+          explode: true
+          schema:
+            type: string
+            example: "GA01"
+
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/business-partner-detail"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+
+    business-partner-detail:
+      type: object
+      properties:
+        id:
+          type: string
+          description: business-partner-id
+        href:
+          type: string
+        vendor-details:
+          $ref: "vendor-details.yaml#/components/schemas/vendor-details"
+        customer-details:
+          $ref: "customer-details.yaml#/components/schemas/customer-details"
+        status:
+          $ref: "../common/status.yaml#/components/schemas/status"
+        creation-date:
+          $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
+        last-change-date:
+          $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+
+
+
+
+      example:
+        id: "AH76.00"
+        href: "https://api.armani.it/v1/business-partner-detail/AH76.00"
+        vendor-details:
+          companies:
+            - id: "GAO0"
+              payment-term:
+                id: "E030"
+                href: "https://api.armani.it/v1/payment-term/E030"
+              payment-method:
+                id: "AMEX"
+                href: "https://api.armani.it/v1/payment-method/AMEX"
+              alternative-payee:
+                id: "4PSN.00"
+                href: "https://api.armani.it/v1/business-partner/4PSN.00"
+              payment-block:
+                id: "XXX"
+                href: "https://api.armani.it/v1/block/XXX"
+                description: "Blocked by user"
+            - id: "GA01"
+              payment-term:
+                id: "E030"
+                href: "https://api.armani.it/v1/payment-term/E030"
+              payment-method:
+                id: "VISA"
+                href: "https://api.armani.it/v1/payment-method/VISA"
+          purchases:
+            - id: "GAO0"
+              currency: "EUR"
+              incoterms:
+                id: "EXW"
+                href: "https://api.armani.it/v1/incoterms/EXW"
+              planned-delivery-time: "0"
+              trasportation-mode:
+                id: "ROAD"
+                href: "https://api.armani.it/v1/trasportation-mode/ROAD"
+              confirmation-control:
+                id: "Z004"
+                href: "https://api.armani.it/v1/confirmation-control/Z004"
+              purchase-block:
+                id: "ID"
+                href: "https://api.armani.it/v1/block/ID"
+                description: "Block purchase order"
+              block:
+                id: "ID"
+                href: "https://api.armani.it/v1/block/ID"
+        customer-details:
+          companies:
+            - id: "GA01"
+              payment-term:
+                id: "E030"
+                href: "https://api.armani.it/v1/payment-term/E030"
+              customer-type: "xxx"
+              customer-category: "xxx"
+          sales:
+            - id: "xxx"
+              partner-function: "xxx"
+          letter-of-intent:
+             - protocol-id: "111112"
+               protocol-internal-id: "222221"
+               protocol-date: "2021-12-09T15:20:00.000Z"
+               license-date: "2021-12-09T15:20:00.000Z"
+               vat-exempt-code: "12"
+               platfond:
+                 amount: 10000000
+                 currency: EUR
+               valid-from: "2021-12-09T00:00:00.000Z"
+               valid-to: "2022-12-08T00:00:00.000Z"
+        status: "active"
+        creation-date: "2022-03-05T00:00:00.000Z"
+        last-change-date: "2022-03-05T00:00:00.000Z"

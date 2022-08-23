@@ -274,7 +274,7 @@ components:
         - $ref: "../common/person.yaml#/components/schemas/person"
         - $ref: "../employee/employee.yaml#/components/schemas/employee"
         - $ref: "../common/company.yaml#/components/schemas/company"
-        - $ref: "./business-partner-type.yaml#/components/schemas/vendor-type"
+        - $ref: "./business-partner-type.yaml#/components/schemas/business-partner-type"
         - $ref: "#/components/schemas/communication-languages"
         - $ref: "#/components/schemas/business-partner-main"
         - $ref: "#/components/schemas/gln-code"

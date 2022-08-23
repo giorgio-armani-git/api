@@ -1,0 +1,41 @@
+components:
+  schemas:
+    vendor-details:
+      type: object
+      properties:
+        companies:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              payment-terms:
+                $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
+              payment-method:
+                $ref: "../common/payment-method.yaml#/components/schemas/payment-method"
+              alternative-payee:
+                $ref: "../business-partner/business-partner.yaml#/components/schemas/business-partner"
+              payment-block:
+                $ref: "../common/block.yaml#/components/schemas/block"
+        purchases:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              currency:
+                $ref: "../common/currency.yaml#/components/schemas/currency"
+              incoterms:
+                $ref: "../common/incoterms.yaml#/components/schemas/incoterms"
+              planned-delivery-time:
+                type: string
+              trasportation-mode:
+                $ref: "../common/trasportation-mode.yaml#/components/schemas/trasportation-mode"
+              confirmation-control:
+                $ref: "../common/confirmation-control.yaml#/components/schemas/confirmation-control"
+              purchase-block:
+                $ref: "../common/block.yaml#/components/schemas/block"
+              block:
+                $ref: "../common/block.yaml#/components/schemas/block"

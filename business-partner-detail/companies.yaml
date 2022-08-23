@@ -1,0 +1,17 @@
+components:
+  schemas:
+    companies:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            payment-terms:
+              $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
+            payment-method:
+              type: string
+            alternative-payee:
+              $ref: "../business-partner/business-partner.yaml#/components/schemas/business-partner"
+            payment-block:
+              $ref: "../common/block.yaml#/components/schemas/block"
