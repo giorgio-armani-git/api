@@ -43,9 +43,8 @@ window.onload = function() {
           {url: "./capsule-special-projects/capsule-special-projects.yaml", name: "CAPSULE SPECIAL PROJECTS"},
           {url: "./forwarding-agent/forwarding-agent.yaml", name: "FORWARDING AGENT"},
           {url: "./store/store.yaml", name: "STORES"},
-          {url: "./vendor/vendor.yaml", name: "VENDORS"},
-          {url: "./vendor-detail/vendor-detail.yaml", name: "VENDOR DETAIL"},
           {url: "./business-partner/business-partner.yaml", name: "BUSINESS PARTNER"},
+          {url: "./business-partner-detail/business-partner-detail.yaml", name: "BUSINESS PARTNER DETAIL"},
 
         ],
     dom_id: '#swagger-ui',
