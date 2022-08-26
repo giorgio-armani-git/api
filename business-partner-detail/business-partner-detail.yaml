@@ -170,6 +170,7 @@ components:
                     href: "https://api.armani.it/v1/partner-type/BP"
               letter-of-intent:
                  - id: "20012112151652543"
+                   href: "https://api.armani.it/v1/letter-of-intent/20012112151652543"
                    protocol-internal-id: "GO20-00003"
                    protocol-date: "2021-12-09T15:20:00.000Z"
                    license-date: "2021-12-09T15:20:00.000Z"

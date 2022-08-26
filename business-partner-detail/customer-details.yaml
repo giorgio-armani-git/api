@@ -33,31 +33,4 @@ components:
                     partner-type:
                       $ref: "../common/partner-type.yaml#/components/schemas/partner-type"
               letter-of-intent:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    protocol-internal-id:
-                      type: string
-                    protocol-date:
-                      type: string
-                      format: datetime
-                    license-date:
-                      type: string
-                      format: datetime
-                    vat-exempt-code:
-                      $ref: "../common/vat-code.yaml#/components/schemas/vat-code"
-                    platfond:
-                      $ref: "../common/money.yaml#/components/schemas/money"
-                    valid-from:
-                      type: string
-                      format: datetime
-                    valid-to:
-                      type: string
-                      format: datetime
-                    creation-date:
-                      $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
-                    last-change-date:
-                      $ref: "../common/last-change-date.yaml#/components/schemas/last-change-date"
+                $ref: "../common/letter-of-intent.yaml#/components/schemas/letter-of-intent"
