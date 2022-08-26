@@ -1,0 +1,14 @@
+components:
+  schemas:
+    partner-type:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'

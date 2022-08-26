@@ -13,9 +13,9 @@ components:
               payment-terms:
                 $ref: "../common/payment-term.yaml#/components/schemas/payment-term"
               customer-type:
-                type: string
+                $ref: "../common/customer-type.yaml#/components/schemas/customer-type"
               customer-category:
-                type: string
+                $ref: "../common/customer-category.yaml#/components/schemas/customer-category"
         sales:
           type: array
           items:
@@ -31,13 +31,13 @@ components:
                     id:
                       type: string
                     partner-type:
-                      type: string
+                      $ref: "../common/partner-type.yaml#/components/schemas/partner-type"
               letter-of-intent:
                 type: array
                 items:
                   type: object
                   properties:
-                    protocol-id:
+                    id:
                       type: string
                     protocol-internal-id:
                       type: string
@@ -48,7 +48,7 @@ components:
                       type: string
                       format: datetime
                     vat-exempt-code:
-                      type: string
+                      $ref: "../common/vat-code.yaml#/components/schemas/vat-code"
                     platfond:
                       $ref: "../common/money.yaml#/components/schemas/money"
                     valid-from:
