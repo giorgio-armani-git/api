@@ -150,19 +150,27 @@ components:
               customer-type: "xxx"
               customer-category: "xxx"
           sales:
-            - id: "xxx"
-              partner-function: "xxx"
-          letter-of-intent:
-             - protocol-id: "111112"
-               protocol-internal-id: "222221"
-               protocol-date: "2021-12-09T15:20:00.000Z"
-               license-date: "2021-12-09T15:20:00.000Z"
-               vat-exempt-code: "12"
-               platfond:
-                 amount: 10000000
-                 currency: EUR
-               valid-from: "2021-12-09T00:00:00.000Z"
-               valid-to: "2022-12-08T00:00:00.000Z"
+            - id: "GAO0"
+              partner-function:
+                - id: AH76.00
+                  partner-type: PY
+                - id: AH76.01
+                  partner-type: SP
+                - id: AH76.01
+                  partner-type: BP
+              letter-of-intent:
+                 - protocol-id: "20012112151652543"
+                   protocol-internal-id: "GO20-00003"
+                   protocol-date: "2021-12-09T15:20:00.000Z"
+                   license-date: "2021-12-09T15:20:00.000Z"
+                   vat-exempt-code: "TJ"
+                   platfond:
+                     amount: 10000000
+                     currency: EUR
+                   valid-from: "2021-12-09T00:00:00.000Z"
+                   valid-to: "2022-12-08T00:00:00.000Z"
+                   creation-date: "2021-12-01T00:00:00.000Z"
+                   last-change-date: "2022-03-05T00:00:00.000Z"
         status: "active"
         creation-date: "2022-03-05T00:00:00.000Z"
         last-change-date: "2022-03-05T00:00:00.000Z"
