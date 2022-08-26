@@ -156,18 +156,18 @@ components:
           sales:
             - id: "GAO0"
               partner-functions:
-                - id: AH76.00
-                  partner-type:
-                    id: PY
-                    href: "https://api.armani.it/v1/partner-type/PY"
-                - id: AH76.01
-                  partner-type:
-                    id: SP
-                    href: "https://api.armani.it/v1/partner-type/SP"
-                - id: AH76.01
-                  partner-type:
-                    id: BP
-                    href: "https://api.armani.it/v1/partner-type/BP"
+                - id: PY
+                  href: "https://api.armani.it/v1/partner-type/PY"
+                  business-partner-id: AH76.00
+                  business-partner-href: "https://api.armani.it/v1/business-partner/AH76.00"
+                - id: SP
+                  href: "https://api.armani.it/v1/partner-type/SP"
+                  business-partner-id: AH76.01
+                  business-partner-href: "https://api.armani.it/v1/business-partner/AH76.01"
+                - id: BP
+                  href: "https://api.armani.it/v1/partner-type/BP"
+                  business-partner-id: AH76.01
+                  business-partner-href: "https://api.armani.it/v1/business-partner/AH76.01"
               letter-of-intent:
                  - id: "20012112151652543"
                    href: "https://api.armani.it/v1/letter-of-intent/20012112151652543"

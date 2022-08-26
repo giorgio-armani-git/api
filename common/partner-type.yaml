@@ -12,3 +12,8 @@ components:
           type: array
           items:
             $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+        business-partner-id:
+          type: string
+        business-partner-href:
+          type: string
+          format: url
