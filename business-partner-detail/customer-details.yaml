@@ -23,7 +23,7 @@ components:
             properties:
               id:
                 type: string
-              partner-function:
+              partner-functions:
                 type: array
                 items:
                   type: object

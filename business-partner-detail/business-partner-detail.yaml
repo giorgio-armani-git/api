@@ -155,7 +155,7 @@ components:
                 href: "https://api.armani.it/v1/customer-category/30"
           sales:
             - id: "GAO0"
-              partner-function:
+              partner-functions:
                 - id: AH76.00
                   partner-type:
                     id: PY
