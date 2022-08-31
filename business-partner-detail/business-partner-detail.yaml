@@ -17,13 +17,13 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /business-partner-detail/{business-partner-id}:
+  /business-partner-detail/:
     get:
       summary: Returns details for a given business-partner-id
       description: Returns details for a given business-partner-id
       parameters:
-        - name: business-partner-id
-          in: path
+        - name: id
+          in: query
           description: business-partner-id
           required: true
           explode: true
