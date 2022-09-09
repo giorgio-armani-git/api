@@ -660,5 +660,8 @@ components:
                 registration-store:
                   id: "4S01"
                   href: "https://api.armani.it/v1/store/4S01"
+                last-change-employee:
+                  id: "AYH109"
+                  href: "https://api.armani.it/v1/employee/AYH109"
                 creation-date: "2022-03-05T00:00:00.000Z"
                 last-change-date: "2022-03-05T00:00:00.000Z"
