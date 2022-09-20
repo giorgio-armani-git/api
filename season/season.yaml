@@ -17,7 +17,7 @@ servers:
           - apidev   # Development server
           - apitst   # Test server
 paths:
-  /seasons:
+  /season:
     get:
       summary: Returns all season for a given item-id
       description: Returns all season for a given item-id
@@ -37,6 +37,14 @@ paths:
           explode: true
           schema:
             type: string
+        - name: season-id
+          in: query
+          description: season-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "FW23"
       responses:
         "200":
           description: successful operation
@@ -57,41 +65,8 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /season/{season-id}:
-    get:
-      summary: Returns the given season-id
-      description: Return descriptions for season-id
-      parameters:
-        - name: season-id
-          in: path
-          description: season-id
-          required: true
-          explode: true
-          schema:
-            type: string
-            example: "FW23"
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "../common/season.yaml#/components/schemas/season"
-        "401":
-          description: Unauthorized Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
-        "default":
-          description: Unexpected Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/error"
 
-
-  /season/items/{season-id}:
+  /seasons/{season-id}:
     get:
       summary: Returns all items for a given season-id
       description: Returns all items for a given season-id
