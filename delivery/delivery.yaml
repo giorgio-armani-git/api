@@ -97,6 +97,73 @@ paths:
               enum:
                 - inbound
                 - outbound
+          - name: destination-site
+            in: query
+            description: destination site
+            required: false
+            explode: true
+            schema:
+              type: string
+          - name: sending-site
+            in: query
+            description: sending site
+            required: false
+            explode: true
+            schema:
+              type: string
+          - name: shipping-point
+            in: query
+            description: shipping-point
+            required: false
+            explode: true
+            schema:
+              type: string
+          - name: document-date-start
+            in: query
+            description: document date start
+            required: false
+            explode: true
+            schema:
+              type: string
+              format: date-time
+          - name: document-date-end
+            in: query
+            description: document date end
+            required: false
+            explode: true
+            schema:
+              type: string
+              format: date-time
+          - name: delivery-status
+            in: query
+            description: delivery-status
+            required: false
+            explode: true
+            schema:
+              type: string
+          - name: expected-receiving-date-start
+            in: query
+            description: expected receiving date start
+            required: false
+            explode: true
+            schema:
+              type: string
+              format: date-time
+          - name: expected-receiving-date-end
+            in: query
+            description: expected receiving date end
+            explode: true
+            schema:
+              type: string
+              format: date-time
+
+
+          - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-start"
+          - $ref: "../common/parameter/date-range.yaml#/parameters/creation-date-end"
+          - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-start"
+          - $ref: "../common/parameter/date-range.yaml#/parameters/last-change-date-end"
+          - $ref: "../common/parameter/pagination.yaml#/parameters/limit"
+          - $ref: "../common/parameter/pagination.yaml#/parameters/offset"
         responses:
           "200":
             description: successful operation
