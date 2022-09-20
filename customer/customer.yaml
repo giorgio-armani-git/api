@@ -50,6 +50,44 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
+  /customer:
+    post:
+      summary: Create a new customer
+      description: Create a new customer
+      parameters:
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: customer-id
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/customer"
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: customer id
+                    example: "6667363"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
   /customers:
     get:
       summary: Return all customers
@@ -215,41 +253,7 @@ paths:
             application/json:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
-    post:
-      summary: Create a new customer
-      description: Create a new customer
-      parameters:
-        - name: x-idempotent-key
-          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
-        - name: customer
-          in: body
-          required: true
-          schema:
-            $ref: "#/components/schemas/customer"
-      responses:
-        "201":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: customer id
-                    example: "6667363"
-        "401":
-          description: Unauthorized Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
-        "default":
-          description: Unexpected Error
-          content:
-            application/json:
-              schema:
-                $ref: "../error/error.yaml#/components/schemas/error"
+
 security:
   - api-key-auth: []
 
