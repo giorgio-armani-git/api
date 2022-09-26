@@ -50,38 +50,6 @@ paths:
                 schema:
                   $ref: "../error/error.yaml#/components/schemas/error"
 
-      patch:
-        summary: Update the given delivery
-        description: Update the delivery
-        parameters:
-          - name: id
-            in: path
-            description: delivery id
-            required: true
-            explode: true
-            schema:
-              type: string
-              example: "321272833"
-        responses:
-          "200":
-            description: successful operation
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/delivery"
-          "401":
-            description: Unauthorized Error
-            content:
-              application/json:
-                schema:
-                  $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
-          "default":
-            description: Unexpected Error
-            content:
-              application/json:
-                schema:
-                  $ref: "../error/error.yaml#/components/schemas/error"
-
     /deliveries:
       get:
         summary: Return list of deliveries
