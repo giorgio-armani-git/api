@@ -11,6 +11,7 @@ window.onload = function() {
           {url: "./item-tax/item-tax.yaml", name: "ITEM TAX"},
           {url: "./made-in/made-in.yaml", name: "MADEIN"},
           {url: "./barcode/barcode.yaml", name: "BARCODES"},
+          {url: "./barcode/barcode-allocate.yaml", name: "BARCODES - ALLOCATE"},
           {url: "./division/division.yaml", name: "DIVISION"},
           {url: "./digital-assets/digital-assets.yaml", name: "DIGITAL ASSETS"},
           {url: "./season/season.yaml", name: "SEASON"},
