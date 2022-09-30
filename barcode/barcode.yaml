@@ -121,18 +121,15 @@ components:
           type: string
           format: uri
           example: "https://api.armani.it/v1/barcode/?item-id=XYZ010XOI69 00102N"
+        generic-article:
+          type: string
+          example: "XYZ010XOI69 001"
         generic-article-href:
           type: string
           format: uri
           example: "https://api.armani.it/v1/barcode/?item-id=XYZ010XOI69 001"
         barcode-type:
-          type: string
-          enum:
-            - gtin13
-            - atin13
-            - atom24
-            - sscc
-          example: gtin13
+          $ref: "barcode-type.yaml#/components/schemas/barcode-type"
         main:
           type: boolean
           default: false

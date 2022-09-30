@@ -1,0 +1,10 @@
+components:
+  schemas:
+      barcode-type:
+        type: string
+        enum:
+          - gtin13
+          - atin13
+          - atom24
+          - sscc
+          - upc
