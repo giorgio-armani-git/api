@@ -141,7 +141,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "unauthorized-error.yaml#/components/schemas/unauthorized-error"
+                $ref: "error.yaml#/components/schemas/unauthorized-error"
         "403":
           description: Forbidden
           content:
@@ -343,7 +343,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "unauthorized-error.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "404":
           description: Not Found
           content:
@@ -511,7 +511,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "unauthorized-error.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "403":
           description: Forbidden
           content:
@@ -634,7 +634,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: "unauthorized-error.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "403":
             description: Forbidden
             content:
