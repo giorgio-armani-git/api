@@ -191,7 +191,7 @@ paths:
               schema:
                 $ref: "error.yaml#/components/schemas/error"
                 
-  /media-item:
+  /media-items:
     get:
       description: return urls of media items of a group of item-ids, it can be the complete set of digital assets for a brand / season however query parameters can be used to narrow down the search
       parameters:
