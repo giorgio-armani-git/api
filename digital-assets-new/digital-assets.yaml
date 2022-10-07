@@ -393,7 +393,7 @@ paths:
               schema:
                 $ref: "error.yaml#/components/schemas/error"
     
-  /media-item/bulk-retrieve:
+  /media-items/bulk-retrieve:
     post:
       description: endpoint to trigger asynchronous task to retrieve list of digital assets URLs
       parameters:
@@ -593,7 +593,7 @@ paths:
           
       
     
-  /media-item/bulk-retrieve/{bulk-retrieve-id}:
+  /media-items/bulk-retrieve/{bulk-retrieve-id}:
       get:
         description: returns the result of the background asynchronous task
         parameters:
