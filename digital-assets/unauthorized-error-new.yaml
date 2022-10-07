@@ -1,0 +1,15 @@
+components:
+  schemas:
+
+    unauthorized-error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "401"
+        reason:
+          type: string
+          example: "Not Authorized!"
+        message:
+          type: string
+          example: "Please check your authentication, api-key, basic auth, OAuth etc..."
