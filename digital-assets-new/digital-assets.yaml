@@ -57,7 +57,7 @@ paths:
           required: false
           explode: true
           schema:
-            $ref: "classification.yaml#/components/schemas/classification"
+            $ref: "content-classification.yaml#/components/schemas/classification"
         - name: creation-date-start
           in: query
           description: the start date of the search interval
@@ -246,7 +246,7 @@ paths:
           required: false
           explode: true
           schema:
-            $ref: "classification.yaml#/components/schemas/classification"
+            $ref: "content-classification.yaml#/components/schemas/classification"
         - name: category
           in: query
           description: category of the digital asset, i.e. whether the digital asset has been created for marketing, web or social media
@@ -455,7 +455,7 @@ paths:
                 category:
                   $ref: "category.yaml#/components/schemas/category"
                 classification:
-                  $ref: "classification.yaml#/components/schemas/classification"
+                  $ref: "content-classification.yaml#/components/schemas/classification"
                 creation-date-start:
                   description: the start date of the search interval
                   type: string
