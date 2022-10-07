@@ -141,7 +141,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "unauthorized.yaml#/components/schemas/unauthorized-error"
+                $ref: "unauthorized-error.yaml#/components/schemas/unauthorized-error"
         "403":
           description: Forbidden
           content:
