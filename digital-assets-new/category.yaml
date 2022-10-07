@@ -1,6 +1,6 @@
 components:
   schemas:
-  
+    
     category:
       type: string
       enum:
