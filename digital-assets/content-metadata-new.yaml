@@ -1,0 +1,12 @@
+components:
+  schemas:
+    
+    content-metadata:
+      type: object
+      properties:
+        source:
+          type: string
+        tag1:
+          type: string
+        tag2:
+          type: string
