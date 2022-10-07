@@ -40,47 +40,24 @@ paths:
             example: "800012927333"
         - name: asset-type
           in: query
-          description: type of assets (i.e. image, video, swatch, 3d etc.)
+          description: the type of assets (i.e. image, video, swatch, 3d etc.)
           required: false
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - image
-                - video
-                - 3d
-                - swatch
-                - sketch
+            $ref: "asset-type-new.yaml#/components/schemas/asset-type"
         - name: category
           in: query
           description: Requester of the image (marketing samples, e-commerce, social media)
           required: false
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-              - marketing
-              - web
-              - social
+            $ref: "category-new.yaml#/components/schemas/category"
         - name: classification
           in: query
           description: The classification of the content, i.e. the views (main,front,side,back etc. )
           required: false
-          style: form
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - main
-                - front
-                - side
-                - back
-                - zoom
+            $ref: "classification-new.yaml#/components/schemas/classification"
         - name: creation-date-start
           in: query
           description: the start date of the search interval
@@ -262,41 +239,20 @@ paths:
           required: false
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - image
-                - video
-                - 3d
-                - swatch
-                - sketch
+            $ref: "asset-type-new.yaml#/components/schemas/asset-type"
         - name: classification
           in: query
           description: classification of the image digital asset, i.e. the image view
           required: false
           explode: true
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-              - main
-              - front
-              - side
-              - back
-              - zoom
+            $ref: "classification-new.yaml#/components/schemas/classification"
         - name: category
           in: query
           description: category of the digital asset, i.e. whether the digital asset has been created for marketing, web or social media
           required: false
           schema:
-            type: string
-            enum:
-              - marketing
-              - web
-              - social
-            example: "web"
+            $ref: "category-new.yaml#/components/schemas/category"
         - name: service
           in: query
           description: additional categorization of the digital assets
@@ -495,34 +451,11 @@ paths:
                     type: string
                     maxItems: 50
                 asset-type:
-                  description: the type of the digital asset (image, video, etc.)
-                  type: string
-                  enum:
-                    - image
-                    - video
-                    - 3d
-                    - swatch
-                    - sketch
-                  example: "image"
+                  $ref: "asset-type-new.yaml#/components/schemas/asset-type"
                 category:
-                  description: the category (purpose) of the digital asset (marketing, web, social)
-                  type: string
-                  enum:
-                   - marketing
-                   - web
-                   - social
-                  example: "web"
+                  $ref: "category-new.yaml#/components/schemas/category"
                 classification:
-                  description: the classification of the digital asset (image), i.e. the view
-                  type: array
-                  items:
-                    type: string
-                    enum:
-                      - main
-                      - front
-                      - side
-                      - back
-                      - zoom
+                  $ref: "classification-new.yaml#/components/schemas/classification"
                 creation-date-start:
                   description: the start date of the search interval
                   type: string
