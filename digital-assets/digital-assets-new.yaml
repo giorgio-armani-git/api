@@ -773,17 +773,6 @@ components:
         - social
       example: web
       
-    classification:
-      type: string
-      enum:
-        - main
-        - front
-        - back
-        - side
-        - zoom
-      example: main
-
-      
     bulk-retrieve-response:
       type: object
       required:
@@ -791,16 +780,6 @@ components:
       properties:
         task-id:
           description: unique identifier of the background asynchronous task (assigned by the backend system)
-          type: string
-    
-    content-metadata:
-      type: object
-      properties:
-        source:
-          type: string
-        tag1:
-          type: string
-        tag2:
           type: string
           
     multi-items-digital-assets:
