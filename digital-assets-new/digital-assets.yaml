@@ -44,20 +44,20 @@ paths:
           required: false
           explode: true
           schema:
-            $ref: "asset-type-new.yaml#/components/schemas/asset-type"
+            $ref: "asset-type.yaml#/components/schemas/asset-type"
         - name: category
           in: query
           description: Requester of the image (marketing samples, e-commerce, social media)
           required: false
           schema:
-            $ref: "category-new.yaml#/components/schemas/category"
+            $ref: "category.yaml#/components/schemas/category"
         - name: classification
           in: query
           description: The classification of the content, i.e. the views (main,front,side,back etc. )
           required: false
           explode: true
           schema:
-            $ref: "classification-new.yaml#/components/schemas/classification"
+            $ref: "classification.yaml#/components/schemas/classification"
         - name: creation-date-start
           in: query
           description: the start date of the search interval
@@ -135,61 +135,61 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "unauthorized-new.yaml#/components/schemas/unauthorized-error"
+                $ref: "unauthorized.yaml#/components/schemas/unauthorized-error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema: 
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "503":
           description: Service Not Available
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
                 
   /media-item:
     get:
@@ -239,20 +239,20 @@ paths:
           required: false
           explode: true
           schema:
-            $ref: "asset-type-new.yaml#/components/schemas/asset-type"
+            $ref: "asset-type.yaml#/components/schemas/asset-type"
         - name: classification
           in: query
           description: classification of the image digital asset, i.e. the image view
           required: false
           explode: true
           schema:
-            $ref: "classification-new.yaml#/components/schemas/classification"
+            $ref: "classification.yaml#/components/schemas/classification"
         - name: category
           in: query
           description: category of the digital asset, i.e. whether the digital asset has been created for marketing, web or social media
           required: false
           schema:
-            $ref: "category-new.yaml#/components/schemas/category"
+            $ref: "category.yaml#/components/schemas/category"
         - name: service
           in: query
           description: additional categorization of the digital assets
@@ -337,61 +337,61 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "unauthorized-error-new.yaml#/components/schemas/error"
+                $ref: "unauthorized-error.yaml#/components/schemas/error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "406":
           description: Not Acceptable
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "503":
           description: Service Unavailable
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
     
   /media-item/bulk-retrieve:
     post:
@@ -451,11 +451,11 @@ paths:
                     type: string
                     maxItems: 50
                 asset-type:
-                  $ref: "asset-type-new.yaml#/components/schemas/asset-type"
+                  $ref: "asset-type.yaml#/components/schemas/asset-type"
                 category:
-                  $ref: "category-new.yaml#/components/schemas/category"
+                  $ref: "category.yaml#/components/schemas/category"
                 classification:
-                  $ref: "classification-new.yaml#/components/schemas/classification"
+                  $ref: "classification.yaml#/components/schemas/classification"
                 creation-date-start:
                   description: the start date of the search interval
                   type: string
@@ -505,61 +505,61 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: "unauthorized-error-new.yaml#/components/schemas/error"
+                $ref: "unauthorized-error.yaml#/components/schemas/error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "503":
           description: Service Not Available
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: "error-new.yaml#/components/schemas/error"
+                $ref: "error.yaml#/components/schemas/error"
 
       callbacks:
         myEvent:
@@ -585,7 +585,7 @@ paths:
                           type: string
                           format: uri
                       required:
-                        - task-statue
+                        - task-status
                         - message
               responses:   # Expected responses to the callback message
                 "201":
@@ -628,61 +628,61 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "401":
             description: Unauthorized
             content:
               application/json:
                 schema:
-                  $ref: "unauthorized-error-new.yaml#/components/schemas/error"
+                  $ref: "unauthorized-error.yaml#/components/schemas/error"
           "403":
             description: Forbidden
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "404":
             description: Not Found
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "405":
             description: Method Not Allowed
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "429":
             description: Too Many Requests
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "500":
             description: Internal Server Error
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "502":
             description: Bad Gateway
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "503":
             description: Service Not Available
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
           "504":
             description: Gateway Timeout
             content:
               application/json:
                 schema:
-                  $ref: "error-new.yaml#/components/schemas/error"
+                  $ref: "error.yaml#/components/schemas/error"
     
     
 security:
@@ -743,7 +743,7 @@ components:
           type: string
           example: "FW22"
         category:
-          $ref: "category-new.yaml#/components/schemas/category"
+          $ref: "category.yaml#/components/schemas/category"
         assets:
           description: Array of objets carrying the digital assets corresponding to the item
           type: array
