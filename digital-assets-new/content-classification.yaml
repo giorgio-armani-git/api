@@ -1,0 +1,12 @@
+components:
+  schemas:
+  
+    classification:
+      type: string
+      enum:
+        - main
+        - front
+        - back
+        - side
+        - zoom
+      example: main

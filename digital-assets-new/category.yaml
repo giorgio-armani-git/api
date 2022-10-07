@@ -1,0 +1,11 @@
+components:
+  schemas:
+  
+    category:
+      type: string
+      enum:
+        - marketing
+        - web
+        - social
+      example: web
+  
