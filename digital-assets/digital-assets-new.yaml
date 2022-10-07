@@ -4,23 +4,23 @@ info:
   description: Digital Assets API exposes the method to retrieve different types of digital assets <p> GET method to retrieve digital assets for a specific item-id <p> GET method to retrieve in synchronous mode the complete collection of digital assets for multiple item-ids <p> POST method to task resource to asynchronously retrieve the complete collection of digital assets for multiple item-ids <p> GET method to query the status of the task resource
   version: "1.0.0"
 servers:
-  - url: 'https://apiarmanidev.gateway.webmethodscloud.de/gateway/digital-assets/v1'
-#  - url: '{protocol}://{environment}.armani.it/digital-assets/v1'
-#    variables:
-#      protocol:
-#        enum:
-#          - https
-#        default: https
-#      environment:
-#        default: api    # Production server
-#        enum:
-#          - api      # Production server
-#          - apidev   # Development server
-#          - apitest   # Test server
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+
 paths:
   /media-item/{item-id}:
     get:
-      description: Return urls of media items for the specified item-id, i.e. images and / or video
+      description: Return URLs of media items for the specified item-id, i.e. images and / or video
       parameters:
         - name: item-id
           in: path
@@ -29,7 +29,7 @@ paths:
           explode: true
           schema:
             type: string
-            example: "XYZ010XOI69 001"
+            example: "6HSMG1_SM77Z_UBWF"
         - name: barcode
           in: query
           description: barcode
@@ -40,7 +40,7 @@ paths:
             example: "800012927333"
         - name: asset-type
           in: query
-          description: type of assets (i.e. image, web image, video etc.)
+          description: type of assets (i.e. image, video, swatch, 3d etc.)
           required: false
           explode: true
           schema:
@@ -55,7 +55,7 @@ paths:
                 - sketch
         - name: category
           in: query
-          description: Requester of the image (campionario, e-commerce, instagram)
+          description: Requester of the image (marketing samples, e-commerce, social media)
           required: false
           schema:
             type: array
@@ -865,12 +865,12 @@ components:
         item-id:
           description: Unique identifier of the item
           type: string
-          example: "XYZ010XOI69 001"
+          example: "6HSMG1_SM77Z_UBWF"
         href:
           description: Hypertext reference to the item 
           type: string
           format: uri
-          example: "https://api.armani.it/digital-assets/v1/media-item/XYZ010XOI69 001"
+          example: "https://api.armani.it/digital-assets/v1/media-item/6HSMG1_SM77Z_UBWF"
         brand:
           description: Brand the item belong to
           type: string
