@@ -1,0 +1,11 @@
+components:
+  schemas:
+    asset-type:
+      type: string
+      enum:
+        - image
+        - video
+        - 3d
+        - swatch
+        - sketch
+      example: image
