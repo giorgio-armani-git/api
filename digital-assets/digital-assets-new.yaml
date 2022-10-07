@@ -764,14 +764,6 @@ components:
       name: x-Gateway-APIKey
 
   schemas:
-  
-    category:
-      type: string
-      enum:
-        - marketing
-        - web 
-        - social
-      example: web
       
     bulk-retrieve-response:
       type: object
@@ -818,7 +810,7 @@ components:
           type: string
           example: "FW22"
         category:
-          $ref: "#/components/schemas/category"
+          $ref: "category-new.yaml#/components/schemas/category"
         assets:
           description: Array of objets carrying the digital assets corresponding to the item
           type: array
