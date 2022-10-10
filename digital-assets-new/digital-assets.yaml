@@ -200,12 +200,7 @@ paths:
           description: the brand the search refers to (one brand per API Call)
           required: false
           schema:
-            type: string
-            enum:
-              - EA7
-              - AX
-              - GA
-            example: "EA7"
+            $ref: "brand.yaml#/components/schemas/brand"
         - name: season
           in: query
           description: the season the search refers to
@@ -424,12 +419,8 @@ paths:
                 - season
               properties:
                 brand:
-                  description: the brand the search refers to (one brand per API Call)
-                  type: string
-                  enum:
-                    - EA7
-                    - AX
-                    - GA
+                  description: the brand the search refers to (one brand per API call)
+                  $ref: "brand.yaml#/components/schemas/brand"
                 season:
                   description: the season the search refers to (one season per API Call)
                   type: string
