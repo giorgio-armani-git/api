@@ -723,8 +723,7 @@ components:
           example: "https://api.armani.it/digital-assets/v1/media-item/6HSMG1_SM77Z_UBWF"
         brand:
           description: Brand the item belong to
-          type: string
-          example: "EA7"
+          $ref: "brand.yaml#/components/schemas/brand"
         gender:
           description: Gender of the product item
           type: string
