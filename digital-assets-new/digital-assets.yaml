@@ -728,17 +728,31 @@ components:
       required:
         - item-id
         - href
+        - style
+        - fabric
+        - color
+        - brand
+        - gender
         - assets
       properties:
         item-id:
           description: Unique identifier of the item
           type: string
-          example: "6HSMG1_SM77Z_UBWF"
+          example: "XYZ010XOI69 001"
         href:
           description: Hypertext reference to the item 
           type: string
           format: uri
-          example: "https://api.armani.it/digital-assets/v1/media-item/6HSMG1_SM77Z_UBWF"
+          example: "https://api.armani.it/digital-assets/v1/media-item/XYZ010XOI69 001"
+        style:
+          description: the style of the item
+          type: string
+        fabric:
+          description: the fabric of the item
+          type: string
+        color:
+          description: the color of the item
+          type: string
         brand:
           description: Brand the item belong to
           $ref: "brand.yaml#/components/schemas/brand"
