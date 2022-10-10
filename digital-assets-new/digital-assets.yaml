@@ -29,7 +29,7 @@ paths:
           explode: true
           schema:
             type: string
-            example: "6HSMG1_SM77Z_UBWF"
+            example: "XYZ010XOI69 001"
         - name: style-id
           in: query
           required: true
