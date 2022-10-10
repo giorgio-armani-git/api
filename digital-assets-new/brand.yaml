@@ -1,0 +1,15 @@
+components:
+    schemas:
+
+      brand:
+        type: object
+        properties:
+          brand:
+            type: string
+            enum:
+              - EA
+              - EA7
+              - AX
+              - GA
+            example: "GA"
+        
