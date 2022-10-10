@@ -32,14 +32,20 @@ paths:
             example: "XYZ010XOI69 001"
         - name: style-id
           in: query
+          type: string
+          description: ID of the style of the item the query refers to
           required: true
           example: "6LSG03"
         - name: fabric-id
           in: query
+          type: string
+          description: ID of the fabric of the item the query refers to
           required: true
           example: "SM17Z"
         - name: color-id
           in: query
+          type: string
+          description: ID of the color of the item the query refers to
           required: true
           example: "F8G8"
         - name: barcode
@@ -57,12 +63,12 @@ paths:
           explode: true
           schema:
             $ref: "asset-type.yaml#/components/schemas/asset-type"
-        - name: category
+        - name: asset-category
           in: query
           description: Requester of the image (marketing samples, e-commerce, social media)
           required: false
           schema:
-            $ref: "category.yaml#/components/schemas/category"
+            $ref: "asset-category.yaml#/components/schemas/asset-category"
         - name: classification
           in: query
           description: The classification of the content, i.e. the views (main,front,side,back etc. )
@@ -210,13 +216,13 @@ paths:
         - name: brand
           in: query
           description: the brand the search refers to (one brand per API Call)
-          required: false
+          required: true
           schema:
             $ref: "brand.yaml#/components/schemas/brand"
         - name: season
           in: query
           description: the season the search refers to
-          required: false
+          required: true
           schema:
             type: string
             example: "FW22"
@@ -254,12 +260,12 @@ paths:
           explode: true
           schema:
             $ref: "content-classification.yaml#/components/schemas/classification"
-        - name: category
+        - name: asset-category
           in: query
-          description: category of the digital asset, i.e. whether the digital asset has been created for marketing, web or social media
+          description: the category of the digital asset, i.e. whether the digital asset has been created for marketing, web or social media
           required: false
           schema:
-            $ref: "category.yaml#/components/schemas/category"
+            $ref: "asset-category.yaml#/components/schemas/asset-category"
         - name: service
           in: query
           description: additional categorization of the digital assets
@@ -442,7 +448,7 @@ paths:
                   type: string
                   example: "M"
                 item-id:
-                  description: list of item-ids the search refers to
+                  description: list of item-ids the search refers to (item-id in this case is style-fabric-color)
                   type: array
                   items:
                     type: string
@@ -455,8 +461,8 @@ paths:
                     maxItems: 50
                 asset-type:
                   $ref: "asset-type.yaml#/components/schemas/asset-type"
-                category:
-                  $ref: "category.yaml#/components/schemas/category"
+                asset-category:
+                  $ref: "asset-category.yaml#/components/schemas/asset-category"
                 classification:
                   $ref: "content-classification.yaml#/components/schemas/classification"
                 creation-date-start:
@@ -744,8 +750,8 @@ components:
           description: Seaons of the product item
           type: string
           example: "FW22"
-        category:
-          $ref: "category.yaml#/components/schemas/category"
+        asset-category:
+          $ref: "asset-category.yaml#/components/schemas/asset-category"
         assets:
           description: Array of objets carrying the digital assets corresponding to the item
           type: array
