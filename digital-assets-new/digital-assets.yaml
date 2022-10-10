@@ -738,7 +738,6 @@ components:
         - fabric
         - color
         - brand
-        - gender
         - assets
       properties:
         item-id:
@@ -753,12 +752,15 @@ components:
         style:
           description: the style of the item
           type: string
+          example: "2WHGK03H"
         fabric:
           description: the fabric of the item
           type: string
+          example: "T01QW"
         color:
           description: the color of the item
           type: string
+          example: "UC99"
         brand:
           description: Brand the item belong to
           $ref: "brand.yaml#/components/schemas/brand"
