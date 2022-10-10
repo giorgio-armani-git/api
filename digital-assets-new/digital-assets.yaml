@@ -48,6 +48,12 @@ paths:
           description: ID of the color of the item the query refers to
           required: true
           example: "F8G8"
+        - name: season
+          in: query
+          type: string
+          description: the season the query refers to
+          required: true
+          example: "FW22"
         - name: barcode
           in: query
           description: barcode
