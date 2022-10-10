@@ -4,9 +4,9 @@ components:
     content-metadata:
       type: object
       properties:
-        source:
-          type: string
         tag1:
           type: string
         tag2:
+          type: string
+        tag3:
           type: string
