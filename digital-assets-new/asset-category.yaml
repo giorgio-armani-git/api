@@ -1,0 +1,11 @@
+components:
+  schemas:
+    
+    asset-category:
+      type: string
+      enum:
+        - marketing
+        - web
+        - social
+      example: web
+  
