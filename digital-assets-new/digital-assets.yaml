@@ -577,12 +577,14 @@ paths:
                       properties:
                         task-status:
                           $ref: "task-status.yaml#/components/schemas/task-status"
+                          example: "Complete"
                         message:
                           type: string
                           example: "The background task is complete"
                         retrieve-url:
                           type: string
                           format: uri
+                          description: Query this URL to retrieve the result of the background task
                       required:
                         - task-status
                         - message
