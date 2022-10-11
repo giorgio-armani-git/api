@@ -636,7 +636,7 @@ paths:
                     task-status:
                       description: The status of the background task
                     task-result:
-                      $ref: "#/components/schemas/multi-items-digital-assets"
+                      $ref: "#/components/schemas/multi-items-bulk-digital-assets"
                 examples:
                   Task Complete:
                     value:
@@ -742,6 +742,12 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/digital-assets"
+        
+    multi-items-bulk-digital-assets:
+      description: add here the description
+      type: array
+      items:
+        $ref: "#/components/schemas/bulk-digital-assets"
 
     digital-assets:
       type: object
@@ -764,6 +770,49 @@ components:
           type: string
           format: uri
           example: "https://api.armani.it/digital-assets/v1/media-item/XYZ010XOI69 001"
+        style:
+          description: the style of the item
+          type: string
+          example: "2WHGK03H"
+        fabric:
+          description: the fabric of the item
+          type: string
+          example: "T01QW"
+        color:
+          description: the color of the item
+          type: string
+          example: "UC99"
+        brand:
+          description: Brand the item belong to
+          $ref: "brand.yaml#/components/schemas/brand"
+        gender:
+          description: Gender of the product item
+          type: string
+          example: "M"
+        season:
+          description: Seaons of the product item
+          type: string
+          example: "FW22"
+        asset-category:
+          $ref: "asset-category.yaml#/components/schemas/asset-category"
+        assets:
+          description: Array of objets carrying the digital assets corresponding to the item
+          type: array
+          items:
+            $ref: "assets.yaml#/components/schemas/assets"
+            
+            
+    bulk-digital-assets:
+      type: object
+      description: object encapsulating properties of the digitial asset
+      required:
+        - style
+        - fabric
+        - color
+        - brand
+        - season
+        - assets
+      properties:
         style:
           description: the style of the item
           type: string
