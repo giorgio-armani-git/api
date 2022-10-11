@@ -451,6 +451,7 @@ paths:
                   items:
                     type: string
                     maxItems: 50
+                  example: ["6LSG03_SM17Z_F8G8","2WHCC03T_T02AT_UA2R","Y2N134_Y752E_80001","H3NA2B_C9900_999","6HSMG1_SM77Z_UBWF","2WHGG0VP_T03GT_UA3Z","6LSM54_SJMYZ_U8RE","Y2O170_Y752E_80001","8N1MD0_1JHSZ_0999","2WHGK03H_T01QW_UC99"]
                 asset-type:
                   description: The type of digital assets the bulk search refers to (e.g. image, video, etc.)
                   $ref: "asset-type.yaml#/components/schemas/asset-type"
