@@ -747,7 +747,11 @@ components:
           description: Hypertext reference to the item 
           type: string
           format: uri
-          example: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001?style=2WHGK03H&fabric=T01QW&color=UC99"
+          examples: 
+            Generic or SKU:
+              href: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001?style=2WHGK03H&fabric=T01QW&color=UC99"
+            Style-Fabric-Color:
+              href: "https://api.armani.it/v1/digital-assets/media-item/?style=2WHGK03H&fabric=T01QW&color=UC99"
         brand:
           description: Brand the item belong to
           $ref: "brand.yaml#/components/schemas/brand"
