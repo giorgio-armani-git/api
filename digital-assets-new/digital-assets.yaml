@@ -724,11 +724,9 @@ components:
       type: object
       description: object encapsulating properties of the digitial asset
       required:
+        - item-type
         - item-id
         - href
-        - style
-        - fabric
-        - color
         - brand
         - season
         - assets
@@ -742,15 +740,17 @@ components:
         item-id:
           description: Unique identifier of the item
           type: string
-          example: "XYZ010XOI69 001"
+          examples: "XYZ010XOI69 001"
         href:
           description: Hypertext reference to the item 
           type: string
           format: uri
           examples: 
-            Generic or SKU:
+            Generic Item ID:
               href: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001?style=2WHGK03H&fabric=T01QW&color=UC99"
-            Style-Fabric-Color:
+            Real Item ID:
+              href: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001?style=2WHGK03H&fabric=T01QW&color=UC99"
+            Style-Fabric-Color Item ID:
               href: "https://api.armani.it/v1/digital-assets/media-item/?style=2WHGK03H&fabric=T01QW&color=UC99"
         brand:
           description: Brand the item belong to
