@@ -918,7 +918,9 @@ components:
         item-id:
           description: Unique identifier of the item
           type: string
-          examples: "XYZ010XOI69 001"
+          examples: 
+            Generic: "XYZ010XOI69 001"
+            Style-Fabric-Color: "2WHGK03H_T01QW_UC99"
         href:
           description: Hypertext reference to the item 
           type: string
