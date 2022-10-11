@@ -733,6 +733,12 @@ components:
         - season
         - assets
       properties:
+        item-type:
+          type: string
+          enum:
+            - generic
+            - real
+            - style-fabric-color
         item-id:
           description: Unique identifier of the item
           type: string
@@ -741,19 +747,7 @@ components:
           description: Hypertext reference to the item 
           type: string
           format: uri
-          example: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001"
-        style:
-          description: the style of the item
-          type: string
-          example: "2WHGK03H"
-        fabric:
-          description: the fabric of the item
-          type: string
-          example: "T01QW"
-        color:
-          description: the color of the item
-          type: string
-          example: "UC99"
+          example: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001?style=2WHGK03H&fabric=T01QW&color=UC99"
         brand:
           description: Brand the item belong to
           $ref: "brand.yaml#/components/schemas/brand"
