@@ -420,7 +420,7 @@ paths:
             type: string
             example: "cb6298ab-1fb3-4fa5-ac96-dfe9c9f4a18a"
       requestBody:
-        description: request body of the POST request carrying the properties used by the backend system for the search
+        description: The request body of the POST request carrying the properties to implement search on the backend
         required: true
         content:
           application/json:
@@ -431,70 +431,65 @@ paths:
                 - season
               properties:
                 brand:
-                  description: the brand the search refers to (one brand per API call)
+                  description: The brand the bulk search refers to
                   $ref: "brand.yaml#/components/schemas/brand"
                 season:
-                  description: the season the search refers to (one season per API Call)
+                  description: The season the bulk search refers to
                   type: string
                   example: "FW22"
                 gender:
-                  description: the gender the search refers to 
+                  description: The gender the bulk serach refers to
                   type: string
                   example: "M"
-                item-id:
-                  description: list of item-ids the search refers to (item-id in this case is style-fabric-color)
-                  type: array
-                  items:
-                    type: string
-                    maxItems: 50
-                barcode:
-                  description: list of barcodes the search refers to
+                item-type:
+                  type: string
+                  description: The description of the type of items included in the items array
+                  example: "Style-Fabric-Color"
+                items:
+                  description: The list of item-ids the bulk search refers to
                   type: array
                   items:
                     type: string
                     maxItems: 50
                 asset-type:
+                  description: The type of digital assets the bulk search refers to (e.g. image, video, etc.)
                   $ref: "asset-type.yaml#/components/schemas/asset-type"
                 asset-category:
+                  description: The category of digital assets the bulk search refers to (e.g. web)
                   $ref: "asset-category.yaml#/components/schemas/asset-category"
-                classification:
-                  $ref: "content-classification.yaml#/components/schemas/classification"
                 creation-date-start:
-                  description: the start date of the search interval
+                  description: The start date of the search interval
                   type: string
                   format: date-time
                   example: "2022-09-19T05:56:18Z"
                 creation-date-end:
-                  description: the end date of the search interval
+                  description: The end date of the bulk search interval
                   type: string
                   format: date-time
                   example: "2022-09-19T09:06:55Z"
                 last-change-date-start:
-                  description: the start date of the search interval
+                  description: The start date of the bulk search interval
                   type: string
                   format: date-time
                   example: "2022-09-19T05:56:18Z"
                 laset-change-date-end:
-                  description: the end date of the search interval
+                  description: The end date of the bulk search interval
                   type: string
                   format: date-time
                   example: "2022-09-19T09:06:55Z"
                 media-width:
-                  description: the width in pixel of the media item
+                  description: The width in pixel of the media item
                   type: string
                   example: "640px"
                 media-height:
-                  description: the height in pixel of the media item
+                  description: The height in pixel of the media item
                   type: string
                   example: "640px"
-                service:
-                  description: additional service categorization
-                  type: string
-                  example: "armani.com"
                 callbackUrl:
-                  description: the callback URL where API Consumer wants to receive notification about asynchronous task completion
+                  description: The URL where API Consumer wants to receive notification about asynchronous task
                   type: string
                   format: uri
+                  example: "https://notifications.apiconsumer.com"
 
       responses:
         "202":
@@ -575,6 +570,9 @@ paths:
                     schema:
                       type: object
                       properties:
+                        task-id:
+                          description: identifier of the background task
+                          type: string
                         task-status:
                           $ref: "task-status.yaml#/components/schemas/task-status"
                           example: "Complete"
@@ -586,6 +584,7 @@ paths:
                           format: uri
                           description: Query this URL to retrieve the result of the background task
                       required:
+                        - task-id
                         - task-status
                         - message
               responses:   # Expected responses to the callback message
@@ -705,7 +704,7 @@ components:
         - task-id
       properties:
         task-id:
-          description: unique identifier of the background asynchronous task (assigned by the backend system)
+          description: Unique identifier of the background asynchronous task (assigned by the backend system)
           type: string
           
     multi-items-digital-assets:
