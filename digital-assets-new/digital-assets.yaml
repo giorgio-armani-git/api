@@ -576,11 +576,7 @@ paths:
                       type: object
                       properties:
                         task-status:
-                          type: string
-                          enum:
-                            - failed
-                            - in-progress
-                            - complete
+                          $ref: "task-status.yaml#/components/schemas/task-status"
                         message:
                           type: string
                           example: "The background task is complete"
