@@ -443,7 +443,7 @@ paths:
                   example: "M"
                 item-type:
                   type: string
-                  description: The description of the type of items included in the items array
+                  description: The type of items included in the items array (generic ID, SKU, StyleFabricColor etc.)
                   example: "Style-Fabric-Color"
                 items:
                   description: The list of item-ids the bulk search refers to
@@ -640,22 +640,7 @@ paths:
                       example: "Complete"
                     task-result:
                       $ref: "#/components/schemas/multi-items-digital-assets"
-                examples:
-                  Task Complete:
-                    value:
-                      task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
-                      task-status: "Complete"
-                      task-result:
-                        item-id: "test"
-                        href: "test"
-                        style: "test"
-                        fabric: "test"
-                        color: "test"
-                     
-                  Task Failed:
-                    value:
-                      task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
-                      task-status: "Failed"
+
           "400":
             description: Bad Request
             content:
