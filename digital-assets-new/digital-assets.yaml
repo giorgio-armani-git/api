@@ -643,7 +643,12 @@ paths:
                       task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
                       task-status: "Complete"
                       task-result:
-                        $ref: "#/components/schemas/multi-items-digital-assets"
+                        item-id: "test"
+                        href: "test"
+                        style: "test"
+                        fabric: "test"
+                        color: "test"
+                     
                   Task Failed:
                     value:
                       task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
