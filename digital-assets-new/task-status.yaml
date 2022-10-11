@@ -1,3 +1,11 @@
 components:
   schemas:
     
+    task-status:
+      type: string
+      enum:
+        - Init
+        - Waiting
+        - In Progress
+        - Failed
+        - Complete
