@@ -741,6 +741,7 @@ components:
         - fabric
         - color
         - brand
+        - season
         - assets
       properties:
         item-id:
@@ -751,7 +752,7 @@ components:
           description: Hypertext reference to the item 
           type: string
           format: uri
-          example: "https://api.armani.it/digital-assets/v1/media-item/XYZ010XOI69 001"
+          example: "https://api.armani.it/v1/digital-assets/media-item/XYZ010XOI69 001"
         style:
           description: the style of the item
           type: string
