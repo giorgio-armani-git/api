@@ -601,7 +601,7 @@ paths:
         parameters:
           - name: task-id
             in: path
-            description: The identifier of the background task the 
+            description: The identifier of the background task
             required: true
             schema:
               type: string
@@ -620,7 +620,7 @@ paths:
             required: true
             schema:
               type: string
-            example: "asdfgh"
+            example: "63543562-de1c-42de-928c-395c557ff022"
               
         responses:
           "200":
@@ -637,6 +637,17 @@ paths:
                       description: The status of the background task
                     task-result:
                       $ref: "#/components/schemas/multi-items-digital-assets"
+                examples:
+                  Task Complete:
+                    value:
+                      task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
+                      task-status: "Complete"
+                      task-result:
+                        $ref: "#/components/schemas/multi-items-digital-assets"
+                  Task Failed:
+                    value:
+                      task-id: "1ca8da47-ffef-4584-aa1b-95b7b6c1981e"
+                      task-status: "Failed"
           "400":
             description: Bad Request
             content:
