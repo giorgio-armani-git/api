@@ -4,7 +4,7 @@ info:
   description: Digital Assets API exposes the method to retrieve different types of digital assets <p> GET method to retrieve digital assets for a specific item-id (generic or sku) <p> GET method to to retrieve digital assets when item-id is not known and only Style Fabric Color are known <p> POST method to asynchronously retrieve digital assets for multiple product items <p> GET method to query the status of the asynchronous task and retrieve the results
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.armani.it/v1/digital-assets'
+  - url: '{protocol}://{environment}.armani.it/digital-assets/v1'
     variables:
       protocol:
         enum:
