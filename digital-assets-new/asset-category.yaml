@@ -4,7 +4,7 @@ components:
     asset-category:
       type: string
       enum:
-        - marketing
+        - sales
         - web
         - social
       example: web
