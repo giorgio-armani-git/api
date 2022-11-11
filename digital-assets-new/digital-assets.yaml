@@ -711,15 +711,14 @@ components:
         - item-id
         - href
         - brand
-        - season
         - assets
       properties:
         item-type:
           type: string
           enum:
             - generic
-            - real
-            - style-fabric-color
+            - sku
+            - sfc
         item-id:
           description: Unique identifier of the item
           type: string
@@ -740,14 +739,6 @@ components:
         brand:
           description: Brand the item belong to
           $ref: "brand.yaml#/components/schemas/brand"
-        gender:
-          description: Gender of the product item
-          type: string
-          example: "M"
-        season:
-          description: Season of the product item
-          type: string
-          example: "FW22"
         asset-category:
           $ref: "asset-category.yaml#/components/schemas/asset-category"
         assets:
