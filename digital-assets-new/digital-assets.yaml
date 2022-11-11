@@ -33,23 +33,23 @@ paths:
           schema:
             type: string
             example: "XYZ010XOI69 001"
-        - name: style
+        - name: style-id
           in: query
           type: string
           description: ID of the style of the item the query refers to
           required: true
           example: "6LSG03"
-        - name: fabric
+        - name: fabric-id
           in: query
           type: string
           description: ID of the fabric of the item the query refers to
-          required: true
+          required: false
           example: "SM17Z"
-        - name: color
+        - name: color-id
           in: query
           type: string
           description: ID of the color of the item the query refers to
-          required: true
+          required: false
           example: "F8G8"
         - name: barcode
           in: query
@@ -208,25 +208,25 @@ paths:
     
   /media-item/:
     get:
-      description: Return URLs of media items for the specified item-id, i.e. images and / or video
+      description: Return URLs of media items for the specified query parameters without path parameter
       parameters:
-        - name: style
+        - name: style-id
           in: query
           type: string
           description: ID of the style of the item the query refers to
           required: true
           example: "6LSG03"
-        - name: fabric
+        - name: fabric-id
           in: query
           type: string
           description: ID of the fabric of the item the query refers to
-          required: true
+          required: false
           example: "SM17Z"
-        - name: color
+        - name: color-id
           in: query
           type: string
           description: ID of the color of the item the query refers to
-          required: true
+          required: false
           example: "F8G8"
         - name: barcode
           in: query
