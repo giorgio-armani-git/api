@@ -8,6 +8,15 @@ components:
           $ref: "asset-type.yaml#/components/schemas/asset-type"
         classification:
           $ref: "content-classification.yaml#/components/schemas/classification"
+        year:
+          type: string
+          example: "2023"
+        season:
+          type: string
+          example: "SS"
+        gender:
+          type: string
+          example: "M"
         creationd-date:
           type: string
           format: date-time
