@@ -49,21 +49,6 @@ paths:
           description: ID of the color of the item the query refers to
           required: false
           example: "F8G8"
-        - name: barcode
-          in: query
-          description: barcode
-          required: false
-          explode: true
-          schema:
-            type: string
-            example: "800012927333"
-        - name: asset-type
-          in: query
-          description: the type of assets (i.e. image, video, swatch, 3d etc.)
-          required: false
-          explode: true
-          schema:
-            $ref: "asset-type.yaml#/components/schemas/asset-type"
         - name: asset-category
           in: query
           description: Requester of the image (marketing samples, e-commerce, social media)
@@ -77,38 +62,6 @@ paths:
           explode: true
           schema:
             $ref: "content-classification.yaml#/components/schemas/classification"
-        - name: creation-date-start
-          in: query
-          description: the start date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2019-07-21T18:32:28Z"
-        - name: creation-date-end
-          in: query
-          description: the end date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2022-09-19T09:32:05Z"
-        - name: last-change-date-start
-          in: query
-          description: the start date of search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2020-09-21T11:32:28Z"
-        - name: last-change-date-end
-          in: query
-          description: the end date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2022-09-19T09:32:05Z"
         - name: mime-type
           in: query
           description: the mime-type of the digital asset
@@ -218,21 +171,6 @@ paths:
           description: ID of the color of the item the query refers to
           required: false
           example: "F8G8"
-        - name: barcode
-          in: query
-          description: barcode
-          required: false
-          explode: true
-          schema:
-            type: string
-            example: "800012927333"
-        - name: asset-type
-          in: query
-          description: the type of assets (i.e. image, video, swatch, 3d etc.)
-          required: false
-          explode: true
-          schema:
-            $ref: "asset-type.yaml#/components/schemas/asset-type"
         - name: asset-category
           in: query
           description: Requester of the image (marketing samples, e-commerce, social media)
@@ -246,38 +184,6 @@ paths:
           explode: true
           schema:
             $ref: "content-classification.yaml#/components/schemas/classification"
-        - name: creation-date-start
-          in: query
-          description: the start date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2019-07-21T18:32:28Z"
-        - name: creation-date-end
-          in: query
-          description: the end date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2022-09-19T09:32:05Z"
-        - name: last-change-date-start
-          in: query
-          description: the start date of search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2020-09-21T11:32:28Z"
-        - name: last-change-date-end
-          in: query
-          description: the end date of the search interval
-          required: false
-          schema:
-            type: string
-            format: date-time
-          example: "2022-09-19T09:32:05Z"
         - name: mime-type
           in: query
           description: the mime-type of the digital asset
