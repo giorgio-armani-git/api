@@ -39,6 +39,10 @@ components:
         media-height:
           type: string
           example: "640px"
+        asset-size:
+          description: size of the digital asset in bytes
+          type: integer
+          example: 543145
         asset-url:
           type: string
           format: uri
