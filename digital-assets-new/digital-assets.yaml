@@ -41,13 +41,13 @@ paths:
           in: query
           type: string
           description: ID of the fabric of the item the query refers to
-          required: false
+          required: true
           example: "SM17Z"
         - name: color
           in: query
           type: string
           description: ID of the color of the item the query refers to
-          required: false
+          required: true
           example: "F8G8"
         - name: asset-category
           in: query
@@ -163,13 +163,13 @@ paths:
           in: query
           type: string
           description: ID of the fabric of the item the query refers to
-          required: false
+          required: true
           example: "SM17Z"
         - name: color
           in: query
           type: string
           description: ID of the color of the item the query refers to
-          required: false
+          required: true
           example: "F8G8"
         - name: asset-category
           in: query
