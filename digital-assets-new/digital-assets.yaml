@@ -744,5 +744,9 @@ components:
           type: array
           items:
             $ref: "assets.yaml#/components/schemas/assets"
+        related-items:
+          type: object
+          description: Object encapsulating sketches and swatches
+         
             
           
