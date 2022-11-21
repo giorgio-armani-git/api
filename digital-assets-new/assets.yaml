@@ -14,9 +14,6 @@ components:
         season:
           type: string
           example: "SS"
-        gender:
-          type: string
-          example: "M"
         creationd-date:
           type: string
           format: date-time
