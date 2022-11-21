@@ -700,7 +700,13 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/digital-assets"
- 
+        
+    multi-items-sketches-digital-assets:
+      description: Array of digital assets
+      type: array
+      items:
+        $ref: "#/components/schemas/sketches-digital-assets"
+     
     digital-assets:
       type: object
       description: object encapsulating properties of the digitial asset
@@ -746,6 +752,49 @@ components:
         related-items:
           type: object
           description: Object encapsulating sketches and swatches
+          
+    sketches-digital-assets:
+      type: object
+      description: object encapsulating properties of the sketches digitial asset
+      required:
+        - item-type
+        - item-id
+        - href
+        - brand
+        - gender
+        - assets
+      properties:
+        item-type:
+          type: string
+          enum:
+            - generic
+            - sku
+            - sfc
+        item-id:
+          description: Unique identifier of the item
+          type: string
+          example: 
+            "2WHGK03H"
+        href:
+          description: Hypertext reference to the item 
+          type: string
+          format: uri
+          example: 
+              href: "https://api.armani.it/v1/digital-assets/sketches/?style=2WHGK03H"
+        brand:
+          description: Brand the sketch belongs to
+          $ref: "brand.yaml#/components/schemas/brand"
+        gender:
+          description: Gender the product item refers to
+          type: string
+          example: "M"
+        asset-category:
+          $ref: "asset-category.yaml#/components/schemas/asset-category"
+        assets:
+          description: Array of objets carrying the digital assets corresponding to the item
+          type: array
+          items:
+            $ref: "assets.yaml#/components/schemas/assets"
          
             
           
