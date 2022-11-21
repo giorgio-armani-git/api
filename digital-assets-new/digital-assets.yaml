@@ -744,49 +744,5 @@ components:
           type: array
           items:
             $ref: "assets.yaml#/components/schemas/assets"
-
-      digital-assets:
-      type: object
-      description: object encapsulating properties of the digitial asset
-      required:
-        - item-type
-        - item-id
-        - href
-        - brand
-        - gender
-        - assets
-      properties:
-        item-type:
-          type: string
-          enum:
-            - generic
-            - sku
-            - sfc
-        item-id:
-          description: Unique identifier of the item
-          type: string
-          examples: 
-            Generic: "XYZ010XOI69 001"
-            Style-Fabric-Color: "2WHGK03H_T01QW_UC99"
-        href:
-          description: Hypertext reference to the item 
-          type: string
-          format: uri
-          example: 
-              href: "https://api.armani.it/v1/digital-assets/media-item/?style=2WHGK03H&fabric=T01QW&color=UC99"
-        brand:
-          description: Brand the item belong to
-          $ref: "brand.yaml#/components/schemas/brand"
-        gender:
-          description: Gender the product item refers to
-          type: string
-          example: "M"
-        asset-category:
-          $ref: "asset-category.yaml#/components/schemas/asset-category"
-        assets:
-          description: Array of objets carrying the digital assets corresponding to the item
-          type: array
-          items:
-            $ref: "assets.yaml#/components/schemas/assets"
             
           
