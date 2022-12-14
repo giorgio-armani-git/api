@@ -1408,11 +1408,14 @@ components:
         item-id:
           description: identifier of the asset the url refers to (style-fabric-color)
           type: string
+          example: "8NPPC1_PJ05Z_0544"
         url:
           description: publicly accessbile url
           type: string
           format: url
+          example: "https://dam.armani.it/asset/transform.CHALCO-8NPPC1_PJ05Z_0544-SS2019-F.600.jpg"
         record-creation-date:
           type: string
-          format: datetime   
+          format: datetime
+          example: "2022-12-06T14:14:34.211224"
 
