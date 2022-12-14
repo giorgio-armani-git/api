@@ -1390,6 +1390,7 @@ components:
           example: "EA"
         year:
           type: string
+          example: "2023"
         season:
           type: string
           enum:
