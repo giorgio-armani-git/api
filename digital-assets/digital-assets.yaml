@@ -19,6 +19,91 @@ servers:
 
 paths:
 
+  /media-items/brands/{brand-id}:
+    get:
+      description: Return URLs of all media items stored in DAM (main image) for the brand specified as path parameter
+      parameters:
+        - name: brand-id
+          in: path
+          description: brand the search refers to
+          required: true
+          explode: true
+          schema:
+            type: string
+            enum:
+              - ga
+              - ea
+              - ea7
+              - ax
+            example: "ga"
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/url-collection"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/error"
+        "503":
+          description: Service Not Available
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
   /media-item/{item-id}:
     get:
       description: Return URLs of media items for the specified item-id, i.e. images and / or video
@@ -1291,4 +1376,42 @@ components:
         message:
           type: string
           example: Please check your authentication, api-key, basic auth, OAuth etc..."
+          
+    url-collection:
+      type: object
+      properties:
+        brand:
+          type: string
+          enum:
+            - GA
+            - EA
+            - EA7
+            - AX
+          example: "EA"
+        year:
+          type: string
+        season:
+          type: string
+          enum:
+            - SS
+            - FW
+          example: "SS"
+        assets:
+          type: array
+          items:
+            $ref: "#/components/schemas/asset-url"
+            
+    asset-url:
+      type: object
+      properties:
+        item-id:
+          description: identifier of the asset the url refers to (style-fabric-color)
+          type: string
+        url:
+          description: publicly accessbile url
+          type: string
+          format: url
+        record-creation-date:
+          type: string
+          format: datetime   
 
