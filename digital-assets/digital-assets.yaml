@@ -103,7 +103,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
 
-  /media-item/{item-id}:
+  /media-items/{item-id}:
     get:
       description: Return URLs of media items for the specified item-id, i.e. images and / or video
       parameters:
@@ -248,7 +248,7 @@ paths:
                 $ref: "#/components/schemas/error"
       
   
-  /media-item/:
+  /media-items/:
     get:
       description: Return URLs of media items for the specified item-id, i.e. images and / or video
       parameters:
