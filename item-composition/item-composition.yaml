@@ -91,3 +91,22 @@ components:
           example: "string"
         composition-description:
           $ref : "../common/localized-message.yaml#/components/schemas/localized-message"
+
+        element:
+          type: string
+        element-sort:
+          type: string
+        fiber:
+          type: string
+        fiber-percent:
+          type: string
+        fiber-sort:
+          type: string
+        scientific-code:
+          type: string
+        source-code:
+          type: string
+        washington-lvl:
+          type: string
+        anm-ori:
+          type: string

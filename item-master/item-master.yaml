@@ -153,6 +153,44 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
+    post:
+      summary: Create a new item-master
+      description: Create a new item-master
+      parameters:
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: item
+          in: body
+          required: true
+          schema:
+            $ref: "item.yaml#/components/schemas/item"
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: trasmission id
+                    example: "7837223"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+
   /item/{item-id}:
     get:
       summary: Returns active item by {item-id}

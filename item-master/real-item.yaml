@@ -47,6 +47,9 @@ components:
             description:
               - language: en
                 description: Blue Navy
+        nrf-color:
+          type: string
+          example: "123"
         drop:
           $ref: "../common/drop.yaml#/components/schemas/drop"
           example:
@@ -89,8 +92,32 @@ components:
         rfid-enabled:
           type: boolean
           default: false
+        base_uom:
+          type: string
+        weight-uom:
+          type: string
+        size-uom:
+          type: string
+        volume-uom:
+          type: string
+        net-weight:
+          type: string
+        length:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        volume:
+          type: string
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
+        status-valid-from:
+          type: string
+        weight-feather-downjacket:
+          type: number
+        percentage-feather-downjacket:
+          type: number
         creation-date:
           $ref: "../common/creation-date.yaml#/components/schemas/creation-date"
         last-change-date:

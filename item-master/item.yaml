@@ -39,6 +39,17 @@ components:
           example:
             description-type: "style-fabric"
             content: SNK COW SUEDE+CALF V
+        color:
+          $ref: "../common/color.yaml#/components/schemas/color"
+          example:
+            id: 00459
+            href: https://api.armani.it/v1/color/00459
+            description:
+              - language: en
+                description: Blue Navy
+        nrf-color:
+          type: string
+          example: "123"
         division:
           $ref: "../common/division.yaml#/components/schemas/division"
           example:
@@ -86,6 +97,12 @@ components:
           example:
             id: ITA
             href: https://api.armani.it/v1/made-in/ITA
+        preferential-origin:
+          type: string
+        label:
+          type: string
+        labor:
+          type: string
         gender:
           $ref: "../common/gender.yaml#/components/schemas/gender"
           example:
@@ -123,8 +140,90 @@ components:
         flag-di:
           type: boolean
           default: false
+        stylistic-line:
+          type: string
+        base_uom:
+          type: string
+        weight-uom:
+          type: string
+        size-uom:
+          type: string
+        volume-uom:
+          type: string
+        net-weight:
+          type: number
+        length:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        volume:
+          type: number
+        unit_vol_iso:
+          type: string
+        alt-unit-iso:
+          type: string
+        parent-item:
+          type: string
+        mrk-enabled:
+          type: string
+        fit-code:
+          type: string
+        egment-flag:
+          type: boolean
+        adhoc-production:
+          type: boolean
+        size-grid1:
+          type: string
+        size-grid2:
+          type: string
+        alias-size-grid:
+          type: string
+        sap-clz:
+          type: string
+        segment-flag:
+          type: string
+        numerator:
+          type: string
+        denominator:
+          type: number
+        vendor-no:
+          type: number
+        procurement-type:
+          type: string
+        washing:
+          type: string
+        ironing:
+          type: string
+        drying:
+          type: string
+        bleaching:
+          type: string
+        dry-clean:
+          type: string
+        water-wash:
+          type: string
+        old-mat-number:
+          type: string
+        seasons:
+          type: array
+          items:
+            $ref: "../common/season.yaml#/components/schemas/season"
+            example:
+              - id: FW20
+                href: "https://api.armani.it/v1/season/FW20"
+                code: FW
+                year: 2020
+                season-type: creation-season
+        composition:
+          type: array
+          items:
+            $ref: "../common/season.yaml#/components/schemas/season"
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
+        status-valid-from:
+          type: string
         creation-date:
           type: string
           format: date-time
