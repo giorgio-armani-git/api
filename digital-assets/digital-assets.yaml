@@ -128,7 +128,7 @@ paths:
         - name: brand
           in: query
           description: ID of the brand the query refers to
-          required: true
+          required: false
           schema:
             $ref: "#/components/schemas/brand"
         - name: category
@@ -907,6 +907,10 @@ components:
         - AX
         - GA
         - AJR
+        - 10
+        - 30
+        - 67
+        - 70
       example: "GA"
     
     classification:
