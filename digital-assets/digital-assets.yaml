@@ -30,10 +30,14 @@ paths:
           schema:
             type: string
             enum:
-              - GA
-              - EA
-              - EA7
-              - AX
+              - "GA"
+              - "EA"
+              - "EA7"
+              - "AX"
+              - "10"
+              - "30"
+              - "67"
+              - "70"
             example: "GA"
       responses:
         "200":
