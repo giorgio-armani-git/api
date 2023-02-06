@@ -222,6 +222,8 @@ components:
           $ref: "../common/status.yaml#/components/schemas/status"
         status-valid-from:
           type: string
+        transmission-id:
+          type: number
         creation-date:
           type: string
           format: date-time

@@ -172,10 +172,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: string
-                    description: trasmission id
-                    example: "7837223"
+                  transmission-id:
+                    type: number
+                    description: transmission id
+                    example: 7837223
         "401":
           description: Unauthorized Error
           content:
