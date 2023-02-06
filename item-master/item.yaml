@@ -170,7 +170,7 @@ components:
           type: string
         fit-code:
           type: string
-        egment-flag:
+        segment-flag:
           type: boolean
         adhoc-production:
           type: boolean
@@ -181,8 +181,6 @@ components:
         alias-size-grid:
           type: string
         sap-clz:
-          type: string
-        segment-flag:
           type: string
         numerator:
           type: string
