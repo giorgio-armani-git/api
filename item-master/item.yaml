@@ -217,7 +217,7 @@ components:
         composition:
           type: array
           items:
-            $ref: "../common/season.yaml#/components/schemas/season"
+            $ref: "../item-composition/item-composition.yaml#/components/schemas/composition"
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
         status-valid-from:
