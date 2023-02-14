@@ -47,9 +47,6 @@ components:
             description:
               - language: en
                 description: Blue Navy
-        nrf-color:
-          type: string
-          example: "123"
         drop:
           $ref: "../common/drop.yaml#/components/schemas/drop"
           example:

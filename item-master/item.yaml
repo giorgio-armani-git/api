@@ -168,19 +168,13 @@ components:
           type: string
         mrk-enabled:
           type: string
-        fit-code:
+        request-type:
           type: string
-        segment-flag:
-          type: boolean
         adhoc-production:
-          type: boolean
-        size-grid1:
           type: string
-        size-grid2:
+        size-grid:
           type: string
         alias-size-grid:
-          type: string
-        sap-clz:
           type: string
         numerator:
           type: string
@@ -188,8 +182,6 @@ components:
           type: number
         vendor-no:
           type: number
-        procurement-type:
-          type: string
         washing:
           type: string
         ironing:
