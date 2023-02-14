@@ -31,6 +31,7 @@ components:
                 code: FW
                 year: 2020
                 season-type: creation-season
+                sales-status: "01"
         size:
           $ref: "../common/size.yaml#/components/schemas/size"
           example:
@@ -109,7 +110,9 @@ components:
           type: string
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
-        status-valid-from:
+        sales-status:
+          type: string
+        sales-status-valid-from:
           type: string
         weight-feather-downjacket:
           type: number

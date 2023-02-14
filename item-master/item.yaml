@@ -212,7 +212,9 @@ components:
             $ref: "../item-composition/item-composition.yaml#/components/schemas/composition"
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
-        status-valid-from:
+        sales-status:
+          type: string
+        sales-status-valid-from:
           type: string
         transmission-id:
           type: number

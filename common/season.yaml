@@ -30,3 +30,6 @@ components:
             - active-season
             - creation-season
             - disabled-season
+        sales-status:
+          type: string
+          example: "01"
