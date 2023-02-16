@@ -90,6 +90,8 @@ components:
         rfid-enabled:
           type: boolean
           default: false
+        price-range:
+          type: strings
         base_uom:
           type: string
         weight-uom:

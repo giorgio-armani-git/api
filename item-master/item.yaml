@@ -212,6 +212,10 @@ components:
             $ref: "../item-composition/item-composition.yaml#/components/schemas/composition"
         status:
           $ref: "../common/status.yaml#/components/schemas/status"
+        planning-type:
+          type: string
+        stock-type:
+          type: strings
         sales-status:
           type: string
         sales-status-valid-from:
