@@ -142,6 +142,15 @@ components:
           default: false
         stylistic-line:
           type: string
+        branded-item:
+          type: boolean
+          default: false
+        packaging-material:
+          type: string
+        package-total-weight:
+          type: number
+        package-weight-unit:
+          type: string
         base_uom:
           type: string
         weight-uom:
