@@ -215,6 +215,10 @@ components:
                 code: FW
                 year: 2020
                 season-type: creation-season
+        fashion-grade:
+          $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
+          example:
+            id: seasonal
         composition:
           type: array
           items:
