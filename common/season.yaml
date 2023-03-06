@@ -30,6 +30,16 @@ components:
             - active-season
             - creation-season
             - disabled-season
+        theme:
+          $ref: "../common/theme.yaml#/components/schemas/theme"
+          example:
+            id: 28
+            href: https://api.armani.it/v1/theme/28
+        underline:
+          $ref: "../common/underline.yaml#/components/schemas/underline"
+          example:
+            id: "00"
+            href: https://api.armani.it/v1/underline/00
         sales-status:
           type: string
           example: "01"

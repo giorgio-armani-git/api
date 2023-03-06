@@ -77,11 +77,6 @@ components:
           example:
             id: JB
             href: https://api.armani.it/v1/collection/JB
-        theme:
-          $ref: "../common/theme.yaml#/components/schemas/theme"
-          example:
-            id: 28
-            href: https://api.armani.it/v1/theme/28
         underline:
           $ref: "../common/underline.yaml#/components/schemas/underline"
           example:
