@@ -107,7 +107,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
       
-  /media-items/:
+  /media-items:
     get:
       description: Return URLs of media items for the specified item-id, i.e. images and / or video
       parameters:
@@ -242,7 +242,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
                 
-  /sketches/:
+  /sketches:
     get:
       description: Return URLs of sketch(es) specified by the mandatory style query parameter
       parameters:
@@ -340,7 +340,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/error"
                 
-  /swatches/:
+  /swatches:
     get:
       description: Return URLs of sketch(es) specified by the mandatory style query parameter
       parameters:
