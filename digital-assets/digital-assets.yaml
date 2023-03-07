@@ -733,6 +733,7 @@ components:
         - sales
         - web
         - social
+        - general
         - all
       example: web
       
@@ -858,6 +859,8 @@ components:
           allOf:
             - $ref: "#/components/schemas/asset-type"
           example: swatch
+        asset-category:
+          $ref: "#/components/schemas/category"
         asset-classification:
           $ref: "#/components/schemas/classification"
         season:
