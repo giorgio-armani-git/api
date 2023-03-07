@@ -252,6 +252,18 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/style"
+        - name: fabric
+          in: query
+          description: ID of the fabric of the item the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/fabric"
+        - name: color
+          in: query
+          description: ID of the color of the item the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/color" 
         - name: size
           in: query
           description: The resolution of the image ("300", "600", "1200")
