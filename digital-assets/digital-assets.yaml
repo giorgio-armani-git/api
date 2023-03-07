@@ -556,6 +556,10 @@ components:
           example: "M"
         category:
           $ref: "#/components/schemas/category"
+        classification:
+          $ref: "#/components/schemas/classification"
+        resolution:
+          $ref: "#/components/schemas/resolution"
         count:
           description: Number of assets returned
           type: integer
