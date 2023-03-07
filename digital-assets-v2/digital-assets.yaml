@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 openapi: "3.0.0"
 info:
   title: Digital Assets API
-  description: Digital Assets API exposes the method to retrieve different types of digital assets
+  description: Digital Assets API exposes the method to retrieve different types of digital assets - Version 2
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.gateway.webmethodscloud.de/gateway/digital-assets/v1'
+  - url: '{protocol}://{environment}.gateway.webmethodscloud.de/gateway/digital-assets/v2'
     variables:
       protocol:
         enum:
