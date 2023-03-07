@@ -745,6 +745,8 @@ components:
           allOf:
             - $ref: "#/components/schemas/asset-type"
           example: image
+        asset-category:
+          $ref: "#/components/schemas/category"
         asset-classification:
           $ref: "#/components/schemas/classification"
         season:
