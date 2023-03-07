@@ -13,7 +13,7 @@ window.onload = function() {
           {url: "./barcode/barcode.yaml", name: "BARCODES"},
           {url: "./barcode/barcode-allocate.yaml", name: "BARCODES - ALLOCATE"},
           {url: "./division/division.yaml", name: "DIVISION"},
-          {url: "./digital-assets/digital-assets.yaml", name: "DIGITAL ASSETS V1"},
+          {url: "./digital-assets-v1/digital-assets.yaml", name: "DIGITAL ASSETS V1"},
           {url: "./season/season.yaml", name: "SEASON"},
           {url: "./delivery/delivery.yaml", name: "DELIVERY"},
           {url: "./inbound-receipt/inbound-receipt.yaml", name: "DELIVERY - INBOUND RECEIPT"},
