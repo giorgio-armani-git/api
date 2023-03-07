@@ -1,0 +1,17 @@
+components:
+  schemas:
+    merchandise-arrangement:
+      type: object
+      properties:
+        id:
+          type: string
+        href:
+          type: string
+          format: url
+        description:
+          type: array
+          items:
+            $ref: './localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: FASHION

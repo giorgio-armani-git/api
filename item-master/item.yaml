@@ -76,10 +76,15 @@ components:
             id: 119
             href: https://api.armani.it/v1/merchandase-category/119
         merchandise-group:
-          $ref: "../common/merchandise-group.yaml#/components/schemas/merchandise-group"
+          $ref: "../common/merchandise-arrangement.yaml#/components/schemas/merchandise-group"
           example:
             id: 67
             href: https://api.armani.it/v1/merchandase-group/67
+        merchandise-arrangement:
+          $ref: "../common/merchandise-arrangement.yaml#/components/schemas/merchandise-arrangement"
+          example:
+            id: 10
+            href: https://api.armani.it/v1/merchandase-arrangement/10
         category:
           $ref: "../common/category.yaml#/components/schemas/category"
           example:

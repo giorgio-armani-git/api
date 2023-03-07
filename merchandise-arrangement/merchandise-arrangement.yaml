@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
-  title: Merchandise Group
-  description: Merchandise Group
+  title: Merchandise Arrangement
+  description: Merchandise Arrangement
   version: "1.0.0"
 servers:
   - url: '{protocol}://{environment}.armani.it/v1'
@@ -19,12 +19,12 @@ servers:
 paths:
   /merchandise-group/{id}:
     get:
-      summary: Return merchandise-group description
-      description: Return merchandise-group description
+      summary: Return merchandise-arrangement description
+      description: Return merchandise-arrangement description
       parameters:
         - name: id
           in: path
-          description: merchandise-group id
+          description: merchandise-arrangement id
           required: true
           explode: true
           schema:
@@ -35,8 +35,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/merchandise-group"
-        "401":
+                $ref: "#/components/schemas/merchandise-arrangement"
           description: Unauthorized Error
           content:
             application/json:
@@ -49,7 +48,7 @@ paths:
               schema:
                 $ref: "../error/error.yaml#/components/schemas/error"
 
-  /merchandise-groups:
+  /merchandise-arrangement:
     get:
       summary: Return list of merchandise-categories
       description: Return list of merchandise-categories
@@ -89,15 +88,15 @@ components:
       name: X-Gateway-APIKey  # name of the header, query parameter or cookie
 
   schemas:
-    merchandise-group:
-      $ref : "../common/merchandise-arrangement.yaml#/components/schemas/merchandise-group"
+    merchandise-arrangement:
+      $ref : "../common/merchandise-arrangement.yaml#/components/schemas/merchandise-arrangement"
 
       example:
         id: "01"
-        href: "https://api.armani.it/v1/merchandise-group/01"
+        href: "https://api.armani.it/v1/merchandise-arrangement/10"
         description:
           - language: en
-            description: COAT
+            description: FASHION
 
     list:
       type: object
@@ -105,22 +104,17 @@ components:
         items:
           type: array
           items:
-            $ref: "#/components/schemas/merchandise-group"
+            $ref: "#/components/schemas/merchandise-arrangement"
 
       example:
         items:
-          - id: "01"
-            href: "https://api.armani.it/v1/merchandise-group/01"
+          - id: "10"
+            href: "https://api.armani.it/v1/merchandise-arrangement/10"
             description:
               - language: en
-                description: COAT
-          - id: "02"
-            href: "https://api.armani.it/v1/merchandise-group/02"
+                description: FASHION
+          - id: "20"
+            href: "https://api.armani.it/v1/merchandise-arrangement/20"
             description:
               - language: en
-                description: SUITS
-          - id: "03"
-            href: "https://api.armani.it/v1/merchandise-group/03"
-            description:
-              - language: en
-                description: SKIRTS/PANTS
+                description: COATS
