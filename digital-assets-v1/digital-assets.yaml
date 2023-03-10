@@ -17,96 +17,6 @@ servers:
           - apiarmanidev   # Development server
 
 paths:
-
-  /media-items/brands/{brand-id}:
-    get:
-      description: Return URLs of all media items stored in DAM (main image) for the brand specified as path parameter
-      parameters:
-        - name: brand-id
-          in: path
-          description: brand the search refers to
-          required: true
-          explode: true
-          schema:
-            type: string
-            enum:
-              - "GA"
-              - "EA"
-              - "EA7"
-              - "AX"
-              - "10"
-              - "30"
-              - "67"
-              - "70"
-            example: "GA"
-      responses:
-        "200":
-          description: Successful Operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/url-collection"
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "404":
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "405":
-          description: Method Not Allowed
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "429":
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "502":
-          description: Bad Gateway
-          content:
-            application/json:
-              schema: 
-                $ref: "#/components/schemas/error"
-        "503":
-          description: Service Not Available
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-        "504":
-          description: Gateway Timeout
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-      
   /media-items:
     get:
       description: Return URLs of media items for the specified item-id, i.e. images and / or video
@@ -252,6 +162,18 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/style"
+        - name: fabric
+          in: query
+          description: ID of the fabric of the item the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/fabric"
+        - name: color
+          in: query
+          description: ID of the color of the item the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/color" 
         - name: size
           in: query
           description: The resolution of the image ("300", "600", "1200")
@@ -362,6 +284,30 @@ paths:
           required: true
           schema: 
             $ref: "#/components/schemas/color"
+        - name: brand
+          in: query
+          description: The brand the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/brand"
+        - name: category
+          in: query
+          description: The category the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/category"
+        - name: classification
+          in: query
+          description: The classification the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/classification"
+        - name: season
+          in: query
+          description: The season the query refers to
+          required: false
+          schema:
+            $ref: "#/components/schemas/season"
         - name: size
           in: query
           description: The resolution of the image ("300", "600", "1200")
@@ -634,6 +580,10 @@ components:
           example: "M"
         category:
           $ref: "#/components/schemas/category"
+        classification:
+          $ref: "#/components/schemas/classification"
+        resolution:
+          $ref: "#/components/schemas/resolution"
         count:
           description: Number of assets returned
           type: integer
@@ -721,6 +671,7 @@ components:
         - sales
         - web
         - social
+        - general
         - all
       example: web
       
@@ -794,6 +745,8 @@ components:
           allOf:
             - $ref: "#/components/schemas/asset-type"
           example: image
+        asset-category:
+          $ref: "#/components/schemas/category"
         asset-classification:
           $ref: "#/components/schemas/classification"
         season:
@@ -846,6 +799,8 @@ components:
           allOf:
             - $ref: "#/components/schemas/asset-type"
           example: swatch
+        asset-category:
+          $ref: "#/components/schemas/category"
         asset-classification:
           $ref: "#/components/schemas/classification"
         season:
