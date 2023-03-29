@@ -76,7 +76,7 @@ components:
             id: 119
             href: https://api.armani.it/v1/merchandase-category/119
         merchandise-group:
-          $ref: "../common/merchandise-arrangement.yaml#/components/schemas/merchandise-group"
+          $ref: "../common/merchandise-group.yaml#/components/schemas/merchandise-group"
           example:
             id: 67
             href: https://api.armani.it/v1/merchandase-group/67
@@ -220,6 +220,17 @@ components:
                 code: FW
                 year: 2020
                 season-type: creation-season
+                theme:
+                  id: 28
+                  href: https://api.armani.it/v1/theme/28
+                underline:
+                  id: "00"
+                  href: https://api.armani.it/v1/underline/00
+        underline:
+          $ref: "../common/underline.yaml#/components/schemas/underline"
+          example:
+            id: "00"
+            href: https://api.armani.it/v1/underline/00
         fashion-grade:
           $ref: "../common/seasonality.yaml#/components/schemas/seasonality"
           example:
