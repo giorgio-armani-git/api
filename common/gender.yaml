@@ -11,6 +11,7 @@ components:
             - unisex
             - boy
             - girl
+            - unisex-junior
         href:
           type: string
           format: url
