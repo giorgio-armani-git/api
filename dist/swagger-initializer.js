@@ -28,6 +28,7 @@ window.onload = function() {
           {url: "./product-type/product-type.yaml", name: "PRODUCT TYPE"},
           {url: "./range-name/range-name.yaml", name: "RANGE NAME"},
           {url: "./customer/customer.yaml", name: "CUSTOMERS"},
+          {url: "./customer-marketing-preferences/customer-marketing-preferences.yaml", name: "CUSTOMER MARKETING PREFERENCES"},
           {url: "./employee/employee.yaml", name: "EMPLOYEES"},
           {url: "./pricelist/pricelist.yaml", name: "PRICELISTS"},
           {url: "./stock/stock.yaml", name: "STOCK SNAPSHOT"},
