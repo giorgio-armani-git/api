@@ -165,3 +165,9 @@ components:
           type: array
           items:
             $ref: './gender-preferences.yaml#/components/schemas/gender-preferences'
+        creation-date:
+          type: string
+          format: date-time
+        last-change-date:
+          type: string
+          format: date-time
