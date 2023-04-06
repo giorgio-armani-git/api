@@ -1,0 +1,167 @@
+openapi: "3.0.0"
+info:
+  title: Customer-Marketing-Preferences
+  description: Customer Marketing Preferences
+  version: "1.0.0"
+servers:
+  - url: '{protocol}://{environment}.armani.it/v1'
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+      environment:
+        default: api    # Production server
+        enum:
+          - api      # Production server
+          - apidev   # Development server
+          - apitst   # Test server
+paths:
+  /customer-marketing-preferences/{customer-id}:
+    get:
+      summary: Return the marketing preferences for a given customer id
+      description: Return the marketing preferences for a given customer id
+      parameters:
+        - name: customer-id
+          in: path
+          description: customer-id
+          required: true
+          explode: true
+          schema:
+            type: string
+            example: "002237484"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer-marketing-preferences"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+  /customer-marketing-preferences:
+    post:
+      summary: Create a new customer-marketing-preferences
+      description: Create a new customer-marketing-preferences
+      parameters:
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: customer-id
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/customer-marketing-preferences"
+      responses:
+        "201":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: customer id
+                    example: "6667363"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+    patch:
+      summary: Update a new customer-marketing-preferences
+      description: Update a new customer-marketing-preferences
+      parameters:
+        - name: x-idempotent-key
+          $ref: "../common/parameter/idempotent-key.yaml#/parameters/idempotent-key"
+        - name: customer-id
+          in: body
+          required: true
+          schema:
+            $ref: "#/components/schemas/customer-marketing-preferences"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: customer id
+                    example: "6667363"
+        "401":
+          description: Unauthorized Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/unauthorized-error"
+        "default":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: "../error/error.yaml#/components/schemas/error"
+
+
+security:
+  - api-key-auth: []
+
+components:
+
+  securitySchemes:
+    api-key-auth:
+      type: apiKey
+      in: header              # can be "header", "query" or "cookie"
+      name: X-Gateway-APIKey  # name of the header, query parameter or cookie
+
+  schemas:
+    customer-marketing-preferences:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 002237464
+        href:
+          type: string
+          format: url
+          example: "https://api.armani.it/v1/customers/0022373464"
+        newsletter-enabled:
+          type: boolean
+          example: true
+        newsletter-frequency:
+          type: string
+          enum:
+            - never
+            - unfrequently
+            - sometimes
+            - often
+            - very-often
+        brand-preferences:
+          type: array
+          items:
+            $ref: './brand-preferences.yaml#/components/schemas/brand-preferences'
+        gender-preferences:
+          type: array
+          items:
+            $ref: './gender-preferences.yaml#/components/schemas/gender-preferences'

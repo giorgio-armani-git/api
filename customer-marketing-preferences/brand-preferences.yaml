@@ -1,0 +1,18 @@
+components:
+  schemas:
+    brand-preferences:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "01"
+        description:
+          type: array
+          items:
+            $ref: '../common/localized-message.yaml#/components/schemas/localized-message'
+          example:
+            - language: en
+              description: "Giorgio Armani"
+        enabled:
+          type: boolean
+

@@ -1,0 +1,14 @@
+components:
+  schemas:
+    gender-preferences:
+      type: object
+      properties:
+        id:
+          type: string
+          enum:
+            - man
+            - woman
+            - kids
+          example: "woman"
+        enabled:
+          type: boolean
