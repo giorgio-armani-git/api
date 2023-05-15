@@ -1,25 +1,25 @@
 openapi: "3.0.0"
 info:
   title: Digital Assets API
-  description: Digital Assets API exposes the method to retrieve different types of digital assets
+  description: Digital Assets API exposes the method to retrieve different types of digital assets where data source is related to the legacy DAM
   version: "1.0.0"
 servers:
-  - url: '{protocol}://{environment}.gateway.webmethodscloud.de/gateway/digital-assets/v1'
+  - url: '{protocol}://{environment}.giorgioarmani.tech/digital-assets/v1'
     variables:
       protocol:
         enum:
           - https
         default: https
       environment:
-        default: apiarmani    # Production server
+        default: multimedia-api    # Production server
         enum:
-          - apiarmani      # Production server
-          - apiarmanidev   # Development server
+          - multimedia-api      # Production server
+          - test-multimedia-api   # Development server
 
 paths:
   /media-items:
     get:
-      description: Return URLs of media items for the specified item-id, i.e. images and / or video
+      description: Return URLs of media items for the item-id specified by means of query parameters
       parameters:
         - name: style
           in: query
