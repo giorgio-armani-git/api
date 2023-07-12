@@ -608,7 +608,7 @@ components:
         creation-date:
           type: string
           format: date-time
-        last-change-date:
+        last-update:
           type: string
           format: date-time
           
@@ -636,7 +636,7 @@ components:
         creation-date:
           type: string
           format: date-time
-        last-change-date:
+        last-update:
           type: string
           format: date-time  
     
@@ -707,7 +707,7 @@ components:
         creation-date:
           type: string
           format: date-time
-        last-change-date:
+        last-update:
           type: string
           format: date-time
         asset-metadata:
@@ -757,7 +757,7 @@ components:
         creation-date:
           type: string
           format: date-time
-        last-change-date:
+        last-update:
           type: string
           format: date-time
         href:
@@ -811,7 +811,7 @@ components:
         creation-date:
           type: string
           format: date-time
-        last-change-date:
+        last-update:
           type: string
           format: date-time
         href:
