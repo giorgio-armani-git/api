@@ -457,7 +457,6 @@ components:
         gender:
           description: Gender the product item refers to
           type: string
-          example: "M"
         category:
           $ref: "#/components/schemas/category"
         count:
@@ -503,7 +502,6 @@ components:
         gender:
           description: Gender the product item refers to
           type: string
-          example: "M"
         category:
           $ref: "#/components/schemas/category"
         count:
@@ -552,7 +550,6 @@ components:
         gender:
           description: Gender the product item refers to
           type: string
-          example: "M"
         category:
           $ref: "#/components/schemas/category"
         classification:
@@ -595,7 +592,6 @@ components:
         size:
           description: The size in bytes of the sketch asset
           type: integer
-          example: 345667
         url:
           description: The URL of the sketch asset
           type: string
@@ -623,7 +619,6 @@ components:
         size:
           description: The size in bytes of the sketch asset
           type: integer
-          example: 345667
         url:
           description: The URL of the sketch asset
           type: string
@@ -692,14 +687,11 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
-          example: "640px"
         media-height:
           type: string
-          example: "640px" 
         size:
           description: The size of the digital asset in bytes
           type: integer
-          example: 543145
         url:
           type: string
           format: uri
@@ -742,14 +734,11 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
-          example: "640px"
         media-height:
           type: string
-          example: "640px" 
         size:
           description: size of the digital asset in bytes
-          type: integer
-          example: 543145        
+          type: integer       
         url:
           type: string
           format: uri
@@ -796,14 +785,11 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
-          example: "640px"
         media-height:
           type: string
-          example: "640px" 
         size:
           description: size of the digital asset in bytes
-          type: integer
-          example: 543145        
+          type: integer       
         url:
           type: string
           format: uri
