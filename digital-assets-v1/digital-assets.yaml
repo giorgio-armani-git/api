@@ -396,15 +396,6 @@ components:
       name: x-api-key
 
   schemas:
-      
-    bulk-retrieve-response:
-      type: object
-      required:
-        - task-id
-      properties:
-        task-id:
-          description: Unique identifier of the background asynchronous task (assigned by the backend system)
-          type: string
           
     multi-items-digital-assets:
       description: add here the description
