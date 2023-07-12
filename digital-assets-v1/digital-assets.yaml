@@ -431,8 +431,6 @@ components:
         - item-id-type
         - item-id
         - href
-        - brand
-        - gender
         - assets
       properties:
         item-id-type:
@@ -480,8 +478,6 @@ components:
         - item-id-type
         - item-id
         - href
-        - brand
-        - gender
         - assets
       properties:
         item-id-type:
@@ -562,10 +558,6 @@ components:
           example: ""
         category:
           $ref: "#/components/schemas/category"
-        classification:
-          $ref: "#/components/schemas/classification"
-        resolution:
-          $ref: "#/components/schemas/resolution"
         count:
           description: Number of assets returned
           type: integer
