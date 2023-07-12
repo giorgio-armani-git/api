@@ -39,12 +39,6 @@ paths:
           required: true
           schema: 
             $ref: "#/components/schemas/color"
-        - name: brand
-          in: query
-          description: ID of the brand the query refers to
-          required: false
-          schema:
-            $ref: "#/components/schemas/brand"
         - name: category
           in: query
           description: Requester of the image (sales, web, social media)
@@ -77,7 +71,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: x-Gateway-APIKey
+        - name: x-api-key
           in: header
           description: API Key assigned to the Application calling the API
           required: true
@@ -187,7 +181,7 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: x-Gateway-APIKey
+        - name: x-api-key
           in: header
           description: API Key assigned to the Application calling the API
           required: true
@@ -284,12 +278,6 @@ paths:
           required: true
           schema: 
             $ref: "#/components/schemas/color"
-        - name: brand
-          in: query
-          description: The brand the query refers to
-          required: false
-          schema:
-            $ref: "#/components/schemas/brand"
         - name: category
           in: query
           description: The category the query refers to
@@ -321,25 +309,12 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: x-Gateway-APIKey
+        - name: x-api-key
           in: header
           description: API Key assigned to the Application calling the API
           required: true
           schema:
             type: string
-        - name: x-Orig-App-Name
-          in: header
-          description: the name of the API Consumer APP as defined in AXL
-          required: false
-          schema:
-            type: string
-        - name: x-Context-Check
-          in: header
-          description: header carrying boolean to control if required the backend business logic
-          required: false
-          schema:
-            type: boolean
-          example: true
             
       responses:
         "200":
@@ -418,7 +393,7 @@ components:
     api-key-auth:
       type: apiKey
       in: header
-      name: x-Gateway-APIKey
+      name: x-api-key
 
   schemas:
       
