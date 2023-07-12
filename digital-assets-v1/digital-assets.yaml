@@ -446,17 +446,21 @@ components:
         style:
           description: The identifier of the style
           type: string
+          example: "2WHGK03H"
         fabric:
           description: The identifier of the fabric
           type: string
+          example: ""
         color:
           description: The identifier of the color
           type: string
+          example: ""
         brand:
           $ref: "#/components/schemas/brand"
         gender:
           description: Gender the product item refers to
           type: string
+          example: ""
         category:
           $ref: "#/components/schemas/category"
         count:
@@ -491,17 +495,21 @@ components:
         style:
           description: The identifier of the style
           type: string
+          example: "Y4R173"
         fabric:
           description: The identifier of the fabric
           type: string
+          example: "Y068E"
         color:
           description: The identifier of the color
           type: string
+          example: "85726"
         brand:
           $ref: "#/components/schemas/brand"
         gender:
           description: Gender the product item refers to
           type: string
+          example: ""
         category:
           $ref: "#/components/schemas/category"
         count:
@@ -521,8 +529,6 @@ components:
         - item-id-type
         - item-id
         - href
-        - brand
-        - gender
         - assets
       properties:
         item-id-type:
@@ -539,17 +545,21 @@ components:
         style:
           description: The identifier of the style
           type: string
+          example: "2WHGK03H"
         fabric:
           description: The identifier of the fabric
           type: string
+          example: "T01QW"
         color:
           description: The identifier of the color
           type: string
+          example: "UC99"
         brand:
           $ref: "#/components/schemas/brand"
         gender:
           description: Gender the product item refers to
           type: string
+          example: ""
         category:
           $ref: "#/components/schemas/category"
         classification:
@@ -687,8 +697,10 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
+          example: ""
         media-height:
           type: string
+          example: ""
         size:
           description: The size of the digital asset in bytes
           type: integer
@@ -734,8 +746,10 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
+          example: ""
         media-height:
           type: string
+          example: ""
         size:
           description: size of the digital asset in bytes
           type: integer       
@@ -785,8 +799,10 @@ components:
           $ref: "#/components/schemas/resolution"
         media-width:
           type: string
+          example: ""
         media-height:
           type: string
+          example: ""
         size:
           description: size of the digital asset in bytes
           type: integer       
@@ -831,7 +847,7 @@ components:
         - 30
         - 67
         - 70
-      example: "GA"
+      example: ""
     
     classification:
       type: string
