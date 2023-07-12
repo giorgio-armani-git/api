@@ -1,7 +1,7 @@
 openapi: "3.0.0"
 info:
   title: Digital Assets API
-  description: Digital Assets API exposes the method to retrieve different types of digital assets where data source is related to the legacy DAM
+  description: Digital Assets API exposes the method to retrieve different types of digital assets including images, swatches and sketches. Returned URLs refer to Armani DAM Platform.
   version: "1.0.0"
 servers:
   - url: '{protocol}://{environment}.giorgioarmani.tech/digital-assets/v1'
