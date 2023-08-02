@@ -4,17 +4,18 @@ info:
   description: Digital Assets API exposes the method to retrieve different types of digital assets - Version 2
   version: "2.0.0"
 servers:
-  - url: '{protocol}://{environment}.gateway.webmethodscloud.de/gateway/digital-assets/v2'
+  - url: '{protocol}://{environment}.giorgioarmani.tech/digital-assets/v2'
     variables:
       protocol:
         enum:
           - https
         default: https
       environment:
-        default: apiarmani    # Production server
+        default: multimedia-api    # Prod Environment
         enum:
-          - apiarmani      # Production server
-          - apiarmanidev   # Development server
+          - multimedia-api        # Prod Environment
+          - dev-multimedia-api    # Dev Environment
+          - test-multimedia-api   # Test Environment
 
 paths:
   /media-items:
